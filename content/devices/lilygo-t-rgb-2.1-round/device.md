@@ -1,0 +1,39 @@
+---
+chip: ESP32-S3
+board: lilygo-t-rgb-2.1-round
+name: Lilygo T-RGB 2.1 Round
+product_link: https://lilygo.cc/products/t-rgb
+tags: [display]
+gpio_pins:
+  GPIO00: BOOT
+  GPIO01: TP_INT
+  GPIO02: LCD_RED1
+  GPIO03: LCD_RED2
+  GPIO05: LCD_RED3
+  GPIO06: LCD_RED4
+  GPIO07: LCD_RED5
+  GPIO08: I2C_SDA
+  GPIO09: LCD_GREEN0
+  GPIO10: LCD_GREEN1
+  GPIO11: LCD_GREEN2
+  GPIO12: LCD_GREEN3
+  GPIO13: LCD_GREEN4
+  GPIO14: LCD_GREEN5
+  GPIO15: LCD_BLUE1
+  GPIO16: LCD_BLUE2
+  GPIO17: LCD_BLUE3
+  GPIO18: LCD_BLUE4
+  GPIO21: LCD_BLUE5
+  GPIO38: SD_DO
+  GPIO39: SD_CLK
+  GPIO40: SD_CMD
+  GPIO41: VSYNC
+  GPIO42: PCLK
+  GPIO45: DE
+  GPIO46: LCD Backlight
+  GPIO47: HSYNC
+  GPIO48: I2C_SCL
+---
+
+This is a round 2.1" display with touchscreen. 
+
