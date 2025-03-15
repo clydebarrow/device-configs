@@ -15,7 +15,7 @@
     <div class="device-tags">
         {{ with .Params.board }}<span class="tag chip">{{ . }}</span>{{ end }}
         {{ with .Params.standard }}<a href="/standards/{{ . | urlize }}/" class="tag standard">{{ . }}</a>{{ end }}
-        {{ range .Params.tags }}<a href="/categories/{{ . | urlize }}/" class="tag feature">{{ . }}</a>{{ end }}
+        {{ range .Params.tags }}<a href="/tags/{{ . | urlize }}/" class="tag feature">{{ . }}</a>{{ end }}
     </div>
     <div class="device-meta">
         {{ with .Params.lastmod }}
