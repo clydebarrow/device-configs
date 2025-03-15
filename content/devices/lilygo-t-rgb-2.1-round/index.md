@@ -1,11 +1,11 @@
 ---
-name: Lilygo T-RGB 2.1 Round
-chip: ESP32-S3
-board: lilygo-t-rgb-2.1-round
+title: Lilygo T-RGB 2.1 Round
+board: ESP32-S3
+slug: lilygo-t-rgb-2.1-round
 standard: global
-product_link: https://lilygo.cc/products/t-rgb
+project_url: https://lilygo.cc/products/t-rgb
 tags: [display, touchscreen]
-date_added: 2025-03-14T23:31:32.079Z
+date-published: 2025-03-14T23:31:32.079Z
 gpio_pins:
   GPIO00: BOOT
   GPIO01: TP_INT

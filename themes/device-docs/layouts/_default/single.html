@@ -1,17 +1,16 @@
 {{ define "main" }}
 <div class="content device-page">
-    <h1>{{ .Params.name }}</h1>
-    <h2 class="board-name">{{ .Params.board }}</h2>
+    <h1>{{ .Params.title }}</h1>
     
     <div class="device-meta-tags">
-        {{ with .Params.chip }}<span class="tag chip">{{ . }}</span>{{ end }}
+        {{ with .Params.board }}<span class="tag chip">{{ . }}</span>{{ end }}
         {{ with .Params.standard }}<span class="tag standard">{{ . }}</span>{{ end }}
         {{ range .Params.tags }}
         <span class="tag feature">{{ . }}</span>
         {{ end }}
     </div>
 
-    {{ with .Params.product_link }}
+    {{ with .Params.project_url }}
     <div class="product-link">
         <a href="{{ . }}" target="_blank" rel="noopener">View Product Page →</a>
     </div>
