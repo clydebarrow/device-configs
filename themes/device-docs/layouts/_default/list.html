@@ -3,16 +3,39 @@
     <h1>{{ .Title }}</h1>
     {{ .Content }}
     
+    <h2>Recently Added Devices</h2>
     <div class="device-grid">
-        {{ range .Pages }}
+        {{ range sort .Pages "Params.date_published" "desc" | first 6 }}
         <div class="device-card">
             {{ $deviceImage := (index (.Resources.Match "images/*") 0) }}
             {{ with $deviceImage }}
-            <img src="{{ .RelPermalink }}" alt="{{ $.Title }}" class="device-image">
+            <img src="{{ .RelPermalink }}" alt="{{ .Title }}" class="device-image">
             {{ end }}
             <div class="device-info">
                 <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-                {{ with .Params.type }}<span class="tag type">{{ . }}</span>{{ end }}
+                {{ with .Params.board }}<span class="tag type">{{ . }}</span>{{ end }}
+                {{ with .Params.standard }}<span class="tag standard">{{ . }}</span>{{ end }}
+                <div class="device-meta">
+                    {{ with .Params.date_published }}
+                    <time datetime="{{ . }}">Added {{ dateFormat "Jan 2, 2006" . }}</time>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+        {{ end }}
+    </div>
+
+    <h2>All Devices</h2>
+    <div class="device-grid">
+        {{ range sort .Pages "Title" }}
+        <div class="device-card">
+            {{ $deviceImage := (index (.Resources.Match "images/*") 0) }}
+            {{ with $deviceImage }}
+            <img src="{{ .RelPermalink }}" alt="{{ .Title }}" class="device-image">
+            {{ end }}
+            <div class="device-info">
+                <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+                {{ with .Params.board }}<span class="tag type">{{ . }}</span>{{ end }}
                 {{ with .Params.standard }}<span class="tag standard">{{ . }}</span>{{ end }}
             </div>
         </div>

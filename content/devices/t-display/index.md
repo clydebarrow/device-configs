@@ -1,11 +1,11 @@
 ---
-name: LILYGO TTGO T-Display
-chip: ESP32
-board: t-display
+title: LILYGO TTGO T-Display
+board: ESP32
+slug: t-display
 standard: global
-product_link: https://www.lilygo.cc/products/lilygo%C2%AE-ttgo-t-display-1-14-inch-lcd-esp32-control-board
+product_url: https://www.lilygo.cc/products/lilygo%C2%AE-ttgo-t-display-1-14-inch-lcd-esp32-control-board
 tags: [display]
-date_added: 2025-03-13T23:31:32.079Z
+date_published: 2025-03-13T23:31:32.079Z
 gpio_pins:
   GPIO0: Button 1
   GPIO35: Button 2
