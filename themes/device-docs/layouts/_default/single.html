@@ -1,0 +1,137 @@
+{{ define "main" }}
+<div class="content device-page">
+    <h1>{{ .Params.name }}</h1>
+    <h2 class="board-name">{{ .Params.board }}</h2>
+    
+    <div class="device-meta-tags">
+        {{ with .Params.chip }}<span class="tag chip">{{ . }}</span>{{ end }}
+        {{ with .Params.standard }}<span class="tag standard">{{ . }}</span>{{ end }}
+        {{ range .Params.tags }}
+        <span class="tag feature">{{ . }}</span>
+        {{ end }}
+    </div>
+
+    {{ with .Params.product_link }}
+    <div class="product-link">
+        <a href="{{ . }}" target="_blank" rel="noopener">View Product Page →</a>
+    </div>
+    {{ end }}
+    
+    {{ if .Resources.Match "images/*" }}
+    <div class="device-images">
+        {{ range .Resources.Match "images/*" }}
+            {{ $image := . }}
+            {{ $large := $image.Resize "1200x q85" }}
+            {{ $medium := $image.Resize "800x q85" }}
+            {{ $small := $image.Resize "400x q85" }}
+            {{ $webpLarge := $large.Resize "1200x webp q85" }}
+            {{ $webpMedium := $medium.Resize "800x webp q85" }}
+            {{ $webpSmall := $small.Resize "400x webp q85" }}
+            <picture>
+                <source
+                    type="image/webp"
+                    srcset="{{ $webpSmall.RelPermalink }} 400w, {{ $webpMedium.RelPermalink }} 800w, {{ $webpLarge.RelPermalink }} 1200w"
+                    sizes="(min-width: 1280px) calc(33vw - 2rem), (min-width: 768px) calc(50vw - 2rem), calc(100vw - 4rem)">
+                <source
+                    type="image/jpeg"
+                    srcset="{{ $small.RelPermalink }} 400w, {{ $medium.RelPermalink }} 800w, {{ $large.RelPermalink }} 1200w"
+                    sizes="(min-width: 1280px) calc(33vw - 2rem), (min-width: 768px) calc(50vw - 2rem), calc(100vw - 4rem)">
+                <img
+                    src="{{ $medium.RelPermalink }}"
+                    loading="lazy"
+                    decoding="async"
+                    alt="{{ $.Title }} - {{ $image.Name | path.Base }}"
+                    class="device-image"
+                    width="{{ $medium.Width }}"
+                    height="{{ $medium.Height }}">
+            </picture>
+        {{ end }}
+    </div>
+    {{ end }}
+
+    <div class="device-content">
+        {{ .Content }}
+    </div>
+
+    {{ if .Params.gpio_pins }}
+    <div class="gpio-table">
+        <h2>GPIO Pin Reference</h2>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>GPIO Pin</th>
+                        <th>Function</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{ $pins := .Params.gpio_pins }}
+                    {{ $sortedPins := slice }}
+                    {{ range $pin, $function := $pins }}
+                        {{ $pinNumber := index (findRE "[0-9]+" $pin) 0 }}
+                        {{ $sortKey := "999" }}
+                        {{ if $pinNumber }}
+                            {{ $trimmed := strings.TrimLeft "0" $pinNumber }}
+                            {{ if eq $trimmed "" }}
+                                {{ $sortKey = "000" }}
+                            {{ else }}
+                                {{ $sortKey = printf "%03d" (int $trimmed) }}
+                            {{ end }}
+                        {{ end }}
+                        {{ $category := "System" }}
+                        {{ if findRE "(?i)boot|reset|enable" $function }}
+                            {{ $category = "System" }}
+                        {{ else if findRE "(?i)display|lcd|tft|rgb|backlight|bl|vsync|hsync|de|pclk|red|green|blue|disp" $function }}
+                            {{ $category = "Display" }}
+                        {{ else if findRE "(?i)touch|tp_" $function }}
+                            {{ $category = "Touchscreen" }}
+                        {{ else if findRE "(?i)button|btn|touch|tp_int|key|switch" $function }}
+                            {{ $category = "Input" }}
+                        {{ else if findRE "(?i)i2c|sda|scl|wire|i2c_sda|i2c_scl" $function }}
+                            {{ $category = "I2C" }}
+                        {{ else if findRE "(?i)spi|mosi|miso|sck|cs|copi|cipo" $function }}
+                            {{ $category = "SPI" }}
+                        {{ else if findRE "(?i)sd|card|do|clk|cmd|flash|memory|sd_" $function }}
+                            {{ $category = "Storage" }}
+                        {{ else if findRE "(?i)uart|tx|rx|serial" $function }}
+                            {{ $category = "Communication" }}
+                        {{ else if findRE "(?i)led|light|ws2812|neopixel" $function }}
+                            {{ $category = "Output" }}
+                        {{ else if findRE "(?i)gnd|vcc|3v3|5v|power" $function }}
+                            {{ $category = "Power" }}
+                        {{ else }}
+                            {{ $category = "Other" }}
+                        {{ end }}
+                        {{ $sortedPins = $sortedPins | append (dict "pin" $pin "function" $function "sortKey" $sortKey "category" $category) }}
+                    {{ end }}
+                    {{ $categories := slice "System" "Display" "Touchscreen" "Input" "I2C" "SPI" "Storage" "Communication" "Power" "Other" }}
+                    {{ range $categories }}
+                        {{ $category := . }}
+                        {{ $categoryPins := where $sortedPins "category" $category }}
+                        {{ if $categoryPins }}
+                            <tr class="category-header">
+                                <td colspan="2">{{ $category }}</td>
+                            </tr>
+                            {{ range sort $categoryPins "sortKey" }}
+                            <tr>
+                                <td><code>{{ .pin | upper }}</code></td>
+                                <td>{{ .function }}</td>
+                            </tr>
+                            {{ end }}
+                        {{ end }}
+                    {{ end }}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {{ end }}
+
+    {{ with .Resources.GetMatch "config.yaml" }}
+    <div class="config-section">
+        <h2>Sample YAML configuration</h2>
+        {{ $file := "config.yaml" }}
+        {{ highlight .Content "yaml" "" }}
+    </div>
+    {{ end }}
+</div>
+{{ end }}

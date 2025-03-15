@@ -1,0 +1,22 @@
+{{ define "main" }}
+<div class="content">
+    <h1>{{ .Title }}</h1>
+    {{ .Content }}
+    
+    <div class="device-grid">
+        {{ range .Pages }}
+        <div class="device-card">
+            {{ $deviceImage := (index (.Resources.Match "images/*") 0) }}
+            {{ with $deviceImage }}
+            <img src="{{ .RelPermalink }}" alt="{{ $.Title }}" class="device-image">
+            {{ end }}
+            <div class="device-info">
+                <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+                {{ with .Params.type }}<span class="tag type">{{ . }}</span>{{ end }}
+                {{ with .Params.standard }}<span class="tag standard">{{ . }}</span>{{ end }}
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</div>
+{{ end }}

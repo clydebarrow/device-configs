@@ -1,0 +1,21 @@
+baseURL = "/"
+languageCode = "en-us"
+title = "ESPHome Device Configurations"
+theme = "device-docs"
+
+[params]
+  description = "Repository of device configuration templates and setup guides for devices running ESPHome firmware"
+
+[menu]
+  [[menu.main]]
+    name = "Devices"
+    url = "/devices/"
+    weight = 1
+  [[menu.main]]
+    name = "Standards"
+    url = "/standards/"
+    weight = 2
+  [[menu.main]]
+    name = "Contributing"
+    url = "/contributing/"
+    weight = 3
