@@ -44,7 +44,7 @@
                                 {{ end }}
                             {{ end }}
                             {{ range uniq $tags | sort }}
-                            <a href="/categories/{{ . | urlize }}" class="dropdown-item">{{ . | title }}</a>
+                            <a href="/tags/{{ . | urlize }}" class="dropdown-item">{{ . | title }}</a>
                             {{ end }}
                         </div>
                     </div>

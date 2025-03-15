@@ -8,8 +8,8 @@ taxonomies:
   standard: "standards"
 
 permalinks:
-  tags: "/categories/:slug/"
-  standards: "/standards/:slug/"
+  tag: "/tags/:slug/"
+  standard: "/standards/:slug/"
 
 menu:
   main:
@@ -17,7 +17,7 @@ menu:
       url: "/devices/"
       weight: 1
     - name: "Categories"
-      url: "/categories/"
+      url: "/tags/"
       weight: 2
       identifier: "categories"
 
