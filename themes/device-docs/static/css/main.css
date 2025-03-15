@@ -69,6 +69,105 @@ nav {
     width: 100%;
 }
 
+.search-container {
+    position: relative;
+    width: 300px;
+    margin: 0 1rem;
+}
+
+/* Pagefind UI customization */
+.pagefind-ui {
+    --pagefind-ui-scale: 0.95;
+    --pagefind-ui-primary: var(--primary-color);
+    --pagefind-ui-text: var(--text-color);
+    --pagefind-ui-background: var(--bg-color);
+    --pagefind-ui-border: var(--border-color);
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 8px;
+    --pagefind-ui-image-border-radius: 8px;
+    --pagefind-ui-font: inherit;
+}
+
+.pagefind-ui .pagefind-ui__search-input {
+    border-radius: 8px;
+    padding: 0.5rem 2.5rem 0.5rem 1rem;
+    font-size: 0.875rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: rgba(0, 0, 0, 0.85);
+    width: 100%;
+}
+
+.pagefind-ui .pagefind-ui__search-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+
+.pagefind-ui .pagefind-ui__drawer {
+    position: absolute;
+    z-index: 9999;
+    left: 0;
+    right: 0;
+    margin-top: 0.5rem;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.pagefind-ui .pagefind-ui__results-area {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+    background: var(--bg-color);
+    padding: 1rem;
+}
+
+.pagefind-ui .pagefind-ui__message {
+    color: var(--text-color);
+    padding: 1rem;
+}
+
+.pagefind-ui .pagefind-ui__result {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.pagefind-ui .pagefind-ui__result:last-child {
+    border-bottom: none;
+}
+
+.pagefind-ui .pagefind-ui__result-title {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.pagefind-ui .pagefind-ui__result-excerpt {
+    color: var(--text-color);
+    font-size: 0.875rem;
+}
+
+@media (max-width: 767px) {
+    .search-container {
+        width: 100%;
+        margin: 0.75rem 0;
+        order: 1;
+    }
+
+    .pagefind-ui .pagefind-ui__drawer {
+        position: fixed;
+        top: auto;
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+        margin-top: 0;
+    }
+
+    .pagefind-ui .pagefind-ui__results-area {
+        max-height: calc(100vh - 250px);
+    }
+}
+
 .logo {
     display: flex;
     align-items: center;
@@ -280,7 +379,7 @@ nav {
 
 @media (min-width: 640px) {
     .menu-item {
-        font-size: 0.9375rem;
+        font-size: 1.1rem;
     }
 }
 

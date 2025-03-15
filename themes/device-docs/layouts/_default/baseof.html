@@ -6,6 +6,8 @@
     <title>{{ if .Title }}{{ .Title }} - {{ end }}{{ .Site.Title }}</title>
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
     <link rel="stylesheet" href="/css/main.css">
+    <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+    <script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
     <script src="/js/view-toggle.js" defer></script>
 </head>
 <body>
@@ -16,6 +18,7 @@
                     <img src="/images/esphome-logo.svg" alt="ESPHome Logo">
                     <span>Device Configs</span>
                 </a>
+                <div id="search" class="search-container"></div>
                 <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -65,6 +68,12 @@
     </footer>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Pagefind search
+            new PagefindUI({
+                element: "#search",
+                showImages: true,
+                highlightParam: "highlight",
+            });
             // Copy button functionality
             const copyButtons = document.querySelectorAll('.copy-button');
             copyButtons.forEach(button => {
