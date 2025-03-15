@@ -33,5 +33,28 @@
             <p>&copy; {{ now.Format "2006" }} ESPHome Device Configurations. Licensed under MIT.</p>
         </div>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const copyButtons = document.querySelectorAll('.copy-button');
+            
+            copyButtons.forEach(button => {
+                button.addEventListener('click', async () => {
+                    const codeBlock = button.closest('.code-block');
+                    const yamlContent = codeBlock.querySelector('.yaml-content');
+                    const code = yamlContent.textContent;
+                    
+                    try {
+                        await navigator.clipboard.writeText(code);
+                        button.classList.add('copied');
+                        setTimeout(() => {
+                            button.classList.remove('copied');
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Failed to copy:', err);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
