@@ -15,7 +15,14 @@
                     <img src="/images/esphome-logo.svg" alt="ESPHome Logo">
                     <span>Device Configs</span>
                 </a>
-                <div class="menu">
+                <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <div class="menu" id="main-menu">
                     {{ range .Site.Menus.main }}
                     <a href="{{ .URL }}" class="menu-item">{{ .Name }}</a>
                     {{ end }}
@@ -35,8 +42,8 @@
     </footer>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Copy button functionality
             const copyButtons = document.querySelectorAll('.copy-button');
-            
             copyButtons.forEach(button => {
                 button.addEventListener('click', async () => {
                     const codeBlock = button.closest('.code-block');
@@ -54,6 +61,34 @@
                     }
                 });
             });
+
+            // Mobile menu functionality
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menu = document.querySelector('.menu');
+
+            if (menuToggle && menu) {
+                menuToggle.addEventListener('click', () => {
+                    const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+                    menuToggle.setAttribute('aria-expanded', !isExpanded);
+                    menu.classList.toggle('active');
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!menu.contains(e.target) && !menuToggle.contains(e.target) && menu.classList.contains('active')) {
+                        menu.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                // Close menu on resize if it's open
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth >= 768 && menu.classList.contains('active')) {
+                        menu.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
         });
     </script>
 </body>
