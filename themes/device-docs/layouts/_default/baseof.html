@@ -6,6 +6,7 @@
     <title>{{ if .Title }}{{ .Title }} - {{ end }}{{ .Site.Title }}</title>
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
     <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/view-toggle.js" defer></script>
 </head>
 <body>
     <header>
@@ -24,7 +25,29 @@
                 </button>
                 <div class="menu" id="main-menu">
                     {{ range .Site.Menus.main }}
+                    {{ if eq .Identifier "categories" }}
+                    <div class="dropdown">
+                        <button class="menu-item dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                            {{ .Name }}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="dropdown-menu" aria-label="Categories submenu">
+                            {{ $tags := slice }}
+                            {{ range $.Site.RegularPages }}
+                                {{ range .Params.tags }}
+                                    {{ $tags = $tags | append . }}
+                                {{ end }}
+                            {{ end }}
+                            {{ range uniq $tags | sort }}
+                            <a href="/categories/{{ . | urlize }}" class="dropdown-item">{{ . | title }}</a>
+                            {{ end }}
+                        </div>
+                    </div>
+                    {{ else }}
                     <a href="{{ .URL }}" class="menu-item">{{ .Name }}</a>
+                    {{ end }}
                     {{ end }}
                 </div>
             </div>
@@ -89,6 +112,62 @@
                     }
                 });
             }
+
+            // Dropdown menu functionality
+            const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+            
+            dropdownToggles.forEach(toggle => {
+                const dropdown = toggle.closest('.dropdown');
+                const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+
+                // Handle click and touch events
+                const toggleDropdown = (e) => {
+                    e.preventDefault();
+                    const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+
+                    // Close other dropdowns
+                    dropdownToggles.forEach(otherToggle => {
+                        if (otherToggle !== toggle) {
+                            otherToggle.setAttribute('aria-expanded', 'false');
+                            otherToggle.closest('.dropdown').querySelector('.dropdown-menu').classList.remove('active');
+                        }
+                    });
+
+                    // Toggle current dropdown
+                    toggle.setAttribute('aria-expanded', !isExpanded);
+                    dropdownMenu.classList.toggle('active');
+                };
+
+                toggle.addEventListener('click', toggleDropdown);
+                toggle.addEventListener('touchend', toggleDropdown);
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!dropdown.contains(e.target)) {
+                        toggle.setAttribute('aria-expanded', 'false');
+                        dropdownMenu.classList.remove('active');
+                    }
+                });
+
+                // Handle keyboard navigation
+                toggle.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleDropdown(e);
+                    } else if (e.key === 'Escape') {
+                        toggle.setAttribute('aria-expanded', 'false');
+                        dropdownMenu.classList.remove('active');
+                    }
+                });
+            });
+
+            // Close dropdowns on mobile menu close
+            menuToggle.addEventListener('click', () => {
+                dropdownToggles.forEach(toggle => {
+                    toggle.setAttribute('aria-expanded', 'false');
+                    toggle.closest('.dropdown').querySelector('.dropdown-menu').classList.remove('active');
+                });
+            });
         });
     </script>
 </body>

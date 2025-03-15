@@ -14,12 +14,12 @@
     <h3><a href="{{ .RelPermalink }}">{{ .Params.title }}</a></h3>
     <div class="device-tags">
         {{ with .Params.board }}<span class="tag chip">{{ . }}</span>{{ end }}
-        {{ with .Params.standard }}<span class="tag standard">{{ . }}</span>{{ end }}
-        {{ range .Params.tags }}<span class="tag feature">{{ . }}</span>{{ end }}
+        {{ with .Params.standard }}<a href="/standards/{{ . | urlize }}/" class="tag standard">{{ . }}</a>{{ end }}
+        {{ range .Params.tags }}<a href="/categories/{{ . | urlize }}/" class="tag feature">{{ . }}</a>{{ end }}
     </div>
     <div class="device-meta">
-        {{ with .Params.date_published }}
-        <time datetime="{{ . }}">Added {{ dateFormat "Jan 2, 2006" . }}</time>
+        {{ with .Params.lastmod }}
+        <time datetime="{{ . }}">Updated {{ dateFormat "Jan 2, 2006" . }}</time>
         {{ end }}
     </div>
 </div>
