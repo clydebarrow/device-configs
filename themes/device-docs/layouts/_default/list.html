@@ -1,45 +1,62 @@
 {{ define "main" }}
 <div class="content">
-    <h1>{{ .Title }}</h1>
-    {{ .Content }}
-    
-    <h2>Recently Added Devices</h2>
-    <div class="device-grid">
-        {{ range sort .Pages "Params.date_published" "desc" | first 6 }}
+    <div class="hero">
+        <h1>{{ .Title }}</h1>
+        {{ .Content }}
+    </div>
+
+    <div class="view-toggle">
+        <button class="toggle-button" data-view="grid" title="Grid View">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        </button>
+        <button class="toggle-button" data-view="list" title="List View">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+    </div>
+
+    <div class="device-grid" id="device-container">
+        {{ range sort .Pages "Params.title" }}
         <div class="device-card">
-            {{ $deviceImage := (index (.Resources.Match "images/*") 0) }}
-            {{ with $deviceImage }}
-            <img src="{{ .RelPermalink }}" alt="{{ .Title }}" class="device-image">
-            {{ end }}
-            <div class="device-info">
-                <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-                {{ with .Params.board }}<span class="tag type">{{ . }}</span>{{ end }}
-                {{ with .Params.standard }}<span class="tag standard">{{ . }}</span>{{ end }}
-                <div class="device-meta">
-                    {{ with .Params.date_published }}
-                    <time datetime="{{ . }}">Added {{ dateFormat "Jan 2, 2006" . }}</time>
-                    {{ end }}
-                </div>
-            </div>
+            {{ partial "device-card.html" . }}
         </div>
         {{ end }}
     </div>
 
-    <h2>All Devices</h2>
-    <div class="device-grid">
-        {{ range sort .Pages "Title" }}
-        <div class="device-card">
-            {{ $deviceImage := (index (.Resources.Match "images/*") 0) }}
-            {{ with $deviceImage }}
-            <img src="{{ .RelPermalink }}" alt="{{ .Title }}" class="device-image">
-            {{ end }}
-            <div class="device-info">
-                <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-                {{ with .Params.board }}<span class="tag type">{{ . }}</span>{{ end }}
-                {{ with .Params.standard }}<span class="tag standard">{{ . }}</span>{{ end }}
-            </div>
-        </div>
-        {{ end }}
-    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const container = document.getElementById('device-container');
+        const buttons = document.querySelectorAll('.toggle-button');
+        const STORAGE_KEY = 'deviceViewPreference';
+
+        // Load saved preference
+        const savedView = localStorage.getItem(STORAGE_KEY) || 'grid';
+        setView(savedView);
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const view = button.dataset.view;
+                setView(view);
+                // Save preference
+                localStorage.setItem(STORAGE_KEY, view);
+            });
+        });
+
+        function setView(view) {
+            container.className = `device-${view}`;
+            buttons.forEach(b => {
+                b.classList.toggle('active', b.dataset.view === view);
+            });
+
+            // Update image sources based on view
+            const images = container.querySelectorAll('.device-image');
+            images.forEach(img => {
+                const src = img.dataset[`${view}Src`];
+                if (src && img.src !== src) {
+                    img.src = src;
+                }
+            });
+        }
+    });
+    </script>
 </div>
 {{ end }}

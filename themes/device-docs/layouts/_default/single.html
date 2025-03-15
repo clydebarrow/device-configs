@@ -10,7 +10,7 @@
         {{ end }}
     </div>
 
-    {{ with .Params.project_url }}
+    {{ with .Params.product_url }}
     <div class="product-link">
         <a href="{{ . }}" target="_blank" rel="noopener">View Product Page →</a>
     </div>
@@ -20,26 +20,26 @@
     <div class="device-images">
         {{ range .Resources.Match "images/*" }}
             {{ $image := . }}
-            {{ $large := $image.Resize "1200x q85" }}
-            {{ $medium := $image.Resize "800x q85" }}
-            {{ $small := $image.Resize "400x q85" }}
-            {{ $webpLarge := $large.Resize "1200x webp q85" }}
-            {{ $webpMedium := $medium.Resize "800x webp q85" }}
-            {{ $webpSmall := $small.Resize "400x webp q85" }}
+            {{ $large := $image.Resize "1200x" }}
+            {{ $medium := $image.Resize "800x" }}
+            {{ $small := $image.Resize "400x" }}
+            {{ $webpLarge := $large.Resize "1200x webp" }}
+            {{ $webpMedium := $medium.Resize "800x webp" }}
+            {{ $webpSmall := $small.Resize "400x webp" }}
             <picture>
                 <source
                     type="image/webp"
                     srcset="{{ $webpSmall.RelPermalink }} 400w, {{ $webpMedium.RelPermalink }} 800w, {{ $webpLarge.RelPermalink }} 1200w"
-                    sizes="(min-width: 1280px) calc(33vw - 2rem), (min-width: 768px) calc(50vw - 2rem), calc(100vw - 4rem)">
+                    sizes="(min-width: 1280px) 1200px, (min-width: 768px) 800px, 400px">
                 <source
                     type="image/jpeg"
                     srcset="{{ $small.RelPermalink }} 400w, {{ $medium.RelPermalink }} 800w, {{ $large.RelPermalink }} 1200w"
-                    sizes="(min-width: 1280px) calc(33vw - 2rem), (min-width: 768px) calc(50vw - 2rem), calc(100vw - 4rem)">
+                    sizes="(min-width: 1280px) 1200px, (min-width: 768px) 800px, 400px">
                 <img
                     src="{{ $medium.RelPermalink }}"
                     loading="lazy"
                     decoding="async"
-                    alt="{{ $.Title }} - {{ $image.Name | path.Base }}"
+                    alt="{{ $.Params.title }} - {{ $image.Name | path.Base }}"
                     class="device-image"
                     width="{{ $medium.Width }}"
                     height="{{ $medium.Height }}">

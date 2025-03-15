@@ -1,0 +1,25 @@
+{{ $deviceImage := (index (.Resources.Match "images/*") 0) }}
+{{ with $deviceImage }}
+{{ $gridThumb := .Resize "600x" }}
+{{ $listThumb := .Resize "80x80" }}
+<div class="image-container">
+    <img src="{{ $gridThumb.RelPermalink }}" 
+         data-grid-src="{{ $gridThumb.RelPermalink }}" 
+         data-list-src="{{ $listThumb.RelPermalink }}" 
+         alt="{{ $.Params.title }}" 
+         class="device-image">
+</div>
+{{ end }}
+<div class="device-info">
+    <h3><a href="{{ .RelPermalink }}">{{ .Params.title }}</a></h3>
+    <div class="device-tags">
+        {{ with .Params.board }}<span class="tag chip">{{ . }}</span>{{ end }}
+        {{ with .Params.standard }}<span class="tag standard">{{ . }}</span>{{ end }}
+        {{ range .Params.tags }}<span class="tag feature">{{ . }}</span>{{ end }}
+    </div>
+    <div class="device-meta">
+        {{ with .Params.date_published }}
+        <time datetime="{{ . }}">Added {{ dateFormat "Jan 2, 2006" . }}</time>
+        {{ end }}
+    </div>
+</div>
