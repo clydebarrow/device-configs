@@ -83,6 +83,7 @@ header .container {
     align-items: center;
     justify-content: space-between;
     height: 100%;
+    flex-wrap: wrap;
 }
 
 nav {
@@ -112,12 +113,13 @@ nav {
 
 .pagefind-ui .pagefind-ui__search-input {
     border-radius: 8px;
-    padding: 0.5rem 2.5rem 0.5rem 1rem;
+    padding: 0.375rem 2.5rem 0.375rem 1rem;
     font-size: 0.875rem;
     border: 1px solid rgba(255, 255, 255, 0.2);
     background-color: rgba(255, 255, 255, 0.05);
     color: rgba(0, 0, 0, 0.85);
     width: 100%;
+    line-height: 1.5;
 }
 
 .pagefind-ui .pagefind-ui__search-input::placeholder {
@@ -135,6 +137,14 @@ nav {
     border: 1px solid var(--border-color);
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 1024px) {
+    .pagefind-ui .pagefind-ui__drawer {
+        width: 640px;
+        right: auto;
+        transform: translateX(-50%);
+    }
 }
 
 .pagefind-ui .pagefind-ui__results-area {
@@ -170,10 +180,27 @@ nav {
 }
 
 @media (max-width: 767px) {
+    header .container {
+        gap: 0.5rem;
+    }
+
+    nav {
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        flex: 1;
+        margin-right: 0;
+    }
+
+    .menu-toggle {
+        margin-left: 0;
+    }
+
     .search-container {
         width: 100%;
-        margin: 0.75rem 0;
-        order: 1;
+        margin: 0.75rem 0 0;
+        order: 2;
     }
 
     .pagefind-ui .pagefind-ui__drawer {
