@@ -16,6 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.head_ref }}
           fetch-depth: 0
 
       - name: Setup Hugo
@@ -24,10 +25,21 @@ jobs:
           hugo-version: 'latest'
           extended: true
 
+      - name: Check for AVIF files
+        id: check-avif
+        run: |
+          AVIF_COUNT=$(find content -type f -name "*.avif" | wc -l)
+          echo "avif_count=$AVIF_COUNT" >> $GITHUB_OUTPUT
+          if [ "$AVIF_COUNT" -gt 0 ]; then
+            echo "Found $AVIF_COUNT AVIF files to convert"
+          fi
+
       - name: Install ImageMagick
+        if: steps.check-avif.outputs.avif_count > 0
         run: sudo apt-get update && sudo apt-get install -y imagemagick
 
       - name: Convert AVIF to PNG and commit if needed
+        if: steps.check-avif.outputs.avif_count > 0
         run: |
           # Configure Git
           git config --global user.name 'github-actions[bot]'
@@ -50,9 +62,7 @@ jobs:
             git commit -m "chore: convert ${CONVERTED_FILES} AVIF image(s) to PNG format
 
             Automatically converted AVIF images to PNG format for better compatibility."
-            git push
-          else
-            echo "No AVIF files found to convert"
+            git push origin HEAD:${{ github.head_ref }}
           fi
 
       - name: Install Pagefind
