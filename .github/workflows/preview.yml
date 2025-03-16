@@ -8,7 +8,7 @@ jobs:
   preview:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       pull-requests: write
       deployments: write
     
@@ -44,6 +44,9 @@ jobs:
           # Configure Git
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          
+          # Set up token-based authentication
+          git remote set-url origin https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git
 
           # Find and convert AVIF files
           CONVERTED_FILES=0
