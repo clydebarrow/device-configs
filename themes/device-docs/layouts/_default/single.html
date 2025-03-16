@@ -4,13 +4,18 @@
     
     <div class="device-meta-tags">
         {{ with .Params.board }}<span class="tag chip">{{ . }}</span>{{ end }}
-        {{ with .Params.standard }}<span class="tag standard">{{ . }}</span>{{ end }}
+        {{ range .Params.standard }}
+        <span class="tag standard">{{ . }}</span>
+        {{ end }}
+        {{ with .Params.difficulty }}
+        <span class="tag difficulty level-{{ . }}">{{ if eq . 1 }}Comes with ESPHome{{ else if eq . 2 }}Plug-n-flash{{ else if eq . 3 }}Disassembly required{{ else if eq . 4 }}Soldering required{{ else if eq . 5 }}Chip needs replacing{{ else }}{{ . }}{{ end }}</span>
+        {{ end }}
         {{ range .Params.tags }}
         <span class="tag feature">{{ . }}</span>
         {{ end }}
     </div>
 
-    {{ with .Params.product_url }}
+    {{ with .Params.project_url }}
     <div class="product-link">
         <a href="{{ . }}" target="_blank" rel="noopener">View Product Page →</a>
     </div>

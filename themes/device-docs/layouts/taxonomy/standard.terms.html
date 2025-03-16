@@ -1,0 +1,70 @@
+{{ define "main" }}
+<div class="content">
+    <div class="hero">
+        <h1>Device Electrical Standards</h1>
+        <p>Lists devices that have mains power functionality, by electrical standard</p>
+    </div>
+
+    <div class="categories-grid">
+        {{ range $key, $value := .Data.Terms.ByCount }}
+        <div class="category-card">
+            <h2><a href="{{ $value.Page.RelPermalink }}">{{ $value.Page.Title }}</a></h2>
+            {{ with $value.Page.Description }}
+            <p>{{ . }}</p>
+            {{ end }}
+            <span class="count">{{ $value.Count }} devices</span>
+        </div>
+        {{ end }}
+    </div>
+</div>
+
+<style>
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.category-card {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.25rem;
+    transition: all 0.2s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.category-card h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.category-card h2 a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.category-card h2 a:hover {
+    color: var(--primary-color);
+}
+
+.category-card p {
+    margin: 0.5rem 0 0;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.category-card .count {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+</style>
+{{ end }}

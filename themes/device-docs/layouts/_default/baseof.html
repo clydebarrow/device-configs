@@ -48,6 +48,26 @@
                             {{ end }}
                         </div>
                     </div>
+                    {{ else if eq .Identifier "standards" }}
+                    <div class="dropdown">
+                        <button class="menu-item dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                            {{ .Name }}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="dropdown-menu" aria-label="Categories submenu">
+                            {{ $standards := slice }}
+                            {{ range $.Site.RegularPages }}
+                            {{ range .Params.standards }}
+                            {{ $standards = $standards | append . }}
+                            {{ end }}
+                            {{ end }}
+                            {{ range uniq $standards | sort }}
+                            <a href="/standards/{{ . | urlize }}" class="dropdown-item">{{ . | title | upper }}</a>
+                            {{ end }}
+                        </div>
+                    </div>
                     {{ else }}
                     <a href="{{ .URL }}" class="menu-item">{{ .Name }}</a>
                     {{ end }}
@@ -63,17 +83,21 @@
     </main>
     <footer>
         <div class="container">
-            <p>ESPHome is a project from the <a href="https://openhome.foundation" target="_blank" rel="noopener"><img src="/images/ohf-logo-on-light.svg" alt="Open Home Foundation" class="ohf-logo"></a></p>
+            <p>ESPHome is a project from the <a href="https://www.openhomefoundation.org/" target="_blank" rel="noopener"><img src="/images/ohf-logo-on-light.svg" alt="Open Home Foundation" class="ohf-logo"></a></p>
         </div>
     </footer>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Initialize Pagefind search
-            new PagefindUI({
-                element: "#search",
-                showImages: true,
-                highlightParam: "highlight",
-            });
+            try {
+                new PagefindUI({
+                    element: "#search",
+                    showImages: true,
+                    highlightParam: "highlight",
+                });
+            } catch (error) {
+                console.error("Pagefind initialization failed:", error);
+            }
             // Copy button functionality
             const copyButtons = document.querySelectorAll('.copy-button');
             copyButtons.forEach(button => {

@@ -2,7 +2,7 @@
 title: Lilygo T-RGB 2.1 Round
 board: ESP32-S3
 slug: lilygo-t-rgb-2.1-round
-standard: global
+standard: [global]
 project_url: https://lilygo.cc/products/t-rgb
 tags: [display, touchscreen]
 date_published: 2025-03-14T23:31:32.079Z

@@ -2,8 +2,8 @@
 title: LILYGO TTGO T-Display
 board: ESP32
 slug: t-display
-standard: global
-product_url: https://www.lilygo.cc/products/lilygo%C2%AE-ttgo-t-display-1-14-inch-lcd-esp32-control-board
+standards: [global,au]
+project_url: https://www.lilygo.cc/products/lilygo%C2%AE-ttgo-t-display-1-14-inch-lcd-esp32-control-board
 tags: [display]
 date_published: 2025-03-13T23:31:32.079Z
 gpio_pins:

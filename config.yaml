@@ -16,10 +16,15 @@ menu:
     - name: "Devices"
       url: "/devices/"
       weight: 1
+      identifier: "devices"
     - name: "Categories"
       url: "/tags/"
       weight: 2
       identifier: "categories"
+    - name: "Electrical"
+      url: "/standards/"
+      weight: 2
+      identifier: "standards"
 
 outputs:
   home:

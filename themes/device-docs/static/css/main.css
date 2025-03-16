@@ -18,6 +18,26 @@
     --feature-hover-color: #fff;
     --chip-bg: var(--primary-color);
     --chip-color: #fff;
+    --difficulty-1-bg: #e8f5e9;
+    --difficulty-1-color: #2e7d32;
+    --difficulty-1-hover-bg: #2e7d32;
+    --difficulty-1-hover-color: #fff;
+    --difficulty-2-bg: #e3f2fd;
+    --difficulty-2-color: #1976d2;
+    --difficulty-2-hover-bg: #1976d2;
+    --difficulty-2-hover-color: #fff;
+    --difficulty-3-bg: #fff3e0;
+    --difficulty-3-color: #f57c00;
+    --difficulty-3-hover-bg: #f57c00;
+    --difficulty-3-hover-color: #fff;
+    --difficulty-4-bg: #fce4ec;
+    --difficulty-4-color: #c2185b;
+    --difficulty-4-hover-bg: #c2185b;
+    --difficulty-4-hover-color: #fff;
+    --difficulty-5-bg: #ffebee;
+    --difficulty-5-color: #c62828;
+    --difficulty-5-hover-bg: #c62828;
+    --difficulty-5-hover-color: #fff;
 }
 
 * {
@@ -726,6 +746,65 @@ main {
 .tag.feature:hover {
     background: var(--feature-hover-bg);
     color: var(--feature-hover-color);
+    transform: translateY(-1px);
+}
+
+.tag.difficulty {
+    transition: all 0.2s ease;
+}
+
+.tag.difficulty.level-1 {
+    background: var(--difficulty-1-bg);
+    color: var(--difficulty-1-color);
+}
+
+.tag.difficulty.level-1:hover {
+    background: var(--difficulty-1-hover-bg);
+    color: var(--difficulty-1-hover-color);
+    transform: translateY(-1px);
+}
+
+.tag.difficulty.level-2 {
+    background: var(--difficulty-2-bg);
+    color: var(--difficulty-2-color);
+}
+
+.tag.difficulty.level-2:hover {
+    background: var(--difficulty-2-hover-bg);
+    color: var(--difficulty-2-hover-color);
+    transform: translateY(-1px);
+}
+
+.tag.difficulty.level-3 {
+    background: var(--difficulty-3-bg);
+    color: var(--difficulty-3-color);
+}
+
+.tag.difficulty.level-3:hover {
+    background: var(--difficulty-3-hover-bg);
+    color: var(--difficulty-3-hover-color);
+    transform: translateY(-1px);
+}
+
+.tag.difficulty.level-4 {
+    background: var(--difficulty-4-bg);
+    color: var(--difficulty-4-color);
+}
+
+.tag.difficulty.level-4:hover {
+    background: var(--difficulty-4-hover-bg);
+    color: var(--difficulty-4-hover-color);
+    transform: translateY(-1px);
+}
+
+.tag.difficulty.level-5 {
+    background: var(--difficulty-5-bg);
+    color: var(--difficulty-5-color);
+}
+
+.tag.difficulty.level-5:hover {
+    background: var(--difficulty-5-hover-bg);
+    color: var(--difficulty-5-hover-color);
     transform: translateY(-1px);
 }
 

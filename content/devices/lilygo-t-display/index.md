@@ -2,7 +2,7 @@
 board: ESP32
 difficulty: 2
 slug: lilygo-t-display
-standard: []
+standards: []
 made_for_esphome: False
 title: Lilygo T-Display
 project_url: https://lilygo.cc/products/lilygo%C2%AE-ttgo-t-display-1-14-inch-lcd-esp32-control-board
