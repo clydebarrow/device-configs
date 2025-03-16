@@ -91,7 +91,7 @@
                             {{ $category = "Input" }}
                         {{ else if findRE "(?i)i2c|sda|scl|wire" $function }}
                             {{ $category = "I2C" }}
-                        {{ else if findRE "(?i)spi|mosi|miso|sclk|sck|cs|copi|cipo" $function }}
+                        {{ else if findRE "(?i)spi|mosi|miso|sclk|sck" $function }}
                             {{ $category = "SPI" }}
                         {{ else if findRE "(?i)sd|card|clk|cmd|flash|memory|sd_" $function }}
                             {{ $category = "Storage" }}
