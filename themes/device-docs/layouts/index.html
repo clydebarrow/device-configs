@@ -1,0 +1,24 @@
+{{ define "main" }}
+<div class="content">
+    <div class="hero">
+        <h1>ESPHome Device Configurations</h1>
+        {{ .Content }}
+    </div>
+
+    <section class="device-section">
+        <h2>Recently Added</h2>
+        <div class="device-grid">
+            {{ range sort .Site.RegularPages "Params.date_published" "desc" | first 6 }}
+            <div class="device-card">
+                {{ partial "device-card.html" . }}
+            </div>
+            {{ end }}
+        </div>
+    </section>
+
+    <section class="device-section">
+        <h2>Browse All Devices</h2>
+        <p>View our complete collection of ESP device configurations in the <a href="/devices/">devices section</a>.</p>
+    </section>
+</div>
+{{ end }}

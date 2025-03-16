@@ -1,0 +1,9 @@
+{{ $file := .Get 0 }}
+{{ with .Page.Resources.GetMatch $file }}
+{{ $content := .Content }}
+{{ if eq (path.Ext $file) ".yaml" }}
+{{ highlight $content "yaml" "" }}
+{{ else }}
+{{ $content }}
+{{ end }}
+{{ end }}

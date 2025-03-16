@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ if .Title }}{{ .Title }} - {{ end }}{{ .Site.Title }}</title>
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    <link rel="stylesheet" href="/css/main.css">
+    <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+    <script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
+    <script src="/js/view-toggle.js" defer></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <a href="/" class="logo">
+                    <img src="/images/esphome-logo.svg" alt="ESPHome Logo">
+                    <span>Device Configs</span>
+                </a>
+                <div id="search" class="search-container"></div>
+                <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <div class="menu" id="main-menu">
+                    {{ range .Site.Menus.main }}
+                    {{ if eq .Identifier "categories" }}
+                    <div class="dropdown">
+                        <button class="menu-item dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                            {{ .Name }}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="dropdown-menu" aria-label="Categories submenu">
+                            {{ $tags := slice }}
+                            {{ range $.Site.RegularPages }}
+                                {{ range .Params.tags }}
+                                    {{ $tags = $tags | append . }}
+                                {{ end }}
+                            {{ end }}
+                            {{ range uniq $tags | sort }}
+                            <a href="/tags/{{ . | urlize }}" class="dropdown-item">{{ . | title }}</a>
+                            {{ end }}
+                        </div>
+                    </div>
+                    {{ else if eq .Identifier "standards" }}
+                    <div class="dropdown">
+                        <button class="menu-item dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                            {{ .Name }}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="dropdown-menu" aria-label="Categories submenu">
+                            {{ $standards := slice }}
+                            {{ range $.Site.RegularPages }}
+                            {{ range .Params.standards }}
+                            {{ $standards = $standards | append . }}
+                            {{ end }}
+                            {{ end }}
+                            {{ range uniq $standards | sort }}
+                            <a href="/standards/{{ . | urlize }}" class="dropdown-item">{{ . | title | upper }}</a>
+                            {{ end }}
+                        </div>
+                    </div>
+                    {{ else }}
+                    <a href="{{ .URL }}" class="menu-item">{{ .Name }}</a>
+                    {{ end }}
+                    {{ end }}
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            {{ block "main" . }}{{ end }}
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <p>ESPHome is a project from the <a href="https://www.openhomefoundation.org/" target="_blank" rel="noopener"><img src="/images/ohf-logo-on-light.svg" alt="Open Home Foundation" class="ohf-logo"></a></p>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Pagefind search
+            try {
+                new PagefindUI({
+                    element: "#search",
+                    showImages: true,
+                    highlightParam: "highlight",
+                });
+            } catch (error) {
+                console.error("Pagefind initialization failed:", error);
+            }
+            // Copy button functionality
+            const copyButtons = document.querySelectorAll('.copy-button');
+            copyButtons.forEach(button => {
+                button.addEventListener('click', async () => {
+                    const codeBlock = button.closest('.code-block');
+                    const yamlContent = codeBlock.querySelector('.yaml-content');
+                    const code = yamlContent.textContent;
+                    
+                    try {
+                        await navigator.clipboard.writeText(code);
+                        button.classList.add('copied');
+                        setTimeout(() => {
+                            button.classList.remove('copied');
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Failed to copy:', err);
+                    }
+                });
+            });
+
+            // Mobile menu functionality
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menu = document.querySelector('.menu');
+
+            if (menuToggle && menu) {
+                menuToggle.addEventListener('click', () => {
+                    const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+                    menuToggle.setAttribute('aria-expanded', !isExpanded);
+                    menu.classList.toggle('active');
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!menu.contains(e.target) && !menuToggle.contains(e.target) && menu.classList.contains('active')) {
+                        menu.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                // Close menu on resize if it's open
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth >= 768 && menu.classList.contains('active')) {
+                        menu.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+
+            // Dropdown menu functionality
+            const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+            
+            dropdownToggles.forEach(toggle => {
+                const dropdown = toggle.closest('.dropdown');
+                const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+
+                // Handle click and touch events
+                const toggleDropdown = (e) => {
+                    e.preventDefault();
+                    const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+
+                    // Close other dropdowns
+                    dropdownToggles.forEach(otherToggle => {
+                        if (otherToggle !== toggle) {
+                            otherToggle.setAttribute('aria-expanded', 'false');
+                            otherToggle.closest('.dropdown').querySelector('.dropdown-menu').classList.remove('active');
+                        }
+                    });
+
+                    // Toggle current dropdown
+                    toggle.setAttribute('aria-expanded', !isExpanded);
+                    dropdownMenu.classList.toggle('active');
+                };
+
+                toggle.addEventListener('click', toggleDropdown);
+                toggle.addEventListener('touchend', toggleDropdown);
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!dropdown.contains(e.target)) {
+                        toggle.setAttribute('aria-expanded', 'false');
+                        dropdownMenu.classList.remove('active');
+                    }
+                });
+
+                // Handle keyboard navigation
+                toggle.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleDropdown(e);
+                    } else if (e.key === 'Escape') {
+                        toggle.setAttribute('aria-expanded', 'false');
+                        dropdownMenu.classList.remove('active');
+                    }
+                });
+            });
+
+            // Close dropdowns on mobile menu close
+            menuToggle.addEventListener('click', () => {
+                dropdownToggles.forEach(toggle => {
+                    toggle.setAttribute('aria-expanded', 'false');
+                    toggle.closest('.dropdown').querySelector('.dropdown-menu').classList.remove('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

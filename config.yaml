@@ -1,0 +1,48 @@
+baseURL: "/"
+languageCode: "en-us"
+title: "ESPHome Device Configurations"
+theme: "device-docs"
+
+taxonomies:
+  tag: "tags"
+  standard: "standards"
+
+permalinks:
+  tag: "/tags/:slug/"
+  standard: "/standards/:slug/"
+
+menu:
+  main:
+    - name: "Devices"
+      url: "/devices/"
+      weight: 1
+      identifier: "devices"
+    - name: "Categories"
+      url: "/tags/"
+      weight: 2
+      identifier: "categories"
+    - name: "Electrical"
+      url: "/standards/"
+      weight: 2
+      identifier: "standards"
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+  section:
+    - HTML
+    - RSS
+    - JSON
+  taxonomy:
+    - HTML
+    - RSS
+    - JSON
+  term:
+    - HTML
+    - RSS
+    - JSON
+
+params:
+  description: "A collection of ESPHome device configurations"
