@@ -6,9 +6,14 @@
     </div>
 
     <section class="device-section">
+        <h2>Browse All Devices</h2>
+        <p>View our complete collection of ESP device configurations in the <a href="/devices/">devices section</a>.</p>
+    </section>
+
+    <section class="device-section">
         <h2>Recently Added</h2>
         <div class="device-grid">
-            {{ range sort .Site.RegularPages "Params.date_published" "desc" | first 6 }}
+            {{ range sort (where .Site.RegularPages "Section" "devices") "Params.date_published" "desc" | first 6 }}
             <div class="device-card">
                 {{ partial "device-card.html" . }}
             </div>
@@ -17,8 +22,8 @@
     </section>
 
     <section class="device-section">
-        <h2>Browse All Devices</h2>
-        <p>View our complete collection of ESP device configurations in the <a href="/devices/">devices section</a>.</p>
+        <h2>Contribute Your Device</h2>
+        <p>Have an ESP device configuration to share? Learn how to <a href="/contributing/">contribute your device</a> through our web form or via GitHub pull request.</p>
     </section>
 </div>
 {{ end }}

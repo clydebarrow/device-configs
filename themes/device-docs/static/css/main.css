@@ -38,6 +38,8 @@
     --difficulty-5-color: #c62828;
     --difficulty-5-hover-bg: #c62828;
     --difficulty-5-hover-color: #fff;
+    --footer-link-color: rgba(255, 255, 255, 0.7);
+    --footer-link-hover-color: var(--primary-color);
 }
 
 * {
@@ -806,6 +808,62 @@ main {
     background: var(--difficulty-5-hover-bg);
     color: var(--difficulty-5-hover-color);
     transform: translateY(-1px);
+}
+
+footer {
+    padding: 2rem 0;
+    border-top: 1px solid var(--border-color);
+    margin-top: 2rem;
+}
+
+footer .container {
+    display: flex;
+    align-items: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.footer-left {
+    display: flex;
+    align-items: center;
+}
+
+.footer-left p {
+    margin: 0;
+}
+
+.footer-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.footer-links a {
+    color: var(--footer-link-color);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: var(--footer-link-hover-color);
+}
+
+@media (max-width: 767px) {
+    .footer-content {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    .footer-links {
+        justify-content: center;
+    }
 }
 
 .device-page {

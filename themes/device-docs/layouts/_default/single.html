@@ -23,7 +23,7 @@
     
     {{ if .Resources.Match "images/*" }}
     <div class="device-images">
-        {{ range .Resources.Match "images/*" }}
+        {{ range sort (.Resources.Match "images/*") "Name" | first 3 }}
             {{ $image := . }}
             {{ $large := $image.Resize "1200x" }}
             {{ $medium := $image.Resize "800x" }}

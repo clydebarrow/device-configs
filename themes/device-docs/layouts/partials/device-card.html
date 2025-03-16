@@ -1,4 +1,4 @@
-{{ $deviceImage := (index (.Resources.Match "images/*") 0) }}
+{{ $deviceImage := (index (sort (.Resources.Match "images/*") "Name") 0) }}
 {{ with $deviceImage }}
 {{ $gridThumb := .Resize "600x" }}
 {{ $listThumb := .Resize "80x80" }}
