@@ -27,15 +27,33 @@ jobs:
       - name: Install ImageMagick
         run: sudo apt-get update && sudo apt-get install -y imagemagick
 
-      - name: Convert AVIF to PNG
+      - name: Convert AVIF to PNG and commit if needed
         run: |
-          # Find all AVIF files and convert them to PNG
-          find content -type f -name "*.avif" | while read file; do
+          # Configure Git
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+          # Find and convert AVIF files
+          CONVERTED_FILES=0
+          while IFS= read -r file; do
             png_file="${file%.avif}.png"
             convert "$file" "$png_file"
             rm "$file"
+            git add "$png_file"
+            git rm "$file"
             echo "Converted $file to $png_file"
-          done
+            CONVERTED_FILES=$((CONVERTED_FILES + 1))
+          done < <(find content -type f -name "*.avif")
+
+          # Commit changes if any files were converted
+          if [ $CONVERTED_FILES -gt 0 ]; then
+            git commit -m "chore: convert ${CONVERTED_FILES} AVIF image(s) to PNG format
+
+            Automatically converted AVIF images to PNG format for better compatibility."
+            git push
+          else
+            echo "No AVIF files found to convert"
+          fi
 
       - name: Install Pagefind
         uses: jaxxstorm/action-install-gh-release@v1.10.0

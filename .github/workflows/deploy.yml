@@ -28,19 +28,6 @@ jobs:
           hugo-version: 'latest'
           extended: true
 
-      - name: Install ImageMagick
-        run: sudo apt-get update && sudo apt-get install -y imagemagick
-
-      - name: Convert AVIF to PNG
-        run: |
-          # Find all AVIF files and convert them to PNG
-          find content -type f -name "*.avif" | while read file; do
-            png_file="${file%.avif}.png"
-            convert "$file" "$png_file"
-            rm "$file"
-            echo "Converted $file to $png_file"
-          done
-
       - name: Install Pagefind
         uses: jaxxstorm/action-install-gh-release@v1.10.0
         with:
