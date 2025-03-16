@@ -14,13 +14,42 @@
         </button>
     </div>
 
+    {{ $paginator := .Paginate (sort .Pages "Params.title") 12 }}
     <div class="device-grid" id="device-container">
-        {{ range sort .Pages "Params.title" }}
+        {{ range $paginator.Pages }}
         <div class="device-card">
             {{ partial "device-card.html" . }}
         </div>
         {{ end }}
     </div>
+
+    {{ if gt $paginator.TotalPages 1 }}
+    <nav class="pagination">
+        {{ if $paginator.HasPrev }}
+        <a href="{{ $paginator.Prev.URL }}" class="pagination-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+            Previous
+        </a>
+        {{ end }}
+        
+        <div class="pagination-numbers">
+        {{ range $paginator.Pagers }}
+            {{ if eq . $paginator }}
+            <span class="pagination-link active">{{ .PageNumber }}</span>
+            {{ else }}
+            <a href="{{ .URL }}" class="pagination-link">{{ .PageNumber }}</a>
+            {{ end }}
+        {{ end }}
+        </div>
+
+        {{ if $paginator.HasNext }}
+        <a href="{{ $paginator.Next.URL }}" class="pagination-link">
+            Next
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        {{ end }}
+    </nav>
+    {{ end }}
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {

@@ -3,11 +3,13 @@
 {{ $gridThumb := .Resize "600x" }}
 {{ $listThumb := .Resize "80x80" }}
 <div class="image-container">
-    <img src="{{ $gridThumb.RelPermalink }}" 
-         data-grid-src="{{ $gridThumb.RelPermalink }}" 
-         data-list-src="{{ $listThumb.RelPermalink }}" 
-         alt="{{ $.Params.title }}" 
-         class="device-image">
+    <a href="{{ $.RelPermalink }}">
+        <img src="{{ $gridThumb.RelPermalink }}" 
+             data-grid-src="{{ $gridThumb.RelPermalink }}" 
+             data-list-src="{{ $listThumb.RelPermalink }}" 
+             alt="{{ $.Params.title }}" 
+             class="device-image">
+    </a>
 </div>
 {{ end }}
 <div class="device-info">
