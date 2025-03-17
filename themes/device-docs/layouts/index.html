@@ -24,7 +24,7 @@
     <section class="device-section">
         <h2>Recently Added</h2>
         <div class="device-grid">
-            {{ range sort (where .Site.RegularPages "Section" "devices") "Params.date_published" "desc" | first 6 }}
+            {{ range sort (where .Site.RegularPages "Section" "devices") "Params.lastmod" "desc" | first 6 }}
             <div class="device-card">
                 {{ partial "device-card.html" . }}
             </div>

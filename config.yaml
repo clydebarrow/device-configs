@@ -26,6 +26,8 @@ menu:
       weight: 2
       identifier: "standards"
 
+enableGitInfo: true
+
 outputs:
   home:
     - HTML

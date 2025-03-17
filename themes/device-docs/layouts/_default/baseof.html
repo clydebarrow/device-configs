@@ -122,12 +122,43 @@
                     <a href="/devices/">Devices</a>
                     <a href="/contributing/">Contributing</a>
                     <a href="https://esphome.io" target="_blank" rel="noopener">ESPHome</a>
+                    <button class="version-info-button" aria-label="Show version info">&#x2699;</button>
+                </div>
+                <div class="version-info-popup" hidden>
+                    <div class="version-info-content">
+                        <p>Commit: {{ .GitInfo.AbbreviatedHash }}</p>
+                        <p>Date: {{ .GitInfo.CommitDate }}</p>
+                        <p>Subject: {{ .GitInfo.Subject }}</p>
+                        <button class="close-version-info" aria-label="Close version info">×</button>
+                    </div>
                 </div>
             </div>
         </div>
     </footer>
     <script>
 document.addEventListener('DOMContentLoaded', () => {
+    const versionButton = document.querySelector('.version-info-button');
+    const versionPopup = document.querySelector('.version-info-popup');
+    const closeButton = document.querySelector('.close-version-info');
+
+    if (versionButton && versionPopup && closeButton) {
+        versionButton.addEventListener('click', () => {
+            versionPopup.hidden = false;
+        });
+
+        closeButton.addEventListener('click', () => {
+            versionPopup.hidden = true;
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!versionPopup.hidden && 
+                !versionPopup.contains(e.target) && 
+                e.target !== versionButton) {
+                versionPopup.hidden = true;
+            }
+        });
+    }
+
     // Theme handling
     function setTheme(theme) {
         document.documentElement.setAttribute('data-theme', theme);
