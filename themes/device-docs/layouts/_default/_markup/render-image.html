@@ -1,0 +1,22 @@
+{{ $imagePath := path.Join .Page.File.Dir .Destination }}
+{{ if fileExists $imagePath }}
+  {{ $image := .Page.Resources.GetMatch .Destination }}
+  {{ with $image }}
+    {{ $small := .Resize "400x" }}
+    {{ $medium := .Resize "800x" }}
+    {{ $large := .Resize "1200x" }}
+    <img
+      class="content-image"
+      srcset="{{ $small.RelPermalink }} 400w,
+              {{ $medium.RelPermalink }} 800w,
+              {{ $large.RelPermalink }} 1200w"
+      src="{{ $medium.RelPermalink }}"
+      alt="{{ $.Text }}"
+      loading="lazy"
+      width="{{ $medium.Width }}"
+      height="{{ $medium.Height }}"
+    >
+  {{ end }}
+{{ else }}
+  <img class="content-image" src="{{ .Destination }}" alt="{{ .Text }}" loading="lazy">
+{{ end }}
