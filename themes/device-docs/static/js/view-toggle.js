@@ -1,13 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('device-container');
     const buttons = document.querySelectorAll('.toggle-button');
-    const STORAGE_KEY = 'deviceViewPreference';
+    const STORAGE_KEY = 'viewMode';
 
     if (!container || !buttons.length) return;
-
-    // Load saved preference
-    const savedView = localStorage.getItem(STORAGE_KEY) || 'grid';
-    setView(savedView);
 
     buttons.forEach(button => {
         button.addEventListener('click', () => {
@@ -19,7 +15,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     function setView(view) {
-        container.className = `device-${view}`;
+        if (view === 'list') {
+            document.documentElement.classList.add('list-view');
+        } else {
+            document.documentElement.classList.remove('list-view');
+        }
         buttons.forEach(b => {
             b.classList.toggle('active', b.dataset.view === view);
         });
