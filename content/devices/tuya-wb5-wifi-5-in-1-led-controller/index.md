@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - Light
-- gpio
 title: Tuya WB5 WiFi 5 in 1 LED Controller
 ---
 

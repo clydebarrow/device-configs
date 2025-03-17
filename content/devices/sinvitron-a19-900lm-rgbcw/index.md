@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - light
-- gpio
 title: Sinvitron A19 900lm RGBCW
 ---
 

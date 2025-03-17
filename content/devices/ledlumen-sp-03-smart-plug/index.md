@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - plug
-- gpio
-- sensor
 title: LEDLUMEN SP-03 Smart Plug
 ---
 

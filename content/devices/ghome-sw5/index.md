@@ -8,8 +8,6 @@ standard:
 - US
 tags:
 - switch
-- gpio
-- sensor
 title: GHome SW5
 ---
 

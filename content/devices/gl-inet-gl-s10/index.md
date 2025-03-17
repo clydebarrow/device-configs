@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - misc
-- gpio
-- sensor
 title: GL-iNet GL-S10
 ---
 

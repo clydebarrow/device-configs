@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - misc
-- gpio
 title: Mill panel heater (generation 2)
 ---
 

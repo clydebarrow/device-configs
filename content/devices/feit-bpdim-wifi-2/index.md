@@ -8,7 +8,6 @@ standard:
 - us
 tags:
 - dimmer
-- gpio
 title: Feit BPDIM/WIFI/2
 ---
 

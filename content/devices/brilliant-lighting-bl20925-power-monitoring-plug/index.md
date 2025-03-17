@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - plug
-- gpio
-- sensor
 title: Brilliant Lighting BL20925 Power Monitoring Plug
 ---
 

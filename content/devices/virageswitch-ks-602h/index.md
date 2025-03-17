@@ -8,7 +8,6 @@ standard:
 - us
 tags:
 - switch
-- gpio
 title: VirageSwitch KS-602H
 ---
 

@@ -10,8 +10,6 @@ standard:
 - eu
 tags:
 - switch
-- gpio
-- sensor
 title: Shelly 1PM
 ---
 

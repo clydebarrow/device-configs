@@ -8,8 +8,6 @@ standard:
 - ch
 tags:
 - plug
-- gpio
-- sensor
 title: LEDVANCE SMART PLUS PLUG CH
 ---
 

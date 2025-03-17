@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - relay
-- gpio
-- sensor
 title: Sonoff 4CH Pro R2
 ---
 

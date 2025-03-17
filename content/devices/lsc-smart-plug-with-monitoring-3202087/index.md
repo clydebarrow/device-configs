@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - plug
-- gpio
-- sensor
 title: LSC smart plug with monitoring 3202087
 ---
 

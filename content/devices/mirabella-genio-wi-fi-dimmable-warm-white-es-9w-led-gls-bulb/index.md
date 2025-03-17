@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - light
-- gpio
-- sensor
 title: Mirabella Genio Wi-Fi Dimmable Warm White ES 9W LED GLS Bulb
 ---
 

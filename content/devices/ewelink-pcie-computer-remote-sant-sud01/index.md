@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - misc
-- gpio
-- sensor
 title: eWeLink PCIe Computer Remote (SANT-SUD01)
 ---
 

@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - switch
-- gpio
-- sensor
 title: Generic Glass Touch Switch with 1, 2, 3 pole variants
 ---
 

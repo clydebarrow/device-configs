@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - misc
-- gpio
 title: Airtap T Series 3btn PCB by SiloCityLabs
 ---
 

@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - light
-- gpio
-- sensor
 title: Anwio A19 E26 RGBWW 8.5 Watt Light Bulb
 ---
 

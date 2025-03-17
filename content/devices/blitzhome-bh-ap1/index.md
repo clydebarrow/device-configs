@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - misc
-- gpio
-- sensor
 title: BlitzHome BH-AP1
 ---
 

@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - light
-- gpio
-- sensor
 title: Tuya Smart Star Projector SK20
 ---
 

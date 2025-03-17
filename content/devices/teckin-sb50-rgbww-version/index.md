@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - light
-- gpio
 title: Teckin SB50 (rgbww version)
 ---
 

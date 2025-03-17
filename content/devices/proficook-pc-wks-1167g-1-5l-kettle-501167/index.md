@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - misc
-- gpio
-- sensor
 title: ProfiCook PC-WKS 1167G 1.5L Kettle (501167)
 ---
 

@@ -8,7 +8,6 @@ standard:
 - us
 tags:
 - dimmer
-- gpio
 title: VirageDimmer KS-7012
 ---
 

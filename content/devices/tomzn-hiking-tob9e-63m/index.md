@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - misc
-- gpio
-- sensor
 title: TomZN (Hiking) TOB9e-63M
 ---
 

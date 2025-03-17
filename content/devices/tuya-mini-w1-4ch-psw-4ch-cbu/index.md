@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - relay
-- gpio
-- sensor
 title: TuYa MINI-W1-4CH - PSW-4CH-CBU
 ---
 

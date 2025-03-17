@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - plug
-- gpio
-- sensor
 title: Teckin SP10
 ---
 

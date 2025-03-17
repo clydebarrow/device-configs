@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - light
-- gpio
-- sensor
 title: Reafoo 9W A26 Bulb
 ---
 

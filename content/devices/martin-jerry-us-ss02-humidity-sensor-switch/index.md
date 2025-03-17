@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - switch
-- gpio
-- sensor
 title: Martin Jerry US-SS02 Humidity Sensor Switch
 ---
 

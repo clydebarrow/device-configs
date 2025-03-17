@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - plug
-- gpio
-- sensor
 title: Denver SHP-102 Smart Plug
 ---
 

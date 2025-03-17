@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - plug
-- gpio
-- sensor
 title: Teckin SS42
 ---
 

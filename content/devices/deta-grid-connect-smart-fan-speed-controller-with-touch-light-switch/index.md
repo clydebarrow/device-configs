@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - switch
-- gpio
-- sensor
 title: Deta Grid Connect Smart Fan Speed Controller with Touch Light Switch
 ---
 

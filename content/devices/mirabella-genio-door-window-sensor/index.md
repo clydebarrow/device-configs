@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - sensor
-- gpio
-- sensor
 title: Mirabella Genio Door & Window Sensor
 ---
 

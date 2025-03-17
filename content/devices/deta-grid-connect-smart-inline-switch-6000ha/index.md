@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - plug
-- gpio
-- sensor
 title: DETA Grid Connect Smart Inline Switch 6000HA
 ---
 

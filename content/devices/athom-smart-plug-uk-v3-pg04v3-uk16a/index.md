@@ -8,7 +8,6 @@ standard:
 - uk
 tags:
 - plug
-- gpio
 title: Athom Smart Plug UK V3 (PG04V3-UK16A)
 ---
 

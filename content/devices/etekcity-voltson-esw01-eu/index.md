@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - switch
-- gpio
-- sensor
 title: Etekcity Voltson ESW01-EU
 ---
 

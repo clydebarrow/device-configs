@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - sensor
-- gpio
-- sensor
 title: Apollo Multi-Target Radar (MTR-1)
 ---
 

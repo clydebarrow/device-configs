@@ -11,8 +11,6 @@ standard:
 - au
 tags:
 - dimmer
-- gpio
-- sensor
 title: Shelly Plus 0-10V
 ---
 

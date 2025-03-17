@@ -9,8 +9,6 @@ standard:
 - us
 tags:
 - light
-- gpio
-- sensor
 title: Shelly Vintage A19
 ---
 

@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - plug
-- gpio
-- sensor
 title: Rowi ESP32 Smart Plug AU and NZ
 ---
 

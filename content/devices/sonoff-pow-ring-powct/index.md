@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - relay
-- gpio
-- sensor
 title: Sonoff POW Ring (POWCT)
 ---
 

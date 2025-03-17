@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - plug
-- gpio
-- sensor
 title: Aoycocr X13 Outdoor Plug (2AKBP-X13)
 ---
 

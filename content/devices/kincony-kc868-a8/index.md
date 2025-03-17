@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - relay
-- gpio
-- sensor
 title: KinCony KC868-A8
 ---
 

@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - dimmer
-- gpio
-- sensor
 title: DETA Grid Connect Smart Dimmer Switch 6910HA
 ---
 

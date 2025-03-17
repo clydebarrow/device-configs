@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - misc
-- gpio
-- sensor
 title: Duux Whisper Flex Ultimate Smart Fan (DXCF14)
 ---
 

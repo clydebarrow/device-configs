@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - plug
-- gpio
-- sensor
 title: Bauhn (Aldi) 5-way Powerboard AP5W-0624
 ---
 

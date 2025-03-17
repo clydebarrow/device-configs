@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - switch
-- gpio
-- sensor
 title: Treatlife SS02S 2-Way Wall Switch
 ---
 

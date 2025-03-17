@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - switch
-- gpio
-- sensor
 title: Aubess WiFi Smart Switch with Power Monitoring
 ---
 

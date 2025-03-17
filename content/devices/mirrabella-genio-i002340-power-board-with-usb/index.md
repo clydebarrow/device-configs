@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - plug
-- gpio
-- sensor
 title: Mirrabella Genio I002340 Power Board with USB
 ---
 

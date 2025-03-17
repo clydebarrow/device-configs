@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - plug
-- gpio
-- sensor
 title: Globe Electric Wi-Fi Smart Plug 50359
 ---
 

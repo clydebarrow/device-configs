@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - relay
-- gpio
-- sensor
 title: LoraTap SC500W
 ---
 

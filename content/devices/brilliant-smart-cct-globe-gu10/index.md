@@ -8,7 +8,6 @@ standard:
 - au
 tags:
 - light
-- gpio
 title: Brilliant Smart CCT Globe GU10
 ---
 

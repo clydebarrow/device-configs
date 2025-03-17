@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - sensor
-- gpio
 title: Athom Energy Meter (EM6)
 ---
 

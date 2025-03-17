@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - sensor
-- gpio
-- sensor
 title: Pentek Intellidrive PID10
 ---
 

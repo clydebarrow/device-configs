@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - plug
-- gpio
-- sensor
 title: Hama WLAN Power Strip 00176574
 ---
 

@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - plug
-- gpio
-- sensor
 title: BlitzWolf BW-SHP3 Power Monitoring Plug
 ---
 

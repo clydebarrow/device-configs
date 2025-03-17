@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - switch
-- gpio
-- sensor
 title: DETA Mechanism Switch (6014HA)
 ---
 

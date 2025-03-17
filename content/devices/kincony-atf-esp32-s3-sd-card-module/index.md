@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - misc
-- gpio
-- sensor
 title: KinCony-ATF (ESP32-S3 SD Card Module)
 ---
 

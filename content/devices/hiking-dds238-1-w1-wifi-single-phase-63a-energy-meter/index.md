@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - misc
-- gpio
-- sensor
 title: Hiking DDS238-1-W1 WiFi Single Phase 63A Energy Meter
 ---
 

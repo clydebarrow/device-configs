@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - misc
-- gpio
-- sensor
 title: Maltec DH-20000A Dehumidifier
 ---
 

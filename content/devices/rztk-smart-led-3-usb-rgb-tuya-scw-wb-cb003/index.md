@@ -9,8 +9,6 @@ standard:
 - us
 tags:
 - light
-- gpio
-- sensor
 title: RZTK Smart LED 3 USB RGB (Tuya SCW-WB-CB003)
 ---
 

@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - relay
-- gpio
 title: AC/DC powered ESP32 Relay Board x4
 ---
 

@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - light
-- gpio
-- sensor
 title: Xiaomi Mi Desklamp
 ---
 

@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - switch
-- gpio
-- sensor
 title: Arlec 10m Smart Extension Lead Plug (AEL10HA)
 ---
 

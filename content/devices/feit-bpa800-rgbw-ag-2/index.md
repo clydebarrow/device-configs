@@ -8,7 +8,6 @@ standard:
 - us
 tags:
 - light
-- gpio
 title: Feit BPA800/RGBW/AG/2
 ---
 

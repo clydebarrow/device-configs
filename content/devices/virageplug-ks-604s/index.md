@@ -8,7 +8,6 @@ standard:
 - us
 tags:
 - plug
-- gpio
 title: ViragePlug KS-604S
 ---
 

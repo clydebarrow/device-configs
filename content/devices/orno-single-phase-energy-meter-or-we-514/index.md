@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - misc
-- gpio
-- sensor
 title: Orno Single Phase Energy meter OR-WE-514
 ---
 

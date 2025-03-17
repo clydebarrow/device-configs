@@ -8,7 +8,6 @@ standard:
 - au
 tags:
 - light
-- gpio
 title: Connect SmartHome 10W CCT Smart White LED Bulb E27 (CSH-E27WW10W)
 ---
 

@@ -8,7 +8,6 @@ standard:
 - au
 tags:
 - plug
-- gpio
 title: Athom Smart Plug AU V3 (PG05V3-AU10A)
 ---
 

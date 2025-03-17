@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - relay
-- gpio
 title: Athom 2CH Relay Board (R2-ESP)
 ---
 

@@ -8,8 +8,6 @@ standard:
 - it
 tags:
 - plug
-- gpio
-- sensor
 title: Maxcio RMC020 IT
 ---
 

@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - misc
-- gpio
 title: Lanbon L8 Smart Switch Panel
 ---
 

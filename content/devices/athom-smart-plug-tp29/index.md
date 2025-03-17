@@ -10,8 +10,6 @@ standard:
 - uk
 tags:
 - plug
-- gpio
-- sensor
 title: Athom Smart Plug TP29
 ---
 

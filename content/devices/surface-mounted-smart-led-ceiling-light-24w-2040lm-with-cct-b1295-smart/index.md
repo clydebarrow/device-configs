@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - light
-- gpio
-- sensor
 title: Surface-Mounted Smart LED Ceiling Light 24W 2040lm with CCT (B1295-SMART)
 ---
 

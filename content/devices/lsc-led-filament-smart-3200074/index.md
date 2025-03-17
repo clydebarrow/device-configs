@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - light
-- gpio
-- sensor
 title: LSC Led Filament Smart 3200074
 ---
 

@@ -9,7 +9,6 @@ standard:
 - eu
 tags:
 - bulb
-- gpio
 title: LocalBytes Smart Bulb (RGB+CT)
 ---
 

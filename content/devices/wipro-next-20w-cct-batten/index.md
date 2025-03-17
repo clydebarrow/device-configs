@@ -8,7 +8,6 @@ standard:
 - in
 tags:
 - light
-- gpio
 title: Wipro Next 20W CCT Batten
 ---
 

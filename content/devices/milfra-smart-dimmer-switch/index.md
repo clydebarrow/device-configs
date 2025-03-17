@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - dimmer
-- gpio
-- sensor
 title: Milfra Smart Dimmer Switch
 ---
 

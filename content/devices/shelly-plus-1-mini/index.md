@@ -11,8 +11,6 @@ standard:
 - au
 tags:
 - relay
-- gpio
-- sensor
 title: Shelly Plus 1 Mini
 ---
 

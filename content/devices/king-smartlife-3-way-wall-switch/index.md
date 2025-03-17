@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - switch
-- gpio
-- sensor
 title: King Smartlife 3-Way Wall Switch
 ---
 

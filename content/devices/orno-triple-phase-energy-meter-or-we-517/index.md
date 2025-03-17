@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - misc
-- gpio
-- sensor
 title: Orno Triple Phase Energy meter OR-WE-517
 ---
 

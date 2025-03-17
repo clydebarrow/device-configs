@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - light
-- gpio
-- sensor
 title: Athom E27 15W Bulb
 ---
 

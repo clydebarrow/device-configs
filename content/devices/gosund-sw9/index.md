@@ -8,8 +8,6 @@ standard:
 - EU
 tags:
 - switch
-- gpio
-- sensor
 title: Gosund SW9
 ---
 

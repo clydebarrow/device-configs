@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - dimmer
-- gpio
-- sensor
 title: Martin Jerry STD01
 ---
 

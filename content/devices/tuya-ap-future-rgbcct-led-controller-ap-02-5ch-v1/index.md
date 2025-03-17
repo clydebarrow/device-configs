@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - light
-- gpio
 title: Tuya AP-Future-RGBCCT LED Controller (AP-02-5CH-V1)
 ---
 

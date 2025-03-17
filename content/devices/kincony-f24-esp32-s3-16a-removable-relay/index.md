@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - relay
-- gpio
-- sensor
 title: KinCony-F24 (ESP32-S3 16A Removable Relay)
 ---
 

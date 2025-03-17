@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - sensor
-- gpio
-- sensor
 title: Shelly Uni
 ---
 

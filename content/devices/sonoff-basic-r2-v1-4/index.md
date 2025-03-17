@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - relay
-- gpio
-- sensor
 title: Sonoff BASIC R2 v1.4
 ---
 

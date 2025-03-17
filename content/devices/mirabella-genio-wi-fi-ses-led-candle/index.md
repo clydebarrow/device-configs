@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - light
-- gpio
-- sensor
 title: Mirabella Genio Wi-Fi SES LED Candle
 ---
 

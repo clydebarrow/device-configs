@@ -8,7 +8,6 @@ standard:
 - us
 tags:
 - switch
-- gpio
 title: Martin Jerry US-FC-01 Smart Ceiling Fan Controller
 ---
 

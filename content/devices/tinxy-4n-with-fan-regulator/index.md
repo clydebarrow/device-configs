@@ -8,8 +8,6 @@ standard:
 - in
 tags:
 - relay
-- gpio
-- sensor
 title: Tinxy 4N with Fan Regulator
 ---
 

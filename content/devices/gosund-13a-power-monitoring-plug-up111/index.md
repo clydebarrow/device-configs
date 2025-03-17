@@ -8,8 +8,6 @@ standard:
 - uk
 tags:
 - plug
-- gpio
-- sensor
 title: Gosund 13A Power Monitoring Plug UP111
 ---
 

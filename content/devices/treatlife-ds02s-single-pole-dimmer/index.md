@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - dimmer
-- gpio
-- sensor
 title: TreatLife DS02S Single Pole Dimmer
 ---
 

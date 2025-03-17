@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - misc
-- gpio
-- sensor
 title: Aspen ASP-200 Smart Window Fan
 ---
 

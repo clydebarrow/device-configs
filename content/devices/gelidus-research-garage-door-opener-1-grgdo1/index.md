@@ -9,8 +9,6 @@ standard:
 - au
 tags:
 - misc
-- gpio
-- sensor
 title: Gelidus Research Garage Door Opener 1 (GRGDO1)
 ---
 

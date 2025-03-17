@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - plug
-- gpio
-- sensor
 title: Arlec Grid Connect Smart Plug In Socket With 2.1A USB Charger
 ---
 

@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - misc
-- gpio
 title: KinCony KC868-AG Hub
 ---
 

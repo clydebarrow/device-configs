@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - plug
-- gpio
-- sensor
 title: AWP04L Power Monitoring Plug
 ---
 

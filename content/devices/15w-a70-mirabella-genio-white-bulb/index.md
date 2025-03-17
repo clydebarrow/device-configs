@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - light
-- gpio
-- sensor
 title: 15W A70 Mirabella Genio White Bulb
 ---
 

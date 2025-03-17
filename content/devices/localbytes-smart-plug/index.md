@@ -9,7 +9,6 @@ standard:
 - eu
 tags:
 - plug
-- gpio
 title: LocalBytes Smart Plug
 ---
 

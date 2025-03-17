@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - misc
-- gpio
 title: Antsig Smart Wi-Fi IR Universal Remote (HUBIR01HA)
 ---
 

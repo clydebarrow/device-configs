@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - switch
-- gpio
-- sensor
 title: LSPS5 Tuya Switch 1-2-3 Gang No Neutral
 ---
 

@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - plug
-- gpio
-- sensor
 title: DETA Outdoor Double Powerpoint (6294HA)
 ---
 

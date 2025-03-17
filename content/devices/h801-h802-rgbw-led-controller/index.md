@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - light
-- gpio
-- sensor
 title: H801/H802 RGBW LED controller
 ---
 

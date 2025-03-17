@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - light
-- gpio
 title: Treatlife SL10 E27 9W 800L RGBCCT Bulb
 ---
 

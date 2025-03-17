@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - light
-- gpio
-- sensor
 title: Zemismart 6W A19 Bulb
 ---
 

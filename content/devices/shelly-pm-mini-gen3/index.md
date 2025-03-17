@@ -10,8 +10,6 @@ standard:
 - eu
 tags:
 - sensor
-- gpio
-- sensor
 title: Shelly PM Mini Gen3
 ---
 

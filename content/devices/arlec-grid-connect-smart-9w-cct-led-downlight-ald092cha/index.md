@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - light
-- gpio
-- sensor
 title: Arlec Grid Connect Smart 9W CCT LED Downlight (ALD092CHA)
 ---
 

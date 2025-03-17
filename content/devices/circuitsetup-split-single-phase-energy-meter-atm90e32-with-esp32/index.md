@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - misc
-- gpio
-- sensor
 title: CircuitSetup Split Single Phase Energy Meter (ATM90E32) with ESP32
 ---
 

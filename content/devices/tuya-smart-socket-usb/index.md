@@ -7,9 +7,8 @@ project_url: ''
 standard:
 - global
 tags:
-- relay, plug
-- gpio
-- sensor
+- relay
+- plug
 title: Tuya Smart Socket USB
 ---
 

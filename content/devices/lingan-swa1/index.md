@@ -10,8 +10,6 @@ standard:
 - eu
 tags:
 - plug
-- gpio
-- sensor
 title: Lingan SWA1
 ---
 

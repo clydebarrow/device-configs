@@ -8,8 +8,6 @@ standard:
 - uk
 tags:
 - misc
-- gpio
-- sensor
 title: electriQ IQOOL SMART12HP
 ---
 

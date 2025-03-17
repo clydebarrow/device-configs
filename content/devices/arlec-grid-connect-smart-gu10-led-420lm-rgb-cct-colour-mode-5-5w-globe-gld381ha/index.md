@@ -8,7 +8,6 @@ standard:
 - au
 tags:
 - light
-- gpio
 title: Arlec Grid Connect Smart GU10 LED 420lm RGB CCT Colour Mode 5.5W Globe (GLD381HA)
 ---
 

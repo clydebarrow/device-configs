@@ -8,7 +8,6 @@ standard:
 - us
 tags:
 - light
-- gpio
 title: Lohas LH-ZN124 5000K 10W Dimmable
 ---
 

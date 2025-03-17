@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - plug
-- gpio
-- sensor
 title: "EKF \u0421onnect PRO Wi-Fi (RCS-2-WF) Smart Plug"
 ---
 

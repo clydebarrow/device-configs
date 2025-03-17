@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - plug
-- gpio
-- sensor
 title: BlitzWolf BW-SHP2 Power Monitoring Plug
 ---
 

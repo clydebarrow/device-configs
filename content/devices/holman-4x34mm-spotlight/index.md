@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - light
-- gpio
-- sensor
 title: Holman 4x34mm Spotlight
 ---
 

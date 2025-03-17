@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - light
-- gpio
 title: Mirabella Genio CWWW Downlights
 ---
 

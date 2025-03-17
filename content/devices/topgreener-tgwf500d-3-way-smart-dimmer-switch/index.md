@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - dimmer
-- gpio
-- sensor
 title: TOPGREENER TGWF500D 3-Way Smart Dimmer Switch
 ---
 

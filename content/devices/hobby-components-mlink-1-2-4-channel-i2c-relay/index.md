@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - relay
-- gpio
 title: Hobby Components mLink 1/2/4 channel I2C relay
 ---
 

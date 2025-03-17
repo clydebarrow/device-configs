@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - plug
-- gpio
-- sensor
 title: "XtendLan chytr\xE1 venkovn\xED z\xE1suvka/ IP66/ dvojit\xE1"
 ---
 

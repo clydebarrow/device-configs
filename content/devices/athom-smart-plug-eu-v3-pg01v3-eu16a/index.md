@@ -8,7 +8,6 @@ standard:
 - eu
 tags:
 - plug
-- gpio
 title: Athom Smart Plug EU V3 (PG01V3-EU16A)
 ---
 

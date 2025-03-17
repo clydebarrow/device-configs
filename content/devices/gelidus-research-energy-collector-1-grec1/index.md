@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - sensor
-- gpio
-- sensor
 title: Gelidus Research Energy Collector 1 (GREC1)
 ---
 

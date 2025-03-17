@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - plug
-- gpio
-- sensor
 title: Topersun WL-SC01 Smart Plug
 ---
 

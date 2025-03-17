@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - switch
-- gpio
-- sensor
 title: DETA Grid Connect Smart Switch (Single 6911HA / Double 6912HA / Triple 6903HA
   / Quad 6904HA)
 ---

@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - plug
-- gpio
-- sensor
 title: Mirabella Genio Wi-Fi 1 USB Adaptor
 ---
 

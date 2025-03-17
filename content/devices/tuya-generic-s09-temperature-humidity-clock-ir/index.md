@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - sensor
-- gpio
-- sensor
 title: Tuya Generic S09 Temperature/Humidity/Clock/IR
 ---
 

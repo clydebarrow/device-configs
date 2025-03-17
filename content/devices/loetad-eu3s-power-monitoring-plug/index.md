@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - plug
-- gpio
-- sensor
 title: Loetad EU3S Power Monitoring Plug
 ---
 

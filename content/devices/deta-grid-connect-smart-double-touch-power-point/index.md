@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - plug
-- gpio
-- sensor
 title: Deta Grid Connect Smart Double Touch Power Point
 ---
 

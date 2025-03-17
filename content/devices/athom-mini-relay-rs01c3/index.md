@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - relay
-- gpio
 title: Athom Mini Relay (RS01C3)
 ---
 

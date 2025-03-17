@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - plug
-- gpio
-- sensor
 title: CurrySmarter 16A v1.1 Plug
 ---
 

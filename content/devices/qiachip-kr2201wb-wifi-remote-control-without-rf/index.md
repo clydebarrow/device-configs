@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - switch
-- gpio
-- sensor
 title: Qiachip KR2201WB WIFI remote control (Without RF)
 ---
 

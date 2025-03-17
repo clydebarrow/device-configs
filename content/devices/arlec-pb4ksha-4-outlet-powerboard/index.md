@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - plug
-- gpio
-- sensor
 title: Arlec PB4KSHA 4 outlet powerboard
 ---
 

@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - light
-- gpio
-- sensor
 title: LSC Light White and Color Ambiance 2578539
 ---
 

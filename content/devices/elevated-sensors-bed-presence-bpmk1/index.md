@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - sensor
-- sensor
 title: Elevated Sensors Bed Presence (bpmk1)
 ---
 

@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - sensor
-- gpio
-- sensor
 title: MQ-7 Carbon Monoxide Sensor
 ---
 

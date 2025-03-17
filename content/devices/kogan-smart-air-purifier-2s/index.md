@@ -8,7 +8,6 @@ standard:
 - au
 tags:
 - misc
-- gpio
 title: Kogan Smart Air Purifier 2S
 ---
 

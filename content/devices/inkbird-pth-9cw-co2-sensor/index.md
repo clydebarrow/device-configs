@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - sensor
-- gpio
-- sensor
 title: Inkbird PTH-9CW CO2 Sensor
 ---
 

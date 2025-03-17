@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - plug
-- gpio
-- sensor
 title: Feit Electric PLUG3/WIFI/WP/2-N
 ---
 

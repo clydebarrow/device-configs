@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - relay
-- gpio
-- sensor
 title: eWelink 5V/12V Inching Relay
 ---
 

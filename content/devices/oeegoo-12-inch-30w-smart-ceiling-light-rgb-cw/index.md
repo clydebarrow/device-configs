@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - light
-- gpio
-- sensor
 title: OeeGoo 12 Inch 30W Smart Ceiling Light (RGB/CW)
 ---
 

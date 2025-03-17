@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - light
-- gpio
-- sensor
 title: Holman RGB Wifi Connected Controller
 ---
 

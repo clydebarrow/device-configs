@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - plug
-- gpio
-- sensor
 title: Athom Smart Plug AU V2 (PG05V2-AU10A)
 ---
 

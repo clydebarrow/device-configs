@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - misc
-- gpio
-- sensor
 title: Xiaomi Smart Multi Mode Gateway 3
 ---
 

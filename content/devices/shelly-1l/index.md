@@ -12,8 +12,6 @@ standard:
 - global
 tags:
 - relay
-- gpio
-- sensor
 title: Shelly 1L
 ---
 

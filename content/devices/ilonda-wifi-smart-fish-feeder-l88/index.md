@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - misc
-- gpio
-- sensor
 title: Ilonda Wifi Smart Fish Feeder (L88)
 ---
 

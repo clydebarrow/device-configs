@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - plug
-- gpio
-- sensor
 title: LEDVANCE SMART PLUS PLUG EU
 ---
 

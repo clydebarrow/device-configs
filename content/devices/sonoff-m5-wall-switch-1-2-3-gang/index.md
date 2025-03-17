@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - switch
-- gpio
-- sensor
 title: Sonoff M5 Wall Switch 1/2/3-gang
 ---
 

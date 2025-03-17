@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - light
-- gpio
-- sensor
 title: Xiaomi Mi Smart LED Desk Lamp Pro
 ---
 

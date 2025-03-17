@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - relay
-- gpio
-- sensor
 title: Sonoff POW Elite 16a (POWR316D)
 ---
 

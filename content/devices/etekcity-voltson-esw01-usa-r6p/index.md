@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - plug
-- gpio
-- sensor
 title: Etekcity Voltson ESW01-USA-R6P
 ---
 

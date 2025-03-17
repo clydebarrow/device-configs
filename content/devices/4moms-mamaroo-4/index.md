@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - misc
-- sensor
 title: 4moms Mamaroo 4
 ---
 

@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - plug
-- gpio
-- sensor
 title: NEO Coolcam Wi-Fi smart plug
 ---
 

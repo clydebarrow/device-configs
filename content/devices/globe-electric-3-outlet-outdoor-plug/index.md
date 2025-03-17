@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - plug
-- gpio
-- sensor
 title: Globe Electric 3-Outlet Outdoor Plug
 ---
 

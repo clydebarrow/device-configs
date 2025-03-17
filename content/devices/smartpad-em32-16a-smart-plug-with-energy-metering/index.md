@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - plug
-- gpio
 title: SmartPad EM32 16A Smart Plug with Energy Metering
 ---
 

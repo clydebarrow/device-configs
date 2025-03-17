@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - light
-- gpio
 title: Xiaomi Mijia Bedside Lamp 2
 ---
 

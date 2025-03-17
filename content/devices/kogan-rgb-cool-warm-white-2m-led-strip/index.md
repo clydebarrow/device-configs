@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - light
-- gpio
-- sensor
 title: Kogan RGB + Cool & Warm White 2m LED Strip
 ---
 

@@ -11,8 +11,6 @@ standard:
 - in
 tags:
 - light
-- gpio
-- sensor
 title: Xiaomi Mi Smart LED Bulb
 ---
 

@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - light
-- gpio
-- sensor
 title: JDONG X6060-450 ceiling light
 ---
 

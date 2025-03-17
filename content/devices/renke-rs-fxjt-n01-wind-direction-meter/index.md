@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - sensor
-- gpio
-- sensor
 title: Renke RS-FXJT-N01 Wind direction meter
 ---
 

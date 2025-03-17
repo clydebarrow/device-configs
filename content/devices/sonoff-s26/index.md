@@ -11,8 +11,6 @@ standard:
 - au
 tags:
 - plug
-- gpio
-- sensor
 title: Sonoff S26
 ---
 

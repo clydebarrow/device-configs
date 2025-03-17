@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - relay
-- gpio
-- sensor
 title: Strong Helo PLUSB 2x USB Power Monitoring Plug (HELO-PLUSB-EU)
 ---
 

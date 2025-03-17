@@ -8,7 +8,6 @@ standard:
 - au
 tags:
 - light
-- gpio
 title: Arlec Grid Connect Smart E27 LED 830lm RGB CCT Colour Mode 10W Globe (GLD322HA)
 ---
 

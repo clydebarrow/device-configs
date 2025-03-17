@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - misc
-- gpio
-- sensor
 title: ESP32 Battery Powered Temperature/Humidity/AtmosphericPressure
 ---
 

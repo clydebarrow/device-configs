@@ -8,7 +8,6 @@ standard:
 - eu
 tags:
 - plug
-- gpio
 title: Woox R6087 Plug 16/20A
 ---
 

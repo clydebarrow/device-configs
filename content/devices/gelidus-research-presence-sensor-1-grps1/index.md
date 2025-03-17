@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - sensor
-- gpio
-- sensor
 title: Gelidus Research Presence Sensor 1 (GRPS1)
 ---
 

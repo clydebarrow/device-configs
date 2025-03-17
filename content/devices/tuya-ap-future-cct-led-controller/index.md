@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - light
-- gpio
 title: Tuya AP Future CCT LED Controller
 ---
 

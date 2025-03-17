@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - relay
-- gpio
 title: ESP-12F_Relay_X4
 ---
 

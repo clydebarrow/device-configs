@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - sensor
-- gpio
-- sensor
 title: Apollo mmWave CO2 Multisensor (MSR-1)
 ---
 

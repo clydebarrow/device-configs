@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - misc
-- gpio
-- sensor
 title: Waveshare ESP32-S3 Matrix
 ---
 

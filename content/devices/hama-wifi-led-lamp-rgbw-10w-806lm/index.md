@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - bulb
-- gpio
-- sensor
 title: Hama Wifi Led Lamp RGBW 10W 806lm
 ---
 

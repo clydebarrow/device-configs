@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - plug
-- gpio
-- sensor
 title: Bauhn (ALDI) ASPU-1019 Plug
 ---
 

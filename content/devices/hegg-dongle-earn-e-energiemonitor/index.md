@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - misc
-- gpio
-- sensor
 title: Hegg Dongle / EARN-E energiemonitor
 ---
 

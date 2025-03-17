@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - misc
-- gpio
-- sensor
 title: KinCony-AG8 (ESP32-S3 Smart IR Controller)
 ---
 

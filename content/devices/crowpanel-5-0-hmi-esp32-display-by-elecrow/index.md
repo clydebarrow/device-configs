@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - misc
-- gpio
-- sensor
 title: CrowPanel 5.0" HMI ESP32 display (by Elecrow)
 ---
 

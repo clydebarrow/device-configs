@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - plug
-- gpio
-- sensor
 title: Geekbes YM-WS-1 Plug
 ---
 

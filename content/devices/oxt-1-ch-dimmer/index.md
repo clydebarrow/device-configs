@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - dimmer
-- gpio
 title: OXT 1-ch dimmer
 ---
 

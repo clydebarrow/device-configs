@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - light
-- gpio
-- sensor
 title: MagicHome RGBW ZJ-WFMN-A V1.1 LED Controller
 ---
 

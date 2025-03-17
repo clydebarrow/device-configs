@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - plug
-- gpio
-- sensor
 title: Generic Chinese Brand WiFi Smart Power Strip
 ---
 

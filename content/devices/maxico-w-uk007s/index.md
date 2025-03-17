@@ -8,8 +8,6 @@ standard:
 - uk
 tags:
 - plug
-- gpio
-- sensor
 title: Maxico W-UK007S
 ---
 

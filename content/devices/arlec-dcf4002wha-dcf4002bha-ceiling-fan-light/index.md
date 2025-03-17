@@ -8,7 +8,6 @@ standard:
 - au
 tags:
 - fan
-- gpio
 title: Arlec DCF4002WHA/DCF4002BHA Ceiling Fan+Light
 ---
 

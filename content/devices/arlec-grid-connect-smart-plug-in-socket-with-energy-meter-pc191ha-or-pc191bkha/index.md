@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - plug
-- gpio
-- sensor
 title: Arlec Grid Connect Smart Plug In Socket With Energy Meter (PC191HA or PC191BKHA)
 ---
 

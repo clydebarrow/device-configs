@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - relay
-- gpio
-- sensor
 title: KinCony-A24 (with K-Type thermocouple Relay Controller)
 ---
 

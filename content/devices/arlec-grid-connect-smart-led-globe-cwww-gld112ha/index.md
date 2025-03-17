@@ -8,7 +8,6 @@ standard:
 - au
 tags:
 - light
-- gpio
 title: Arlec Grid Connect Smart LED Globe CWWW (GLD112HA)
 ---
 

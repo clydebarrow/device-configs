@@ -8,8 +8,6 @@ standard:
 - uk
 tags:
 - plug
-- gpio
-- sensor
 title: Anoopsyche JH-G01B1
 ---
 

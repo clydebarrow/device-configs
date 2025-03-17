@@ -10,8 +10,6 @@ standard:
 - eu
 tags:
 - light
-- gpio
-- sensor
 title: Shelly RGBW2
 ---
 

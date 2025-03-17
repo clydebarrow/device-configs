@@ -8,7 +8,6 @@ standard:
 - us
 tags:
 - light
-- gpio
 title: Lumary 13W Smart Disk Light B1
 ---
 

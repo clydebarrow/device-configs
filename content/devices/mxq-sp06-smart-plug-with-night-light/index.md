@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - plug
-- gpio
-- sensor
 title: MXQ SP06 Smart Plug with Night Light
 ---
 

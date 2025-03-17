@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - sensor
-- gpio
-- sensor
 title: Geiger counter RadiationD v1.1 (CAJOE)
 ---
 

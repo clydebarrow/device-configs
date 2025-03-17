@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - plug
-- gpio
-- sensor
 title: Kogan Smart Plug with Energy Monitoring
 ---
 

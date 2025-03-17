@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - plug
-- gpio
-- sensor
 title: Blitzwolf BW-SHP7 Double socket with powermonitoring
 ---
 

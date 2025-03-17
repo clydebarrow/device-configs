@@ -8,8 +8,6 @@ standard:
 - uk
 tags:
 - plug
-- gpio
-- sensor
 title: TCP Smart 4AC+USB Power Strip WPS4WUK
 ---
 

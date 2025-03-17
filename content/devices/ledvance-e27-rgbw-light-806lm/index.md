@@ -8,7 +8,6 @@ standard:
 - eu
 tags:
 - light
-- gpio
 title: Ledvance E27 RGBW Light 806lm
 ---
 

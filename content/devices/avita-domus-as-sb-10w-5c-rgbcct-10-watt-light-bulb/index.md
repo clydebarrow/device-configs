@@ -8,8 +8,6 @@ standard:
 - in
 tags:
 - light
-- gpio
-- sensor
 title: Avita Domus AS-SB-10W-5C RGBCCT 10 Watt Light Bulb
 ---
 

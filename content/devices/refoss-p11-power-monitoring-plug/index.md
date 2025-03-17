@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - plug
-- gpio
-- sensor
 title: Refoss P11 Power Monitoring Plug
 ---
 

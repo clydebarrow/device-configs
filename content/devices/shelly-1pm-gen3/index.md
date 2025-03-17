@@ -12,8 +12,6 @@ standard:
 - nz
 tags:
 - relay
-- gpio
-- sensor
 title: Shelly 1PM Gen3
 ---
 

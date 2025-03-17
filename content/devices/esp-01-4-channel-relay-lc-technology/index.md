@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - relay
-- gpio
 title: ESP-01 4 Channel Relay LC Technology
 ---
 

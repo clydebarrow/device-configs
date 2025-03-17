@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - light
-- gpio
-- sensor
 title: Cocoon DY180363 RGBW 8W Bulb
 ---
 

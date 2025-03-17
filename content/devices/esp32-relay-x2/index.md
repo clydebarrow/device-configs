@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - relay
-- gpio
 title: ESP32 Relay x2
 ---
 

@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - plug
-- gpio
-- sensor
 title: Sharper Image Smart Wifi Plug US Socket Model 70011
 ---
 

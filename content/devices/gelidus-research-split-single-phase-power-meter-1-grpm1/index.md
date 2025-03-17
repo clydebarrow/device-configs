@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - sensor
-- gpio
-- sensor
 title: Gelidus Research Split Single Phase Power Meter 1 (GRPM1)
 ---
 

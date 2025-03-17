@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - relay
-- gpio
-- sensor
 title: KinCony-A32 Pro (ESP32-S3 32CH Relay Controller)
 ---
 

@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - plug
-- gpio
-- sensor
 title: Aoycocr-X10S Power Monitoring Plug
 ---
 

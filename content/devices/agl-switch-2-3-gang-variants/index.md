@@ -8,8 +8,6 @@ standard:
 - br
 tags:
 - switch
-- gpio
-- sensor
 title: AGL Switch 2, 3 gang variants
 ---
 

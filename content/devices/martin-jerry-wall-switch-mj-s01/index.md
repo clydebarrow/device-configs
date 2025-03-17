@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - switch
-- gpio
-- sensor
 title: Martin Jerry Wall Switch MJ-S01
 ---
 

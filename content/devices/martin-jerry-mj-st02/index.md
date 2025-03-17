@@ -8,7 +8,6 @@ standard:
 - us
 tags:
 - switch
-- gpio
 title: Martin Jerry MJ-ST02
 ---
 

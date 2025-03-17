@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - plug
-- gpio
-- sensor
 title: Deta Grid Connect Double Powerpoint with Dual USB 6920HA
 ---
 

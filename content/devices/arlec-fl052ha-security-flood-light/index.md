@@ -8,7 +8,6 @@ standard:
 - au
 tags:
 - light
-- gpio
 title: Arlec FL052HA Security Flood Light
 ---
 

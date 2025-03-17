@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - switch
-- gpio
-- sensor
 title: Dewenwils Heavy Duty 40A Outdoor Plug (HOWT01A & TM-050B)
 ---
 

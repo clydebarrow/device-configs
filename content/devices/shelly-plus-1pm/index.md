@@ -10,8 +10,6 @@ standard:
 - eu
 tags:
 - relay
-- gpio
-- sensor
 title: Shelly Plus 1PM
 ---
 

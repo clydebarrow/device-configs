@@ -8,7 +8,6 @@ standard:
 - us
 tags:
 - light
-- gpio
 title: Shelly DUO E27
 ---
 

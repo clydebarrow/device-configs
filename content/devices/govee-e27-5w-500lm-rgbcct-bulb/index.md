@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - light
-- gpio
 title: Govee E27 5W 500lm RGBCCT Bulb
 ---
 

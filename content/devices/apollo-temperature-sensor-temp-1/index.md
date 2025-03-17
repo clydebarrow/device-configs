@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - sensor
-- sensor
 title: Apollo Temperature Sensor (TEMP-1)
 ---
 

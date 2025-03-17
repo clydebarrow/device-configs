@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - switch
-- gpio
-- sensor
 title: Treatlife esp01_1m 2/3-Way Wall-Switch
 ---
 

@@ -8,7 +8,6 @@ standard:
 - us
 tags:
 - light
-- gpio
 title: Feit A19 OM60-RGBW-CA-CR
 ---
 

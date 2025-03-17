@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - misc
-- gpio
-- sensor
 title: ESPBell-LITE Intercom and Doorbell module
 ---
 

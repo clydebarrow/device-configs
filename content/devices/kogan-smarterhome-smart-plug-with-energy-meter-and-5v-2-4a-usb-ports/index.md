@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - plug
-- gpio
-- sensor
 title: Kogan SmarterHome Smart Plug With Energy Meter and 5V 2.4A USB Ports
 ---
 

@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - plug
-- gpio
-- sensor
 title: Athom Smart Plug PG03-US16A
 ---
 

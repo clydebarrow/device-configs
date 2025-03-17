@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - relay
-- gpio
-- sensor
 title: KTNNKG Wifi-KG2201-W
 ---
 

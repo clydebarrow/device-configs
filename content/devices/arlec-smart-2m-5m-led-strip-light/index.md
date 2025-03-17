@@ -8,7 +8,6 @@ standard:
 - au
 tags:
 - light
-- gpio
 title: Arlec Smart 2m/5m LED Strip Light
 ---
 

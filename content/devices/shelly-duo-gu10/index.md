@@ -8,7 +8,6 @@ standard:
 - eu
 tags:
 - light
-- gpio
 title: Shelly DUO GU10
 ---
 

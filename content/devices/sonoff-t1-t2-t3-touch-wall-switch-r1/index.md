@@ -8,8 +8,6 @@ standard:
 - uk
 tags:
 - switch
-- gpio
-- sensor
 title: Sonoff T1/T2/T3 Touch Wall Switch (R1)
 ---
 

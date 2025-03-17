@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - light
-- gpio
-- sensor
 title: LEDVANCE SMART WIFI B40 4,9W 230V RGBW FR E14
 ---
 

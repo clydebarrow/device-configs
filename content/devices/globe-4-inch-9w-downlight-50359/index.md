@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - light
-- gpio
-- sensor
 title: Globe 4 Inch 9W Downlight 50359
 ---
 

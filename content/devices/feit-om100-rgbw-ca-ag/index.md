@@ -8,7 +8,6 @@ standard:
 - us
 tags:
 - light
-- gpio
 title: FEIT OM100/RGBW/CA/AG
 ---
 

@@ -8,7 +8,6 @@ standard:
 - us
 tags:
 - plug
-- gpio
 title: Athom Smart Plug US V3 (PG03V3-US16A)
 ---
 

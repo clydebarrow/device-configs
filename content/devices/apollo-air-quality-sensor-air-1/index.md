@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - sensor
-- gpio
-- sensor
 title: Apollo Air Quality Sensor (AIR-1)
 ---
 

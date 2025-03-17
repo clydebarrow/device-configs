@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - plug
-- gpio
-- sensor
 title: UMAX U-Smart Wifi Plug Duo
 ---
 

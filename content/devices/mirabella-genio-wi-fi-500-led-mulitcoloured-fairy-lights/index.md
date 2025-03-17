@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - light
-- gpio
-- sensor
 title: Mirabella Genio Wi-Fi 500 LED Mulitcoloured Fairy Lights
 ---
 

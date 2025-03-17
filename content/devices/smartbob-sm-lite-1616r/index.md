@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - relay
-- gpio
-- sensor
 title: SMARTBOB SM-LITE-1616R
 ---
 

@@ -8,7 +8,6 @@ standard:
 - us
 tags:
 - light
-- gpio
 title: Teckin SB50
 ---
 

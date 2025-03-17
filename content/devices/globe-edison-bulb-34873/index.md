@@ -8,7 +8,6 @@ standard:
 - us
 tags:
 - light
-- gpio
 title: Globe Edison Bulb 34873
 ---
 

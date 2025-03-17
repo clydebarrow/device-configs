@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - dimmer
-- gpio
 title: KinCony-ADR (AC Dimmer)
 ---
 

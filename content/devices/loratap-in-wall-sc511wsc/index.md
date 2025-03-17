@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - misc
-- gpio
-- sensor
 title: LoraTap In-Wall SC511WSC
 ---
 

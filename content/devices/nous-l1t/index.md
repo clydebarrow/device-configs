@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - switch
-- gpio
-- sensor
 title: Nous L1T
 ---
 

@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - misc
-- gpio
-- sensor
 title: Tuya Generic WiFI IR Remote Control
 ---
 

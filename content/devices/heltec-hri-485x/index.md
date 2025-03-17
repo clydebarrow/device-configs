@@ -8,8 +8,6 @@ standard:
 - Global
 tags:
 - misc
-- gpio
-- sensor
 title: Heltec HRI-485X
 ---
 

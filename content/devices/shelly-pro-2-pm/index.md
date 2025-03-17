@@ -9,8 +9,6 @@ standard:
 - eu
 tags:
 - relay
-- gpio
-- sensor
 title: Shelly Pro 2 PM
 ---
 

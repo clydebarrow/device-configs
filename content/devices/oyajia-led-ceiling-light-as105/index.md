@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - light
-- gpio
-- sensor
 title: Oyajia LED Ceiling Light (AS105)
 ---
 

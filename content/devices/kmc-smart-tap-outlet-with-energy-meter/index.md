@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - plug
-- gpio
-- sensor
 title: KMC Smart Tap Outlet With Energy Meter
 ---
 

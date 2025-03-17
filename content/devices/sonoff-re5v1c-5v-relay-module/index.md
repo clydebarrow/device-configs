@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - relay
-- gpio
 title: Sonoff RE5V1C - 5V Relay Module
 ---
 

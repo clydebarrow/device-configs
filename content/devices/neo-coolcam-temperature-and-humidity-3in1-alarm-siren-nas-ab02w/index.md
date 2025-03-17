@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - sensor
-- gpio
-- sensor
 title: NEO Coolcam Temperature and Humidity 3in1 Alarm Siren (NAS-AB02W)
 ---
 

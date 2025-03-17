@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - plug
-- gpio
-- sensor
 title: Athom Smart Plug PG01V2 EU16A
 ---
 

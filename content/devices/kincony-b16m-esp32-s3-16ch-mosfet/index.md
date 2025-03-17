@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - relay
-- gpio
-- sensor
 title: KinCony-B16M (ESP32-S3 16CH MOSFET)
 ---
 

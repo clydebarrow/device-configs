@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - plug
-- gpio
-- sensor
 title: Brilliant Smart WiFi Powerboard 20691/05
 ---
 

@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - plug
-- gpio
-- sensor
 title: Delock 11827 Power Monitoring Smart Plug
 ---
 

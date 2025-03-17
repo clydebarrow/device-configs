@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - switch
-- gpio
-- sensor
 title: Nameless DS-102 2/3-Gang Wall-Switch
 ---
 

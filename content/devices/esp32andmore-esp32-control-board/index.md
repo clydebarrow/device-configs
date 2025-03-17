@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - sensor
-- sensor
 title: ESP32andmore ESP32 Control Board
 ---
 

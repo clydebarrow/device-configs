@@ -7,9 +7,8 @@ project_url: ''
 standard:
 - au
 tags:
-- switch, plug
-- gpio
-- sensor
+- switch
+- plug
 title: Tuya 2 Gang Switch Socket
 ---
 

@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - plug
-- gpio
-- sensor
 title: Arlec Grid Connect Smart Plug PC190HA
 ---
 

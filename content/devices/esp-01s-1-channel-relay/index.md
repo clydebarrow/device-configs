@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - relay
-- gpio
-- sensor
 title: ESP-01S 1 Channel Relay
 ---
 

@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - light
-- gpio
 title: Lonsonho 9W E27 RGBWW bulb
 ---
 

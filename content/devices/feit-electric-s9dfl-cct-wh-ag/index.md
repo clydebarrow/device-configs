@@ -8,7 +8,6 @@ standard:
 - us
 tags:
 - light
-- gpio
 title: Feit Electric S9DFL/CCT/WH/AG
 ---
 

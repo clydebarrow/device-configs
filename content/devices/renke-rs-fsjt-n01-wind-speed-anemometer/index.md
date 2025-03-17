@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - sensor
-- gpio
-- sensor
 title: Renke RS-FSJT-N01 Wind speed anemometer
 ---
 

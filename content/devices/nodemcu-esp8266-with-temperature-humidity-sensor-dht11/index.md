@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - sensor
-- gpio
-- sensor
 title: NodeMCU ESP8266 with Temperature & Humidity Sensor (DHT11)
 ---
 

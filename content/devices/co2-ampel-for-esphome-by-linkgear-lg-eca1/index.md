@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - sensor
-- gpio
-- sensor
 title: CO2 Ampel for ESPHome by LinkGear (LG-ECA1)
 ---
 

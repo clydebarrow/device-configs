@@ -1,5 +1,10 @@
 {{ define "main" }}
 <div class="content device-page">
+    {{ if .Params.made_for_esphome }}
+    <div class="made-for-esphome">
+        <img src="/images/made-for-esphome-black-on-white.svg" alt="Made for ESPHome" class="badge-logo">
+    </div>
+    {{ end }}
     <h1>{{ .Params.title }}</h1>
     
     <div class="device-meta-tags">

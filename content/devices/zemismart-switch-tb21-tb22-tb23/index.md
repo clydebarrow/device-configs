@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - switch
-- gpio
-- sensor
 title: Zemismart Switch TB21 TB22 TB23
 ---
 

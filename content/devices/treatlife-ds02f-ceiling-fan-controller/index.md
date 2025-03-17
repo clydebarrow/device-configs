@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - switch
-- gpio
-- sensor
 title: TreatLife DS02F Ceiling Fan Controller
 ---
 

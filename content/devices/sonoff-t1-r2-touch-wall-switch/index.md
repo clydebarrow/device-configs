@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - switch
-- gpio
-- sensor
 title: Sonoff T1 R2 Touch Wall Switch
 ---
 

@@ -8,7 +8,6 @@ standard:
 - au
 tags:
 - light
-- gpio
 title: Connect SmartHome 10W CCT Smart White LED Bulb B22 (CSH-B22WW10W)
 ---
 

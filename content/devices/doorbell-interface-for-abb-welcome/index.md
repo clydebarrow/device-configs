@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - misc
-- gpio
-- sensor
 title: Doorbell Interface for ABB-Welcome
 ---
 

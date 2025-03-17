@@ -11,8 +11,6 @@ standard:
 - au
 tags:
 - misc
-- gpio
-- sensor
 title: Inkbird ITC-308-WIFI
 ---
 

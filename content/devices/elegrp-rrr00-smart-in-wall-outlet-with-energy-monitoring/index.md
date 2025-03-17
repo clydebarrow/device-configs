@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - plug
-- gpio
-- sensor
 title: Elegrp RRR00 Smart In-Wall Outlet with Energy Monitoring
 ---
 

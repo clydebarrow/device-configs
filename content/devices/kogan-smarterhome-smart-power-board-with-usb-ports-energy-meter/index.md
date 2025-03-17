@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - plug
-- gpio
-- sensor
 title: Kogan SmarterHome Smart Power Board With USB Ports & Energy Meter
 ---
 

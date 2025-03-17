@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - plug
-- gpio
-- sensor
 title: C168 IP64 Outdoor Plug
 ---
 

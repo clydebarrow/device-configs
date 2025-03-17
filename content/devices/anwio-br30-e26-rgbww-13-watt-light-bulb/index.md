@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - light
-- gpio
-- sensor
 title: Anwio BR30 E26 RGBWW 13 Watt Light Bulb
 ---
 

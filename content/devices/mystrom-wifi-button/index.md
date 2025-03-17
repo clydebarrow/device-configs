@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - switch
-- gpio
 title: myStrom WiFi Button
 ---
 

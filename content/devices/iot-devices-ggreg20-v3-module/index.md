@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - sensor
-- gpio
-- sensor
 title: IoT-devices GGreg20_V3 module
 ---
 

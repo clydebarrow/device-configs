@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - dimmer
-- gpio
-- sensor
 title: KinCony KC868-AP
 ---
 

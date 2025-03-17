@@ -8,7 +8,6 @@ standard:
 - au
 tags:
 - light
-- gpio
 title: Brilliant Smart RGB and White Globe
 ---
 

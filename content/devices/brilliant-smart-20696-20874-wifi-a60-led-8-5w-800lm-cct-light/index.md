@@ -8,7 +8,6 @@ standard:
 - au
 tags:
 - light
-- gpio
 title: Brilliant Smart 20696/20874 WiFi A60 LED 8.5W 800LM CCT light
 ---
 

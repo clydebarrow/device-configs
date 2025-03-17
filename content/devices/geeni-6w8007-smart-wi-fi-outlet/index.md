@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - plug
-- gpio
-- sensor
 title: Geeni 6W8007 Smart Wi-Fi Outlet
 ---
 

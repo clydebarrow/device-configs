@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - switch
-- gpio
-- sensor
 title: DETA Grid Connect Smart Switch 2 Way 2 Gang (6952HA)
 ---
 

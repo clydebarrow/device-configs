@@ -8,7 +8,6 @@ standard:
 - us
 tags:
 - dimmer
-- gpio
 title: Teckin SR46
 ---
 

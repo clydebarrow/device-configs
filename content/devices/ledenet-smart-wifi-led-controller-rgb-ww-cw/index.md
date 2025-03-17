@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - light
-- gpio
-- sensor
 title: LEDENET Smart WiFi Led Controller (RGB/WW/CW)
 ---
 

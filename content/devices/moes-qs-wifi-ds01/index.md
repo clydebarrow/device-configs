@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - dimmer
-- gpio
-- sensor
 title: Moes QS-WIFI-DS01
 ---
 

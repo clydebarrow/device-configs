@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - sensor
-- gpio
-- sensor
 title: EPEVER MPPT Solar Charge Controller (Tracer-AN Series)
 ---
 

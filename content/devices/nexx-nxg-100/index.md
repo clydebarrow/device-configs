@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - relay
-- gpio
-- sensor
 title: Nexx NXG-100
 ---
 

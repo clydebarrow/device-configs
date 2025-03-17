@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - light
-- gpio
 title: MagicHome-ZJ-WFMN-C-Single Color V1.1 LED Controller
 ---
 

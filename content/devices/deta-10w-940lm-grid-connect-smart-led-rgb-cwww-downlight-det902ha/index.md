@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - light
-- gpio
-- sensor
 title: Deta 10W 940lm Grid Connect Smart LED RGB CWWW Downlight (DET902HA)
 ---
 

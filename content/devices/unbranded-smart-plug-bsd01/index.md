@@ -9,8 +9,6 @@ standard:
 - us
 tags:
 - plug
-- gpio
-- sensor
 title: Unbranded Smart Plug BSD01
 ---
 

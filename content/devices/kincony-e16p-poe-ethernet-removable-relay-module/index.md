@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - relay
-- gpio
-- sensor
 title: KinCony E16P POE Ethernet Removable Relay Module
 ---
 

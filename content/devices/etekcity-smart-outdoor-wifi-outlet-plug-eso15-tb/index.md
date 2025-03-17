@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - plug
-- gpio
-- sensor
 title: Etekcity Smart Outdoor WiFi Outlet Plug ESO15-TB
 ---
 

@@ -8,7 +8,6 @@ standard:
 - au
 tags:
 - light
-- gpio
 title: Mirabella Genio Wi-Fi 1.4m Pixel LED Corner Light
 ---
 

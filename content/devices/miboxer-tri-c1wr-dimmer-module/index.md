@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - dimmer
-- gpio
-- sensor
 title: Miboxer TRI-C1WR Dimmer Module
 ---
 

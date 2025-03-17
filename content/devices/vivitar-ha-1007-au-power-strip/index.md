@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - plug
-- gpio
-- sensor
 title: Vivitar HA-1007-AU Power Strip
 ---
 

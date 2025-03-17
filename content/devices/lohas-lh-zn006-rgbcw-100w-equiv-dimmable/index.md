@@ -8,7 +8,6 @@ standard:
 - us
 tags:
 - light
-- gpio
 title: Lohas LH-ZN006 RGBCW 100W Equiv Dimmable
 ---
 

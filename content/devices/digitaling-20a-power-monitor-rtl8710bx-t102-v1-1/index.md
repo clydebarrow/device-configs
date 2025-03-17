@@ -8,8 +8,6 @@ standard:
 - EU
 tags:
 - plug
-- gpio
-- sensor
 title: Digitaling 20A Power Monitor RTL8710BX t102-v1.1
 ---
 

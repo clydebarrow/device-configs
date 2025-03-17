@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - switch
-- gpio
-- sensor
 title: Make Good MG-MD04W 4-Gang Wifi Switch with Power Monitoring
 ---
 

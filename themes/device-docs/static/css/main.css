@@ -925,13 +925,17 @@ main {
 .device-page .device-images {
     margin: 2rem 0;
     display: grid;
+    justify-items: center;
+    align-items: center;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
 }
 
 .device-page .device-image {
-    width: 100%;
+    max-width: 100%;
     height: auto;
+    align-self: center;
+    max-height: 800px;
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }

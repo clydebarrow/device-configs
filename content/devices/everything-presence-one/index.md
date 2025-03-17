@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - sensor
-- sensor
 title: Everything Presence One
 ---
 

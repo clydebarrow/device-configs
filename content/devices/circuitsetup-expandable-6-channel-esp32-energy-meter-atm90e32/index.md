@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - misc
-- gpio
-- sensor
 title: CircuitSetup Expandable-6 Channel ESP32 Energy Meter (ATM90E32)
 ---
 

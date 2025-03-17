@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - misc
-- gpio
-- sensor
 title: Genvex ECO 375, Nibe ERS 10-500, Alpha-Innotec LG 300 ECO B(E) ventilation
 ---
 

@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - sensor
-- gpio
-- sensor
 title: AirGradient-One
 ---
 

@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - plug
-- gpio
-- sensor
 title: Minoston Outdoor Smart Plug MP22W Version 5.0
 ---
 

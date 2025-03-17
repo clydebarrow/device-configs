@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - relay
-- gpio
 title: KinCony KC868-AM
 ---
 

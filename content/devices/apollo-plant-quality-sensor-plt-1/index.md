@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - sensor
-- sensor
 title: Apollo Plant Quality Sensor (PLT-1)
 ---
 

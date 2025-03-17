@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - plug
-- gpio
-- sensor
 title: WiOn 50050 Indoor WiFi Plug
 ---
 

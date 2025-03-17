@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - plug
-- gpio
-- sensor
 title: CloudFree EU Plug (P1EU)
 ---
 

@@ -8,8 +8,6 @@ standard:
 - in
 tags:
 - light
-- gpio
-- sensor
 title: Wipro 20W LED RGB Batten Light (DS22000)
 ---
 

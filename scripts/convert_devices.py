@@ -163,14 +163,10 @@ def convert_frontmatter(old_frontmatter, content):
     
     # Extract tags
     if 'type' in old_frontmatter:
-        new_frontmatter['tags'].append(old_frontmatter['type'])
+        parts = [x.strip() for x in old_frontmatter['type'].split(',')]
+        new_frontmatter['tags'].extend(parts)
     
-    # Add additional tags based on content
-    if 'gpio' in content.lower() or 'pin' in content.lower():
-        new_frontmatter['tags'].append('gpio')
-    if 'sensor' in content.lower():
-        new_frontmatter['tags'].append('sensor')
-    
+
     return new_frontmatter
 
 def extract_yaml_blocks(content):

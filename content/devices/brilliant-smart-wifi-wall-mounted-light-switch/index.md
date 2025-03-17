@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - switch
-- gpio
-- sensor
 title: Brilliant Smart WiFi Wall Mounted Light Switch
 ---
 

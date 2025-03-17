@@ -10,8 +10,6 @@ standard:
 - uk
 tags:
 - sensor
-- gpio
-- sensor
 title: DY-RQ400A Tuya Combustible Gas Alarm
 ---
 

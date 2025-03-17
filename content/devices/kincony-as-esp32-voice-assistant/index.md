@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - misc
-- gpio
-- sensor
 title: KinCony-AS (ESP32 Voice Assistant)
 ---
 

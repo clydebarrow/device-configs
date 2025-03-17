@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - plug
-- gpio
-- sensor
 title: RGB Smart Plug 16A with power monitoring
 ---
 

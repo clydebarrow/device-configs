@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - plug
-- gpio
-- sensor
 title: Geeni SW003-199 6-Outlet Surge Protector
 ---
 

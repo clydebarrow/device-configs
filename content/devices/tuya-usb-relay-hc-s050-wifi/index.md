@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - relay
-- gpio
-- sensor
 title: Tuya USB Relay HC-S050-WIFI
 ---
 

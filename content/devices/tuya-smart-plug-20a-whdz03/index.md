@@ -8,8 +8,6 @@ standard:
 - uk
 tags:
 - plug
-- gpio
-- sensor
 title: Tuya Smart Plug 20A WHDZ03
 ---
 

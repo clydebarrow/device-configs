@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - light
-- gpio
-- sensor
 title: Tapo L900 RGB 5M Light Strip
 ---
 

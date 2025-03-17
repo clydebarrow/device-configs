@@ -8,8 +8,6 @@ standard:
 - au
 tags:
 - misc
-- gpio
-- sensor
 title: Mirabella Genio Smart Universal IR Controller
 ---
 

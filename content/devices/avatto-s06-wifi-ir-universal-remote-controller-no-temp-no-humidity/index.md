@@ -8,7 +8,6 @@ standard:
 - global
 tags:
 - misc
-- gpio
 title: AVATTO S06 WiFi IR Universal Remote Controller (No Temp/No Humidity)
 ---
 

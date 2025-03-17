@@ -10,7 +10,6 @@ standard:
 - eu
 tags:
 - light
-- gpio
 title: Shelly Bulb Duo RGBW
 ---
 

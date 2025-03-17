@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - switch
-- gpio
-- sensor
 title: Tongou TO-Q-SYS-JWT DIN Rail Switch and Meter
 ---
 

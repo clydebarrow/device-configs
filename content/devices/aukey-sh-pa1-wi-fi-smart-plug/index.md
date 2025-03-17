@@ -8,8 +8,6 @@ standard:
 - us
 tags:
 - plug
-- gpio
-- sensor
 title: Aukey SH-PA1 Wi-Fi Smart Plug
 ---
 

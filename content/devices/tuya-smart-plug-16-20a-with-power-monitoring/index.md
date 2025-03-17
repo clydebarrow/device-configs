@@ -8,8 +8,6 @@ standard:
 - eu
 tags:
 - plug
-- gpio
-- sensor
 title: Tuya Smart Plug 16/20A with Power Monitoring
 ---
 

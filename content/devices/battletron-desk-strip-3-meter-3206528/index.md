@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - light
-- gpio
-- sensor
 title: Battletron Desk Strip 3 meter - 3206528
 ---
 

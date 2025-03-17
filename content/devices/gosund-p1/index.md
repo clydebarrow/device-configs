@@ -8,8 +8,6 @@ standard:
 - UK
 tags:
 - relay
-- gpio
-- sensor
 title: Gosund P1
 ---
 

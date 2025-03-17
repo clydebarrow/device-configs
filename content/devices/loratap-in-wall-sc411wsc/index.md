@@ -8,8 +8,6 @@ standard:
 - global
 tags:
 - switch
-- gpio
-- sensor
 title: LoraTap In-Wall SC411WSC
 ---
 
