@@ -16,12 +16,20 @@ A Hugo-powered documentation site for ESPHome device descriptions and sample con
 └── config.yaml          # Hugo configuration
 ```
 
-## Adding New Devices
+## Adding New Device Configurations by Form Submission
 
+1. Go to the [ESPHome Device Configuration Form](https://device-submission.control-j.com) and fill out the form.
+2. Submit the form.
+3. A PR will be created with the new device configuration.
+
+## Adding New Devices by Manual Creation
+
+0. Fork and clone the repository.
 1. Create a new directory under `content/devices/` with your device name
 2. Add a `device.md` file with device documentation
 3. Include the ESPHome configuration in `config.yaml`
 4. Add device images in the `images/` subdirectory
+5. Create a PR with your changes
 
 ## Local Development
 
