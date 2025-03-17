@@ -1,0 +1,33 @@
+esphome:
+  name: ${device_name}
+  platform: ESP8266
+  board: esp01_1m
+  includes:
+    - better_rgbw_output.h
+
+output:
+  - platform: esp8266_pwm
+    id: output_red
+    pin: GPIO04
+  - platform: esp8266_pwm
+    id: output_green
+    pin: GPIO12
+  - platform: esp8266_pwm
+    id: output_blue
+    pin: GPIO14
+  - platform: esp8266_pwm
+    id: output_cold_white
+    pin: GPIO13
+  - platform: esp8266_pwm
+    id: output_warm_white
+    pin: GPIO05
+
+light:
+  - platform: custom
+    lambda: |-
+      auto light_out = new BetterRGBWLightOutput(id(output_red), id(output_green), id(output_blue), id(output_cold_white), id(output_warm_white));
+      App.register_component(light_out);
+      return {light_out};
+    lights:
+      - name: ${friendly_name}
+        id: ${device_name}

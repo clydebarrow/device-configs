@@ -1,0 +1,58 @@
+substitutions:
+  device_name: "alrec-gld381ha"
+
+esphome:
+  name: ${device_name}
+  friendly_name: "Arlec GLD381HA"
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret ota_password
+
+ota:
+  password: !secret ota_password
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:
+
+sm2135:
+  clock_pin: P9
+  data_pin: P7
+  rgb_current: 20mA
+  cw_current: 25mA
+
+# Individual outputs
+output:
+  - platform: sm2135
+    id: output_red
+    channel: 0
+  - platform: sm2135
+    id: output_green
+    channel: 2
+  - platform: sm2135
+    id: output_blue
+    channel: 1
+  - platform: sm2135
+    id: output_cold
+    channel: 4
+  - platform: sm2135
+    id: output_warm
+    channel: 3
+
+light:
+  - platform: rgbww
+    id: light_rgbww
+    name: Light
+    color_interlock: true
+    cold_white_color_temperature: 6500 K
+    warm_white_color_temperature: 2700 K
+    red: output_red
+    green: output_green
+    blue: output_blue
+    cold_white: output_cold
+    warm_white: output_warm

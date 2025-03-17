@@ -98,6 +98,103 @@ nav {
     margin: 0 1rem;
 }
 
+/* Made for ESPHome logo */
+.device-page {
+    position: relative;
+}
+
+.made-for-esphome {
+    position: absolute;
+    top: 15px;
+    right: 0;
+    background: var(--bg-color);
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.made-for-esphome:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.badge-logo {
+    width: 160px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+@media (max-width: 1023px) {
+    .made-for-esphome {
+        display: none;
+    }
+    
+    .device-image-container {
+        position: relative;
+    }
+    
+    .device-image-container .made-for-esphome {
+        display: block;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: none;
+    }
+    
+    .device-image-container .badge-logo {
+        width: 120px;
+    }
+}
+
+/* Content images */
+.device-page img:not(.device-image):not(.badge-logo) {
+    max-width: 800px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    background-color: var(--bg-color);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+th {
+    background-color: var(--code-bg);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:nth-child(even) {
+    background-color: var(--code-bg);
+}
+
+tr:hover {
+    background-color: var(--card-bg);
+}
+
 /* Pagefind UI customization */
 .pagefind-ui {
     --pagefind-ui-scale: 0.95;
@@ -1262,7 +1359,7 @@ footer .container {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.device-images img {
+.device-images  > img {
     width: 100%;
     min-height: 300px;
     max-height: 600px;

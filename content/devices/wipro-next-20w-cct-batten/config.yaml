@@ -1,0 +1,44 @@
+esphome:
+  name: "wipro-next-cct-batten"
+
+esp8266:
+  board: esp01_1m
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: !secret encryption_key
+
+ota:
+  password: !secret ota_password
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: !secret fallback_ssid
+    password: !secret fallback_password
+
+captive_portal:
+
+output:
+  - platform: esp8266_pwm
+    id: brightness_pwm
+    pin: GPIO5
+  - platform: esp8266_pwm
+    id: color_temp_pwm
+    pin: GPIO13
+    inverted: true
+
+light:
+  - platform: color_temperature
+    name: "wipro-next-cct-batten"
+    color_temperature: color_temp_pwm
+    brightness: brightness_pwm
+    cold_white_color_temperature: 6500 K
+    warm_white_color_temperature: 2700 K

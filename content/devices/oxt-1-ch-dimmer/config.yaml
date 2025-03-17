@@ -1,0 +1,26 @@
+esphome:
+  name: dimmer
+  comment: OXT 1-ch dimmer
+
+bk72xx:
+  board: cb3s # Using original CB3S module by Tuya, can also be replaced with other pin-compatible
+
+# Disable UART logging - we need UART to talk to dimming MCU
+logger:
+  baud_rate: 0
+
+uart:
+  tx_pin: GPIO11 # rx_pin is not required (not used)
+  baud_rate: 9600
+
+light:
+  - platform: oxt_dimmer
+    id: lamp1
+    name: lamp1
+    sensing_pin:
+      number: GPIO08
+      inverted: true
+      mode: input_pullup
+    min_value: 0
+    max_value: 255
+    default_transition_length: 1s # tranistions would work!

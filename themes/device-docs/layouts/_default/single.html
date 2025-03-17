@@ -23,32 +23,40 @@
     
     {{ if .Resources.Match "images/*" }}
     <div class="device-images">
-        {{ range sort (.Resources.Match "images/*") "Name" | first 3 }}
-            {{ $image := . }}
+        {{ $image_list := sort (.Resources.Match "images/*") "Name" | first 3 }}
+        {{ $last := add (len $image_list) -1 }}
+        {{ range $index, $image := $image_list }}
             {{ $large := $image.Resize "1200x" }}
             {{ $medium := $image.Resize "800x" }}
             {{ $small := $image.Resize "400x" }}
             {{ $webpLarge := $large.Resize "1200x webp" }}
             {{ $webpMedium := $medium.Resize "800x webp" }}
             {{ $webpSmall := $small.Resize "400x webp" }}
-            <picture>
-                <source
-                    type="image/webp"
-                    srcset="{{ $webpSmall.RelPermalink }} 400w, {{ $webpMedium.RelPermalink }} 800w, {{ $webpLarge.RelPermalink }} 1200w"
-                    sizes="(min-width: 1280px) 1200px, (min-width: 768px) 800px, 400px">
-                <source
-                    type="image/jpeg"
-                    srcset="{{ $small.RelPermalink }} 400w, {{ $medium.RelPermalink }} 800w, {{ $large.RelPermalink }} 1200w"
-                    sizes="(min-width: 1280px) 1200px, (min-width: 768px) 800px, 400px">
-                <img
-                    src="{{ $medium.RelPermalink }}"
-                    loading="lazy"
-                    decoding="async"
-                    alt="{{ $.Params.title }} - {{ $image.Name | path.Base }}"
-                    class="device-image"
-                    width="{{ $medium.Width }}"
-                    height="{{ $medium.Height }}">
-            </picture>
+            <div class="device-image-container">
+                <picture>
+                    <source
+                        type="image/webp"
+                        srcset="{{ $webpSmall.RelPermalink }} 400w, {{ $webpMedium.RelPermalink }} 800w, {{ $webpLarge.RelPermalink }} 1200w"
+                        sizes="(min-width: 1280px) 1200px, (min-width: 768px) 800px, 400px">
+                    <source
+                        type="image/jpeg"
+                        srcset="{{ $small.RelPermalink }} 400w, {{ $medium.RelPermalink }} 800w, {{ $large.RelPermalink }} 1200w"
+                        sizes="(min-width: 1280px) 1200px, (min-width: 768px) 800px, 400px">
+                    <img
+                        src="{{ $medium.RelPermalink }}"
+                        loading="lazy"
+                        decoding="async"
+                        alt="{{ $.Params.title }} - {{ $image.Name | path.Base }}"
+                        class="device-image"
+                        width="{{ $medium.Width }}"
+                        height="{{ $medium.Height }}">
+                </picture>
+                {{ if and $.Params.made_for_esphome (eq $index $last)  }}
+                <div class="made-for-esphome">
+                    <img src="/images/made-for-esphome-black-on-white.svg" alt="Made for ESPHome" class="badge-logo">
+                </div>
+                {{ end }}
+            </div>
         {{ end }}
     </div>
     {{ end }}
@@ -83,7 +91,9 @@
                             {{ end }}
                         {{ end }}
                         {{ $category := "System" }}
-                        {{ if findRE "(?i)display|lcd|tft|rgb|backlight|bl|vsync|hsync|de|pclk|red|green|blue|disp" $function }}
+                        {{ if findRE "LED" $function }}
+                            {{ $category = "LED" }}
+                        {{ else if findRE "(?i)display|lcd|tft|rgb|backlight|bl|vsync|hsync|de|pclk|red|green|blue|disp" $function }}
                             {{ $category = "Display" }}
                         {{ else if findRE "(?i)touch|tp_" $function }}
                             {{ $category = "Touchscreen" }}
@@ -108,7 +118,7 @@
                         {{ end }}
                         {{ $sortedPins = $sortedPins | append (dict "pin" $pin "function" $function "sortKey" $sortKey "category" $category) }}
                     {{ end }}
-                    {{ $categories := slice "System" "Display" "Touchscreen" "Input" "I2C" "SPI" "Storage" "Communication" "Power" "Other" }}
+                    {{ $categories := slice "System" "LED" "Output" "Display" "Touchscreen" "Input" "I2C" "SPI" "Storage" "Communication" "Power" "Other" }}
                     {{ range $categories }}
                         {{ $category := . }}
                         {{ $categoryPins := where $sortedPins "category" $category }}

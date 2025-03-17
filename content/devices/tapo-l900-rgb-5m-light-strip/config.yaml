@@ -1,0 +1,75 @@
+esphome:
+  name: lightstripa
+  friendly_name: LightStripA
+
+rtl87xx:
+  board: generic-rtl8720cf-2mb-992k
+  framework:
+    version: 0.0.0
+    source: https://github.com/prokoma/libretiny#55aacc8
+    # loglevel: VERBOSE
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "api_encryption_key"
+
+ota:
+  - platform: esphome
+    password: "ota_password"
+
+web_server:
+  port: 80
+  auth:
+    username: "web_server_username"
+    password: "web_server_password"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Lightstripa Fallback Hotspot"
+    password: "hotspot_password"
+
+captive_portal:
+
+output:
+  - platform: libretiny_pwm
+    id: output_red
+    pin: PA19
+  - platform: libretiny_pwm
+    id: output_green
+    pin: PA18
+  - platform: libretiny_pwm
+    id: output_blue
+    pin: PA17
+#  - platform: esp8266_pwm
+#    id: output_white
+#    pin: GPIOxx
+
+light:
+  - platform: rgb
+    name: "Strip Light"
+    id: strip_light
+    red: output_red
+    green: output_green
+    blue: output_blue
+#    white: output_white
+
+binary_sensor:
+  - platform: gpio
+    id: strip_light_pushbutton
+    pin:
+      number: PA04
+      mode: INPUT_PULLUP
+    name: "strip_light_pushbutton"
+    internal: true
+    on_click:
+      max_length: 400ms # Single click
+      then:
+        - light.toggle: strip_light

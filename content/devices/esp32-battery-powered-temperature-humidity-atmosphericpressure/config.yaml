@@ -1,0 +1,71 @@
+esphome:
+  name: bedford
+
+esp32:
+  board: esp32dev
+
+wifi:
+  ssid: 'home'
+  password: 'fileybay'
+  fast_connect: true
+
+globals:
+  - id: ota_mode
+    type: bool
+    initial_value: 'false'
+
+mqtt:
+  broker: *redacted*.co.uk
+  port: 23046
+  username: *redacted*
+  password: *redacted*
+  birth_message:
+  will_message:
+  on_message:
+    - topic: bedford/ota_mode
+      payload: 'ON'
+      then:
+        - globals.set:
+            id: ota_mode
+            value: 'true'
+    - topic: bedford/ota_mode
+      payload: 'OFF'
+      then:
+        - globals.set:
+            id: ota_mode
+            value: 'false'
+    - topic: bedford/sensor/bford_temp/state
+      then:
+        - if:
+            condition:
+              lambda: 'return !id(ota_mode);'
+            then:
+              - deep_sleep.enter: deep_sleep_1
+
+logger:
+  level: INFO
+
+ota:
+  password: *redacted*
+
+i2c:
+  sda: 16
+  scl: 17
+
+sensor:
+  - platform: bme280
+    temperature:
+      name: "bford temp"
+      oversampling: 2x
+    pressure:
+      name: "bford pres"
+      oversampling: 2x
+    humidity:
+      name: "bford humi"
+      oversampling: 2x
+    address: 0x76
+
+deep_sleep:
+  id: deep_sleep_1
+# run_duration: 10s
+  sleep_duration: 60min

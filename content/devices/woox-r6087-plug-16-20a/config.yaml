@@ -1,0 +1,6 @@
+bk72xx:
+  board: wb2s
+  framework:
+    version: latest
+    options:
+      LT_UART_DEFAULT_PORT: 1

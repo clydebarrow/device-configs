@@ -1,0 +1,61 @@
+esphome:
+  name: ${devicename}
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+    version: recommended
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:
+    ssid: "strip_light"
+    password: "ap_password"
+
+binary_sensor:
+  - platform: gpio
+    pin: GPIO2
+    name: "${friendly_name} side button"
+  - platform: gpio
+    pin: GPIO19
+    name: "${friendly_name} top button"
+
+light:
+  - platform: fastled_clockless
+    chipset: WS2812B
+    pin: GPIO25
+    num_leds: 50
+    rgb_order: BRG
+    name: "${friendly_name} light1"
+    effects:
+      - random:
+      - pulse:
+      - strobe:
+      - flicker:
+      - addressable_rainbow:
+      - addressable_color_wipe:
+      - addressable_scan:
+      - addressable_twinkle:
+      - addressable_random_twinkle:
+      - addressable_fireworks:
+      - addressable_flicker:
+  - platform: fastled_clockless
+    chipset: WS2812B
+    pin: GPIO26
+    num_leds: 50
+    rgb_order: BRG
+    name: "${friendly_name} light2"
+    effects:
+      - random:
+      - pulse:
+      - strobe:
+      - flicker:
+      - addressable_rainbow:
+      - addressable_color_wipe:
+      - addressable_scan:
+      - addressable_twinkle:
+      - addressable_random_twinkle:
+      - addressable_fireworks:
+      - addressable_flicker:

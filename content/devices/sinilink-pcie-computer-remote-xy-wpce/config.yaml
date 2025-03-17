@@ -1,0 +1,96 @@
+substitutions:
+  friendly_name: "My PC Power Control"
+  friendly_name_short: "My PC"
+
+  hostname: "my-pc-power-remote-control"
+
+esphome:
+  name: ${hostname}
+  # Necessary to prevent relay trigger on ESP restart / wifi loss
+  on_boot:
+    then:
+      - output.turn_off: out_relay
+
+  # Shows up in UI
+  comment: "Remote power button for ${friendly_name_short}."
+
+esp8266:
+  # Specifically a 'ESP8285H16' with 2MB built in flash
+  # See: https://docs.platformio.org/en/stable/boards/espressif8266/esp8285.html
+  board: esp8285
+
+logger:
+  level: INFO
+
+script:
+  - id: regular_press
+    mode: single
+    then:
+      - output.turn_on: out_relay
+      - delay: .5s
+      - output.turn_off: out_relay
+
+status_led:
+  pin:
+    number: GPIO02
+    inverted: True
+
+binary_sensor:
+  - name: "${friendly_name_short} WiFi Config Button"
+    platform: gpio
+    pin:
+      number: GPIO04
+      mode: INPUT_PULLUP
+      inverted: True
+
+  - name: "${friendly_name_short} Power Status"
+    platform: gpio
+    id: inp_power_status
+    pin:
+      number: GPIO12
+      mode: INPUT_PULLUP
+      inverted: True
+
+  - name: "${friendly_name_short} Case Button"
+    platform: gpio
+    pin:
+      number: GPIO10
+      mode: INPUT_PULLUP
+      inverted: True
+
+    # To accurately mimic the "button wired directly to motherboard" function, use on_press/on_release
+    on_press:
+      - output.turn_on: out_relay
+    on_release:
+      - output.turn_off: out_relay
+
+    # To implement more sophisticated functionality like the "lock out" mode in the OEM firmware
+    #   use on_click.
+    ##
+    on_click:
+      then:
+        - lambda: |-
+            // Implement sophisticated logic here
+            id(sw_pc_power).toggle();
+
+switch:
+  - name: "${friendly_name_short} Power"
+    id: sw_pc_power
+    platform: template
+    lambda: |-
+      if (id(inp_power_status).state) {
+        return true;
+      } else {
+        return false;
+      }
+
+    # Mimic the user pressing the button
+    turn_on_action:
+      - script.execute: regular_press
+    turn_off_action:
+      - script.execute: regular_press
+
+output:
+  - platform: gpio
+    id: out_relay
+    pin: GPIO5

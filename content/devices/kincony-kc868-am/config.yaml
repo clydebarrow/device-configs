@@ -1,0 +1,25 @@
+# Basic Config
+esphome:
+  name: KC868-AM
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+
+# Example configuration entry
+ethernet:
+  type: LAN8720
+  mdc_pin: GPIO23
+  mdio_pin: GPIO18
+  clk_mode: GPIO17_OUT
+  phy_addr: 0
+
+switch:
+  - platform: gpio
+    name: "am-light1"
+    pin: 15
+    inverted: False
