@@ -1,9 +1,9 @@
 {{ define "main" }}
 <div class="content device-page" data-pagefind-body>
     {{ if .Params.made_for_esphome }}
-    <div class="made-for-esphome">
+    <a href="https://esphome.io/guides/made_for_esphome.html" class="made-for-esphome" title="Learn more about Made for ESPHome">
         <img src="/images/made-for-esphome-black-on-white.svg" alt="Made for ESPHome" class="badge-logo">
-    </div>
+    </a>
     {{ end }}
     <h1>{{ .Params.title }}</h1>
     
@@ -57,9 +57,9 @@
                         height="{{ $medium.Height }}">
                 </picture>
                 {{ if and $.Params.made_for_esphome (eq $index $last)  }}
-                <div class="made-for-esphome">
+                <a href="https://esphome.io/guides/made_for_esphome.html" class="made-for-esphome" title="Learn more about Made for ESPHome">
                     <img src="/images/made-for-esphome-black-on-white.svg" alt="Made for ESPHome" class="badge-logo">
-                </div>
+                </a>
                 {{ end }}
             </div>
         {{ end }}

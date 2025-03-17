@@ -98,12 +98,45 @@ nav {
     margin: 0 1rem;
 }
 
+/* Made for ESPHome section */
+.made-for-content {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.made-for-content p {
+    margin: 0;
+    flex: 1;
+}
+
+.made-for-esphome {
+    display: block;
+    background: var(--bg-color);
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.made-for-content .made-for-esphome {
+    flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+    .made-for-content {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+}
+
 /* Made for ESPHome logo */
 .device-page {
     position: relative;
 }
 
-.made-for-esphome {
+.device-page .made-for-esphome {
     position: absolute;
     top: 15px;
     right: 0;
