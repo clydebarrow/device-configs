@@ -5,9 +5,8 @@
         <p>Browse ESPHome devices by their functionality and features</p>
     </div>
 
-    {{ $paginator := .Paginate .Data.Terms.ByCount 9 }}
     <div class="categories-grid">
-        {{ range $key, $value := $paginator.Pages }}
+        {{ range $key, $value := .Data.Terms.ByCount }}
         <div class="category-card">
             <h2><a href="{{ $value.Page.RelPermalink }}">{{ $value.Page.Title }}</a></h2>
             {{ with $value.Page.Description }}
@@ -17,39 +16,6 @@
         </div>
         {{ end }}
     </div>
-
-    {{ if gt $paginator.TotalPages 1 }}
-    <div class="pagination">
-        {{ if $paginator.HasPrev }}
-        <a href="{{ $paginator.Prev.URL }}" class="page-nav prev" aria-label="Previous page">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-            Previous
-        </a>
-        {{ end }}
-        
-        <div class="page-numbers">
-            {{ $currentPage := $paginator.PageNumber }}
-            {{ $totalPages := $paginator.TotalPages }}
-            
-            {{ range $paginator.Pagers }}
-                {{ if or (eq .PageNumber 1) (eq .PageNumber $totalPages) (and (ge .PageNumber (sub $currentPage 2)) (le .PageNumber (add $currentPage 2))) }}
-                    <a href="{{ .URL }}" class="page-number {{ if eq .PageNumber $currentPage }}active{{ end }}">
-                        {{ .PageNumber }}
-                    </a>
-                {{ else if or (eq .PageNumber (sub $currentPage 3)) (eq .PageNumber (add $currentPage 3)) }}
-                    <span class="page-ellipsis">...</span>
-                {{ end }}
-            {{ end }}
-        </div>
-
-        {{ if $paginator.HasNext }}
-        <a href="{{ $paginator.Next.URL }}" class="page-nav next" aria-label="Next page">
-            Next
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-        </a>
-        {{ end }}
-    </div>
-    {{ end }}
 </div>
 
 <style>

@@ -415,14 +415,24 @@ tr:hover {
     border-radius: 8px;
     padding: 0.375rem 2.5rem 0.375rem 1rem;
     font-size: 0.875rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background-color: rgba(255, 255, 255, 0.05);
-    color: rgba(0, 0, 0, 0.85);
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
     width: 100%;
     line-height: 1.5;
 }
 
+[data-theme="dark"] .pagefind-ui .pagefind-ui__search-input {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.85);
+}
+
 .pagefind-ui .pagefind-ui__search-input::placeholder {
+    color: var(--text-muted);
+}
+
+[data-theme="dark"] .pagefind-ui .pagefind-ui__search-input::placeholder {
     color: rgba(255, 255, 255, 0.5);
 }
 
