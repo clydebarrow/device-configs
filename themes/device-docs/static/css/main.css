@@ -933,9 +933,10 @@ main {
 
 .device-page .device-image {
     max-width: 100%;
-    height: auto;
+    max-height: 640px;
+    width: auto;
     align-self: center;
-    max-height: 800px;
+    margin: auto;
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }

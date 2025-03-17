@@ -214,7 +214,7 @@ def process_device(src_dir, dest_dir):
     image_list = []
     # Copy and resize images if needed
     for img in os.listdir(src_dir):
-        if img.lower().endswith(('.jpg', '.jpeg', '.png', '.gif')):
+        if img.lower().endswith(('.jpg', '.jpeg', '.png', '.gif', 'webp')):
             image_list.append(img)
             src_image = os.path.join(src_dir, img)
             dest_image = os.path.join(images_dir, img)

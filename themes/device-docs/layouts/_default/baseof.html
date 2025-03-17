@@ -59,12 +59,12 @@
                         <div class="dropdown-menu" aria-label="Categories submenu">
                             {{ $standards := slice }}
                             {{ range $.Site.RegularPages }}
-                            {{ range .Params.standards }}
-                            {{ $standards = $standards | append . }}
+                            {{ range .Params.standard }}
+                            {{ $standards = $standards | append (. | upper) }}
                             {{ end }}
                             {{ end }}
                             {{ range uniq $standards | sort }}
-                            <a href="/standards/{{ . | urlize }}" class="dropdown-item">{{ . | title | upper }}</a>
+                            <a href="/standard/{{ . | urlize }}" class="dropdown-item">{{ . | title | upper }}</a>
                             {{ end }}
                         </div>
                     </div>
