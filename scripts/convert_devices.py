@@ -193,12 +193,12 @@ def process_device(src_dir, dest_dir):
     old_frontmatter = yaml.safe_load(fm)
     
     # Extract GPIO table and update content
-    gpio_pins, content = extract_gpio_table(content)
+    #gpio_pins, content = extract_gpio_table(content)
 
     # Convert frontmatter and add GPIO pins if found
     new_frontmatter = convert_frontmatter(old_frontmatter, content)
-    if gpio_pins:
-        new_frontmatter['gpio_pins'] = gpio_pins
+    #if gpio_pins:
+        #new_frontmatter['gpio_pins'] = gpio_pins
     
     # Create slug from title
     slug = slugify(old_frontmatter['title'])
@@ -209,7 +209,7 @@ def process_device(src_dir, dest_dir):
     os.makedirs(images_dir, exist_ok=True)
     
     # Extract YAML blocks and update content
-    yaml_content, content = extract_yaml_blocks(content)
+   # yaml_content, content = extract_yaml_blocks(content)
     
     image_list = []
     # Copy and resize images if needed
@@ -275,9 +275,9 @@ def process_device(src_dir, dest_dir):
     
     # Write config.yaml with extracted YAML content
     config_path = os.path.join(device_dir, 'config.yaml')
-    if yaml_content:
-        with open(config_path, 'w') as f:
-            f.write(yaml_content)
+    #if yaml_content:
+    #    with open(config_path, 'w') as f:
+    #        f.write(yaml_content)
 
 def main():
     print(sys.argv)
