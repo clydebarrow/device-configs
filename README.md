@@ -13,7 +13,7 @@ A Hugo-powered documentation site for ESPHome device descriptions and sample con
 │   │       └── images/   # Device images
 ├── themes/
 │   └── device-docs/      # Custom Hugo theme
-└── config.toml          # Hugo configuration
+└── config.yaml          # Hugo configuration
 ```
 
 ## Adding New Devices
@@ -28,5 +28,12 @@ A Hugo-powered documentation site for ESPHome device descriptions and sample con
 To run the site locally:
 
 1. Install Hugo
-2. Run `hugo server` in the project root
-3. Visit http://localhost:1313
+2. Run `hugo` in the project root
+3. Run `npx pagefind --site public` to index the site for search
+4. Run `hugo server` in the project root
+5. Visit http://localhost:1313
+
+## Deployment
+
+The site is deployed to Cloudflare Pages on push or merge to the `main` branch.
+Preview builds are triggered on pull requests.
