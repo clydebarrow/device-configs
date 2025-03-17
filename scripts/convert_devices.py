@@ -156,7 +156,7 @@ def convert_frontmatter(old_frontmatter, content):
         'standard': standard,
         'date_published': formatted_date,            # Required: Publication date in ISO format
         'tags': [],
-        'project_url': old_frontmatter.get('project_url', ''),
+        'project_url': old_frontmatter.get('project-url', ''),
         'made_for_esphome': old_frontmatter.get('made-for-esphome', False),
         'difficulty': 1  # Default difficulty
     }
