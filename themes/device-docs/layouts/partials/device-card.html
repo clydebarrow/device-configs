@@ -16,7 +16,7 @@
     <h3><a href="{{ .RelPermalink }}">{{ .Params.title }}</a></h3>
     <div class="device-tags">
         {{ with .Params.board }}<span class="tag chip">{{ . }}</span>{{ end }}
-        {{ range .Params.standard }}<a href="/standards/{{ . | urlize }}/" class="tag standard">{{ . }}</a>{{ end }}
+        {{ range .Params.standard }}<a href="/standard/{{ . | urlize }}/" class="tag standard">{{ . }}</a>{{ end }}
         {{ range .Params.tags }}<a href="/tags/{{ . | urlize }}/" class="tag feature">{{ . }}</a>{{ end }}
     </div>
     <div class="device-meta">
