@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ if .Title }}{{ .Title }} - {{ end }}{{ .Site.Title }}</title>
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    <link rel="icon" type="image/svg+xml" href="/images/logo.svg">
     <script>
     // Critical theme and layout preferences
     (function() {
@@ -20,16 +21,15 @@
         }
     })();
     </script>
-    {{ if eq hugo.Environment "development" }}
     <!--suppress HtmlUnknownTarget -->
-        <link rel="stylesheet" href="/css/main.css" crossorigin="anonymous">
+    {{ with resources.Get "css/main.css" }}
+    {{ if eq hugo.Environment "development" }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}" crossorigin="anonymous">
     {{ else }}
-        {{ with resources.Get "css/main.css" }}
         {{ with . | fingerprint "sha256" }}
-        <!--suppress HtmlUnknownTarget -->
         <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
         {{ end }}
-        {{ end }}
+    {{ end }}
     {{ end }}
 
     <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
@@ -41,7 +41,7 @@
         <nav>
             <div class="container">
                 <a href="/" class="logo">
-                    <img src="/images/esphome-logo.svg" alt="ESPHome Logo" class="light-logo">
+                    <img src="/images/logo-text-on-light.svg" alt="ESPHome Logo" class="light-logo">
                     <img src="/images/logo-text-on-dark.svg" alt="ESPHome Logo" class="dark-logo">
                     <span>Device Configs</span>
                 </a>

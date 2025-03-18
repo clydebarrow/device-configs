@@ -5,12 +5,17 @@ lastmod: 2025-03-16
 
 There are two ways to contribute a new device configuration to our database:
 
-## 1. Using the Web Submission Form
+## Using the Web Submission Form
 
-The easiest way to contribute is through our web-based submission form at [device-submission.control-j.com](https://device-submission.control-j.com).
+The easiest way to contribute is through the [web-based submission form](/submission/).
+This form allows you to provide all the necessary information about a device without needing to fork the repository or create a pull request.
 
 ### Steps:
-1. Visit [device-submission.control-j.com](https://device-submission.control-j.com)
+
+1. [Open the form](/submission/)
+   - You will need to log in with your GitHub account to submit a device.
+   - If you don't have a GitHub account, you can create one for free.
+   - The login requirement is to prevent spam and to allow credit for your contributions.
 2. Fill in the required device information:
    - Device name and manufacturer
    - Board type (e.g., ESP32, ESP8266)
@@ -26,9 +31,10 @@ The easiest way to contribute is through our web-based submission form at [devic
 4. Provide the ESPHome configuration (YAML)
 5. Submit the form
 
+
 Your submission will be reviewed and, once approved, will be added to the device database.
 
-## 2. Direct Pull Request
+## Direct Pull Request
 
 For those familiar with Git and GitHub, you can contribute directly by creating a pull request in our repository.
 

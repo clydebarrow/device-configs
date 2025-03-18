@@ -1,0 +1,3 @@
+{{ $hint := printf "hints/%s" .hint }}
+{{ $page := .site.GetPage $hint }}
+<div class="info-popup-content">{{ $page.Content }}</div>
