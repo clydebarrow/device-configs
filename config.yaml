@@ -1,7 +1,6 @@
 baseURL: "/"
 languageCode: "en-us"
 title: "ESPHome Device Configurations"
-theme: "device-docs"
 
 taxonomies:
   tag: "tags"

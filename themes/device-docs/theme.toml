@@ -1,4 +1,0 @@
-name = "Device Docs"
-license = "MIT"
-description = "A theme for ESPHome device documentation"
-min_version = "0.80.0"
