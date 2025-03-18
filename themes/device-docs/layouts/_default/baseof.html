@@ -20,11 +20,16 @@
         }
     })();
     </script>
-    {{ with resources.Get "css/main.css" }}
-    {{ with . | fingerprint "sha256" }}
+    {{ if eq hugo.Environment "development" }}
     <!--suppress HtmlUnknownTarget -->
-    <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
-    {{ end }}
+        <link rel="stylesheet" href="/css/main.css" crossorigin="anonymous">
+    {{ else }}
+        {{ with resources.Get "css/main.css" }}
+        {{ with . | fingerprint "sha256" }}
+        <!--suppress HtmlUnknownTarget -->
+        <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+        {{ end }}
+        {{ end }}
     {{ end }}
 
     <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
