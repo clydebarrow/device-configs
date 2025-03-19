@@ -66,8 +66,6 @@
                 {{ partial "hint.html" (dict "site" .Site "hint" "slug") }}
             </div>
             <input type="text" id="slugInput" name="slug" required
-                   pattern="[a-z0-9-.]+"
-                   title="Use only lowercase letters, numbers, dots, and hyphens"
                    placeholder="e.g., my-device-v1.0">
             <div class="error-message"></div>
         </div>

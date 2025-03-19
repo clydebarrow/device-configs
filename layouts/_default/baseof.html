@@ -9,7 +9,6 @@
     <link rel="icon" type="image/svg+xml" href="/images/logo.svg">
     <script>
         // Critical theme and layout preferences
-        (function () {
             // Theme handling
             const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
             document.documentElement.setAttribute('data-theme', savedTheme);
@@ -19,7 +18,6 @@
             if (savedLayout === 'list') {
                 document.documentElement.classList.add('list-view');
             }
-        })();
     </script>
     <!--suppress HtmlUnknownTarget -->
     {{ with resources.Get "css/main.css" }}
