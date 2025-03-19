@@ -7,7 +7,7 @@
     <title>{{ if .Title }}{{ .Title }} - {{ end }}{{ .Site.Title }}</title>
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
     <link rel="icon" type="image/svg+xml" href="/images/logo.svg">
-    <script>
+    <script type="text/javascript">
         // Critical theme and layout preferences
             // Theme handling
             const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
