@@ -1333,7 +1333,7 @@ class DeviceEditor {
         const errorElement = formGroup.querySelector('.error-message');
         const value = this.formElements.productLink.value.trim();
 
-        if (!value || !this.validateUrl(value)) {
+        if (value && !this.validateUrl(value)) {
             formGroup.classList.add('error');
             errorElement.textContent = 'Please enter a valid URL';
             return false;
