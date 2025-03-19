@@ -1,6 +1,6 @@
 baseURL: "/"
 languageCode: "en-us"
-title: "ESPHome Device Configurations"
+title: "ESPHome Devices"
 
 taxonomies:
   tag: "tags"
@@ -31,19 +31,15 @@ outputs:
   home:
     - HTML
     - RSS
-    - JSON
   section:
     - HTML
     - RSS
-    - JSON
   taxonomy:
     - HTML
     - RSS
-    - JSON
   term:
     - HTML
     - RSS
-    - JSON
 
 params:
   description: "A collection of ESPHome device configurations"

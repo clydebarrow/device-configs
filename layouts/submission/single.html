@@ -54,7 +54,7 @@
 
         <div class="form-group">
             <div class="label-container">
-                <label for="slug">Slug:</label>
+                <label for="slugInput">Slug:</label>
                 <span class="info-icon" id="slugInfoIcon">ⓘ</span>
                 <span class="help-text">Auto-generated from device name. Only lowercase letters, numbers, dots, and hyphens
                     allowed.
@@ -63,7 +63,7 @@
             <div id="slugInfoPopup" class="info-popup">
                 {{ partial "hint.html" (dict "site" .Site "hint" "slug") }}
             </div>
-            <input type="text" id="slug" name="slug" required
+            <input type="text" id="slugInput" name="slug" required
                    pattern="[a-z0-9-.]+"
                    title="Use only lowercase letters, numbers, dots, and hyphens"
                    placeholder="e.g., my-device-v1.0">
@@ -141,24 +141,22 @@
 
         <div class="form-group">
             <div class="label-container">
-                <label for="tagInput">Tags:</label>
+                <label for="tagsRequired">Device Features:</label>
                 <span class="info-icon" id="tagsInfoIcon">ⓘ</span>
             </div>
             <div id="tagsInfoPopup" class="info-popup">
                 {{ partial "hint.html" (dict "site" .Site "hint" "tags") }}
-                <div class="info-popup-content">
-                    <div class="tags-list" id="tagsInfoList"></div>
-                </div>
             </div>
             <div class="tags-container">
-                <div class="tags-input-container">
-                    <input type="text" id="tagInput" placeholder="Type to standard add tags...">
-                    <div id="tagSuggestions" class="tag-suggestions"></div>
+                <div id="selectedTags" class="selected-tags">
+                    <img src="/images/plus.svg" class="tag feature button" id="tagAdd"/>
                 </div>
-                <div id="selectedTags" class="selected-tags"></div>
                 <input type="hidden" id="tagsRequired" name="tagsRequired" required>
-                <div class="error-message"></div>
             </div>
+            <div id="tagsInputPopup" class="info-popup">
+                <div class="tags-list" id="tagsInfoList"></div>
+            </div>
+            <div class="error-message"></div>
         </div>
 
         <div class="form-group">
@@ -172,7 +170,7 @@
             </div>
             <div class="tags-container">
                 <div id="selectedElectricalStandards" class="selected-tags">
-                    <div class="tag standard button" id="electricalStandardAdd">+</div>
+                    <img src="/images/plus.svg" class="tag feature button" id="electricalStandardAdd" />
                 </div>
                 <input type="hidden" id="electricalStandardsHidden" name="electricalStandard">
             </div>

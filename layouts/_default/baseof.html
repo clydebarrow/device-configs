@@ -34,7 +34,6 @@
 
     <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
     <script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
-    <script src="/js/view-toggle.js" defer></script>
 </head>
 <body>
     <header>
@@ -43,7 +42,7 @@
                 <a href="/" class="logo">
                     <img src="/images/logo-text-on-light.svg" alt="ESPHome Logo" class="light-logo">
                     <img src="/images/logo-text-on-dark.svg" alt="ESPHome Logo" class="dark-logo">
-                    <span>Device Configs</span>
+                    <span>Devices</span>
                 </a>
                 <div id="search" class="search-container"></div>
                 <button class="theme-toggle" aria-label="Toggle theme" title="Toggle dark mode">
@@ -149,6 +148,40 @@
     </footer>
     <script>
 document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('device-container');
+    const buttons = document.querySelectorAll('.toggle-button');
+    const STORAGE_KEY = 'viewMode';
+
+    if (!container || !buttons.length) return;
+
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            const view = button.dataset.view;
+            setView(view);
+            // Save preference
+            localStorage.setItem(STORAGE_KEY, view);
+        });
+    });
+
+    function setView(view) {
+        if (view === 'list') {
+            document.documentElement.classList.add('list-view');
+        } else {
+            document.documentElement.classList.remove('list-view');
+        }
+        buttons.forEach(b => {
+            b.classList.toggle('active', b.dataset.view === view);
+        });
+
+        // Update image sources based on view
+        const images = container.querySelectorAll('.device-image');
+        images.forEach(img => {
+            const src = img.dataset[`${view}Src`];
+            if (src && img.src !== src) {
+                img.src = src;
+            }
+        });
+    }
     const versionButton = document.querySelector('.version-info-button');
     const versionPopup = document.querySelector('.version-info-popup');
     const closeButton = document.querySelector('.close-version-info');

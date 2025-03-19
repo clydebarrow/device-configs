@@ -2,6 +2,7 @@
     --primary-color: #00B1F2;
     --text-color: #333;
     --bg-color: #fff;
+    --button-hover-bg: #00000040;
     --form-bg-color: #f0f0f0;
     --login-bg-color: white;
     --card-bg: #f5f5f5;
@@ -18,7 +19,7 @@
     --standard-color: #1976d2;
     --standard-hover-bg: #1976d2;
     --standard-hover-color: #fff;
-    --feature-bg: #f5f5f5;
+    --feature-bg: #e5e5e5;
     --feature-color: #424242;
     --feature-hover-bg: #424242;
     --feature-hover-color: #fff;
@@ -64,7 +65,7 @@
     --standard-color: #64b5f6;
     --standard-hover-bg: #64b5f6;
     --standard-hover-color: #000;
-    --feature-bg: #333;
+    --feature-bg: #444;
     --feature-color: #e0e0e0;
     --feature-hover-bg: #e0e0e0;
     --feature-hover-color: #000;
@@ -1228,6 +1229,26 @@ main {
     cursor: pointer;
 }
 
+img.tag.button {
+    margin-top: 0.15rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    object-fit: contain;
+    padding: 0;
+    background: transparent;
+}
+
+img.tag.button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+[data-theme="dark"] img.tag.button {
+    filter: invert(1);
+}
+
+.selected-tags {
+    display: flex;
+}
 .tag {
     display: inline-flex;
     align-items: center;
@@ -1326,6 +1347,10 @@ main {
     background: var(--difficulty-5-hover-bg);
     color: var(--difficulty-5-hover-color);
     transform: translateY(-1px);
+}
+
+.tag.button {
+    border-radius: 0.75rem;
 }
 
 footer {

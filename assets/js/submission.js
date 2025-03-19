@@ -1,4 +1,4 @@
-import { validateYaml } from './yaml-validator.js';
+import {validateYaml} from './yaml-validator.js';
 
 class DeviceEditor {
     constructor() {
@@ -9,10 +9,11 @@ class DeviceEditor {
 
         // Initialize electrical standards system
         this.selectedElectricalStandards = new Set();
-        this.electricalStandardsInput = document.getElementById('electricalStandardInput');
         this.selectedElectricalStandardsContainer = document.getElementById('selectedElectricalStandards');
         this.electricalStandardsHidden = document.getElementById('electricalStandardsHidden');
         this.electricalStandardAdd = document.getElementById('electricalStandardAdd');
+        this.tagAdd = document.getElementById('tagAdd');
+        this.tagsRequired = document.getElementById('tagsRequired');
 
         this.availableElectricalStandards = [
             { code: 'AU', name: 'Australia (AU)' },
@@ -24,11 +25,32 @@ class DeviceEditor {
             { code: 'IN', name: 'India (IN)' }
         ];
 
+        this.availableTags = [
+            'plug',
+            'socket',
+            'display',
+            'wifi',
+            'ethernet',
+            'battery',
+            'sensor',
+            'light',
+            'switch',
+            'relay',
+            'climate',
+            'cover',
+            'fan',
+            'camera',
+            'audio',
+            'security',
+            'automation',
+            'development',
+            'touchscreen'
+        ];
         const infoButtons = [
             'boardName', 'slug', 'description', 'chipType',
             'difficultyRating', 'productLink', 'madeForESPHome',
             'yamlCode', 'images', 'gpioPins', 'electricalStandard',
-            'electricalInput'
+            'electricalInput', 'tags',
         ];
 
         this.addToggler = (button, popup) => {
@@ -96,7 +118,7 @@ class DeviceEditor {
         this.tagSuggestions = document.getElementById('tagSuggestions');
         this.selectedTags = document.getElementById('selectedTags');
         this.gpioPinList = document.getElementById('gpioPinList');
-        this.slugInput = document.getElementById('slug');
+        this.slugInput = document.getElementById('slugInput');
         this.yamlOverlay = this.yamlDropZone.querySelector('.drop-zone-overlay');
         this.imageOverlay = this.imageDropZone.querySelector('.drop-zone-overlay');
         this.contextMenu = document.getElementById('contextMenu');
@@ -187,32 +209,11 @@ class DeviceEditor {
 
         // Initialize tag system
         this.selectedTagsList = new Set();
-        this.availableTags = [
-            'plug',
-            'socket',
-            'display',
-            'wifi',
-            'ethernet',
-            'battery',
-            'sensor',
-            'light',
-            'switch',
-            'relay',
-            'climate',
-            'cover',
-            'fan',
-            'camera',
-            'audio',
-            'security',
-            'automation',
-            'development',
-            'touchscreen'
-        ];
 
         // Initialize tags info popup
-        const tagsInfoIcon = document.getElementById('tagsInfoIcon');
         const tagsInfoPopup = document.getElementById('tagsInfoPopup');
-        const tagsInfoList = document.getElementById('tagsInfoList');
+        const tagsInputPopup = document.getElementById('tagsInputPopup');
+        const tagAdd = document.getElementById('tagAdd');
 
         // Create a map to store tag elements for easy access
         this.tagElementsMap = new Map();
@@ -237,41 +238,9 @@ class DeviceEditor {
             });
 
             this.tagElementsMap.set(tag, tagElement);
-            tagsInfoList.appendChild(tagElement);
+            tagsInputPopup.appendChild(tagElement);
         });
-
-        // Override addTag and removeTag to update popup
-        const originalAddTag = this.addTag.bind(this);
-        this.addTag = (tag) => {
-            originalAddTag(tag);
-            const tagElement = this.tagElementsMap.get(tag);
-            if (tagElement) {
-                tagElement.classList.add('selected');
-            }
-        };
-
-        const originalRemoveTag = this.removeTag.bind(this);
-        this.removeTag = (tag) => {
-            originalRemoveTag(tag);
-            const tagElement = this.tagElementsMap.get(tag);
-            if (tagElement) {
-                tagElement.classList.remove('selected');
-            }
-        };
-
-        // Toggle popup on icon click
-        tagsInfoIcon.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const isVisible = tagsInfoPopup.style.display === 'block';
-            tagsInfoPopup.style.display = isVisible ? 'none' : 'block';
-        });
-
-        // Close popup when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!tagsInfoPopup.contains(e.target) && e.target !== tagsInfoIcon) {
-                tagsInfoPopup.style.display = 'none';
-            }
-        });
+        this.addToggler(tagAdd, tagsInputPopup);
 
         // Initialize chip pins
         this.chipPins = {
@@ -486,8 +455,6 @@ class DeviceEditor {
         this.setupDropZone(this.yamlDropZone, this.handleYamlDrop.bind(this));
         this.setupDropZone(this.imageDropZone, this.handleImageDrop.bind(this));
         this.imageInput.addEventListener('change', this.handleImageSelect.bind(this));
-        this.tagInput.addEventListener('input', this.handleTagInput.bind(this));
-        this.tagInput.addEventListener('keydown', this.handleTagKeydown.bind(this));
         this.slugInput.addEventListener('input', this.validateSlug.bind(this));
         
         // Handle click on image drop zone and preview area
@@ -529,6 +496,7 @@ class DeviceEditor {
             const boardName = boardNameInput.value;
             if (boardName) {
                 this.slugInput.value = this.generateSlug(boardName);
+                console.log(this.slugInput.value);
                 this.validateSlug();
                 this.saveFormState();
             }
@@ -723,6 +691,10 @@ class DeviceEditor {
         this.handleImageFiles(files);
     }
 
+    updateTags() {
+        this.tagsRequired.value = Array.from(this.selectedTags).join(',');
+    }
+
     addTag(tag) {
         if (!this.selectedTagsList.has(tag)) {
             this.selectedTagsList.add(tag);
@@ -734,14 +706,16 @@ class DeviceEditor {
             `;
             
             tagElement.querySelector('.tag-remove').addEventListener('click', () => this.removeTag(tag));
-            this.selectedTags.appendChild(tagElement);
-            this.tagInput.value = '';
-            this.tagSuggestions.style.display = 'none';
+            this.selectedTags.insertBefore(tagElement, this.tagAdd);
+            this.updateTags();
 
+            const element = this.tagElementsMap.get(tag);
+            if (element) {
+                element.classList.add('selected');
+            }
             this.validationState.hasTags = this.selectedTagsList.size > 0;
-            document.getElementById('tagsRequired').value = this.validationState.hasTags ? 'valid' : '';
-            this.validateForm();
             this.saveFormState();
+            this.validateTags();
         }
     }
 
@@ -750,6 +724,12 @@ class DeviceEditor {
         const tagElement = this.selectedTags.querySelector(`[data-tag="${tag}"]`).parentElement;
         tagElement.remove();
 
+        this.updateTags();
+
+        const element = this.tagElementsMap.get(tag);
+        if (element) {
+            element.classList.remove('selected');
+        }
         this.validationState.hasTags = this.selectedTagsList.size > 0;
         document.getElementById('tagsRequired').value = this.validationState.hasTags ? 'valid' : '';
         this.validateForm();
@@ -798,8 +778,7 @@ class DeviceEditor {
     }
 
     updateElectricalStandardsHidden() {
-        const selectedStandards = Array.from(this.selectedElectricalStandards).join(',');
-        this.electricalStandardsHidden.value = selectedStandards;
+        this.electricalStandardsHidden.value = Array.from(this.selectedElectricalStandards).join(',');
     }
 
     updateGpioPinList(chipType) {

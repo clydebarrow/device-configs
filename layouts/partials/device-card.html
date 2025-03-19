@@ -1,7 +1,7 @@
 {{ $deviceImage := (index (sort (.Resources.Match "images/*") "Name") 0) }}
 {{ with $deviceImage }}
 {{ $gridThumb := .Resize "600x" }}
-{{ $listThumb := .Resize "80x80" }}
+{{ $listThumb := .Resize "x80" }}
 <div class="image-container">
     <a href="{{ $.RelPermalink }}">
         <img src="{{ $gridThumb.RelPermalink }}" 
