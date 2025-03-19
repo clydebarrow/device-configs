@@ -1,13 +1,13 @@
 {{ define "main" }}
+{{ with resources.Get "css/submission.css" }}
 {{ if eq hugo.Environment "development" }}
 <!--suppress HtmlUnknownTarget -->
-<link rel="stylesheet" href="/css/submission.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
 {{ else }}
-{{ with resources.Get "css/submission.css" }}
-{{ with . | fingerprint "sha256" }}
-<!--suppress HtmlUnknownTarget -->
-<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
-{{ end }}
+    {{ with . | fingerprint "sha256" }}
+    <!--suppress HtmlUnknownTarget -->
+    <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+    {{ end }}
 {{ end }}
 {{ end }}
 
@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="instructions">
-        {{ $page := .Site.GetPage "hints/submission"  }}
+        {{ $page := .Site.GetPage "hints/submission" }}
         {{ $page.Content | safeHTML }}
     </div>
     <form id="deviceForm" novalidate>
@@ -47,7 +47,8 @@
             <div id="boardNameInfoPopup" class="info-popup">
                 {{ partial "hint.html" (dict "site" .Site "hint" "device-name") }}
             </div>
-            <input type="text" id="boardName" name="boardName" required placeholder="e.g., Acme ESP32-S3-Mini Development Board">
+            <input type="text" id="boardName" name="boardName" required
+                   placeholder="e.g., Acme ESP32-S3-Mini Development Board">
             <div class="error-message"></div>
         </div>
 
@@ -55,6 +56,9 @@
             <div class="label-container">
                 <label for="slug">Slug:</label>
                 <span class="info-icon" id="slugInfoIcon">ⓘ</span>
+                <span class="help-text">Auto-generated from device name. Only lowercase letters, numbers, dots, and hyphens
+                    allowed.
+                </span>
             </div>
             <div id="slugInfoPopup" class="info-popup">
                 {{ partial "hint.html" (dict "site" .Site "hint" "slug") }}
@@ -64,9 +68,6 @@
                    title="Use only lowercase letters, numbers, dots, and hyphens"
                    placeholder="e.g., my-device-v1.0">
             <div class="error-message"></div>
-            <div class="help-text">Auto-generated from device name. Only lowercase letters, numbers, dots, and hyphens
-                allowed.
-            </div>
         </div>
 
         <div class="form-group">
@@ -151,7 +152,7 @@
             </div>
             <div class="tags-container">
                 <div class="tags-input-container">
-                    <input type="text" id="tagInput" placeholder="Type to add tags...">
+                    <input type="text" id="tagInput" placeholder="Type to standard add tags...">
                     <div id="tagSuggestions" class="tag-suggestions"></div>
                 </div>
                 <div id="selectedTags" class="selected-tags"></div>
@@ -162,24 +163,23 @@
 
         <div class="form-group">
             <div class="label-container">
-                <label for="electricalStandardInput">Electrical Standard:</label>
+                <label for="electricalStandardsHidden">Electrical Standards:</label>
                 <span class="info-icon" id="electricalStandardInfoIcon">ⓘ</span>
+                <span class="help-text">For mains connected devices only</span>
             </div>
             <div id="electricalStandardInfoPopup" class="info-popup">
                 {{ partial "hint.html" (dict "site" .Site "hint" "electrical-standard") }}
-                <div class="info-popup-content">
-                    <div class="tags-list" id="electricalStandardInfoList"></div>
-                </div>
             </div>
             <div class="tags-container">
-                <div class="tags-input-container">
-                    <input type="text" id="electricalStandardInput" placeholder="Type to add standards...">
-                    <div id="electricalStandardSuggestions" class="tag-suggestions"></div>
+                <div id="selectedElectricalStandards" class="selected-tags">
+                    <div class="tag standard button" id="electricalStandardAdd">+</div>
                 </div>
-                <div id="selectedElectricalStandards" class="selected-tags"></div>
                 <input type="hidden" id="electricalStandardsHidden" name="electricalStandard">
-                <div class="error-message"></div>
             </div>
+            <div id="electricalInputInfoPopup" class="info-popup">
+                <div class="tags-list" id="electricalStandardInfoList"></div>
+            </div>
+            <div class="error-message"></div>
         </div>
 
         <div class="form-group">
@@ -222,36 +222,37 @@
             <div id="yamlDropZone" class="drop-zone">
                 <textarea id="yamlCode" name="yamlCode" required></textarea>
                 <div class="drop-zone-overlay">Drop YAML file here or click to paste
-                <button type="button" id="yamlValidateButton" class="yaml-validate-button">Validate YAML</button>
-            </div>
-            <div class="error-message"></div>
-        </div>
-
-        <div class="form-group">
-            <div class="label-container">
-                <label for="images">Board Images:</label>
-                <span class="info-icon" id="imagesInfoIcon">ⓘ</span>
-            </div>
-            <div id="imagesInfoPopup" class="info-popup">
-                {{ partial "hint.html" (dict "site" .Site "hint" "board-images") }}
-            </div>
-            <div id="imageDropZone" class="drop-zone image-drop-zone" tabindex="0">
-                <input type="file" id="images" name="images" multiple accept="image/*" class="file-input">
-                <div id="imagePreview" class="image-preview"></div>
-                <div id="imageDropOverlay" class="drop-zone-overlay">
-                    <div class="drop-zone-text">Drop images here, or click to select files</div>
+                    <button type="button" id="yamlValidateButton" class="yaml-validate-button">Validate YAML</button>
                 </div>
+                <div class="error-message"></div>
             </div>
-            <input type="hidden" id="imagesRequired" name="imagesRequired" required>
-            <div class="error-message"></div>
-        </div>
 
-        <div class="form-actions">
-            <div class="form-actions-container">
-                <button type="button" id="clearBtn" class="secondary-button">Clear Form</button>
-                <div class="submit-wrapper">
-                    <button type="submit" id="submitBtn" disabled>Create Pull Request</button>
-                    <div id="spinner" class="spinner hidden"></div>
+            <div class="form-group">
+                <div class="label-container">
+                    <label for="images">Device Images:</label>
+                    <span class="info-icon" id="imagesInfoIcon">ⓘ</span>
+                </div>
+                <div id="imagesInfoPopup" class="info-popup">
+                    {{ partial "hint.html" (dict "site" .Site "hint" "board-images") }}
+                </div>
+                <div id="imageDropZone" class="drop-zone image-drop-zone" tabindex="0">
+                    <input type="file" id="images" name="images" multiple accept="image/*" class="file-input">
+                    <div id="imagePreview" class="image-preview"></div>
+                    <div id="imageDropOverlay" class="drop-zone-overlay">
+                        <div class="drop-zone-text">Drop images here, or click to select files</div>
+                    </div>
+                </div>
+                <input type="hidden" id="imagesRequired" name="imagesRequired" required>
+                <div class="error-message"></div>
+            </div>
+
+            <div class="form-actions">
+                <div class="form-actions-container">
+                    <button type="button" id="clearBtn" class="secondary-button">Clear Form</button>
+                    <div class="submit-wrapper">
+                        <button type="submit" id="submitBtn" disabled>Create Pull Request</button>
+                        <div id="spinner" class="spinner hidden"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -267,5 +268,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/yaml/yaml.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
-<script src="/js/submission.js" type="module"></script>
+{{ with resources.Get "js/submission.js" }}
+{{ if eq hugo.Environment "development" }}
+    <!--suppress HtmlUnknownTarget -->
+    <script src="{{ .RelPermalink}}" type="module"></script>
+{{ else }}
+    {{ with . | fingerprint "sha256" }}
+        <!--suppress HtmlUnknownTarget -->
+        <script src="{{ .RelPermalink }}" type="module" integrity="{{ .Data.Integrity }}" crossorigin="anonymous"></script>
+    {{ end }}
+{{ end }}
+{{ end }}
 {{ end }}

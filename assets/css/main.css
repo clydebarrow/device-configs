@@ -267,6 +267,13 @@ nav {
     margin: 0 1rem;
 }
 
+.comment {
+    font-size: 80%;
+    font-weight: normal;
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
+
 /* Made for ESPHome section */
 .made-for-content {
     display: flex;
@@ -1217,6 +1224,10 @@ main {
     font-weight: 500;
 }
 
+.button {
+    cursor: pointer;
+}
+
 .tag {
     display: inline-flex;
     align-items: center;
@@ -1956,6 +1967,7 @@ label {
 }
 
 .info-icon {
+    margin-right: 0.5rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -2007,6 +2019,9 @@ label {
 .info-tag {
     background: var(--feature-bg);
     color: var(--feature-color);
+    white-space: nowrap;
+    display: inline-block;
+    margin-right: 5px;
     padding: 2px 8px;
     border-radius: 12px;
     font-size: 12px;
@@ -2023,6 +2038,28 @@ label {
     color: white;
 }
 
+.info-standard {
+    white-space: nowrap;
+    display: inline-block;
+    margin-right: 5px;
+    background: var(--standard-bg);
+    color: var(--standard-color);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: filter 0.3s ease-in-out;
+}
+
+.info-standard:hover {
+    filter: brightness(80%); /* Darkens by 20% */
+}
+
+.info-standard.selected {
+    background: var(--primary-color);
+    color: white;
+}
+
 input[type="text"],
 input[type="url"],
 textarea,
@@ -2031,7 +2068,9 @@ select {
     color: var(--text-color);
     width: 100%;
     padding: 8px;
-    border: 1px solid #ddd;
+    border-color: var(--border-color);
+    border-style: solid;
+    border-width: 1px;
     border-radius: 4px;
     font-size: 14px;
 }
@@ -2572,9 +2611,8 @@ button:hover {
 }
 
 .help-text {
-    color: #6c757d;
-    font-size: 0.875em;
-    margin-top: 4px;
+    font-size: 0.775em;
+    opacity: 80%;
 }
 
 .header {

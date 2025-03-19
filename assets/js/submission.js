@@ -10,10 +10,10 @@ class DeviceEditor {
         // Initialize electrical standards system
         this.selectedElectricalStandards = new Set();
         this.electricalStandardsInput = document.getElementById('electricalStandardInput');
-        this.electricalStandardSuggestions = document.getElementById('electricalStandardSuggestions');
         this.selectedElectricalStandardsContainer = document.getElementById('selectedElectricalStandards');
         this.electricalStandardsHidden = document.getElementById('electricalStandardsHidden');
-        
+        this.electricalStandardAdd = document.getElementById('electricalStandardAdd');
+
         this.availableElectricalStandards = [
             { code: 'AU', name: 'Australia (AU)' },
             { code: 'BR', name: 'Brazil (BR)' },
@@ -24,10 +24,42 @@ class DeviceEditor {
             { code: 'IN', name: 'India (IN)' }
         ];
 
+        const infoButtons = [
+            'boardName', 'slug', 'description', 'chipType',
+            'difficultyRating', 'productLink', 'madeForESPHome',
+            'yamlCode', 'images', 'gpioPins', 'electricalStandard',
+            'electricalInput'
+        ];
+
+        this.addToggler = (button, popup) => {
+            // Toggle popup on icon click
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                console.log(`Popup toggled for ${button.id}`);
+                // Close all other popups first
+                infoButtons.forEach(otherId => {
+                    const oid = `${otherId}InfoPopup`;
+                    if (oid !== popup.id) {
+                        const otherPopup = document.getElementById(oid);
+                        if (otherPopup) otherPopup.style.display = 'none';
+                    }
+                });
+                // Toggle this popup
+                popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+            });
+
+            // Close popup when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!popup.contains(e.target) && e.target !== button) {
+                    popup.style.display = 'none';
+                }
+            });
+        }
+
+
         // Initialize electrical standards info popup
-        const electricalStandardInfoIcon = document.getElementById('electricalStandardInfoIcon');
-        const electricalStandardInfoPopup = document.getElementById('electricalStandardInfoPopup');
-        const electricalStandardInfoList = document.getElementById('electricalStandardInfoList');
+        const electricalInputInfoPopup = document.getElementById('electricalInputInfoPopup');
+        const electricalStandardAdd = document.getElementById('electricalStandardAdd');
 
         // Create a map to store electrical standard elements
         this.electricalStandardElementsMap = new Map();
@@ -35,9 +67,9 @@ class DeviceEditor {
         // Populate electrical standards list in popup
         this.availableElectricalStandards.forEach(standard => {
             const standardElement = document.createElement('span');
-            standardElement.className = 'info-tag';
+            standardElement.className = 'info-standard';
             standardElement.textContent = standard.name;
-            
+
             // Add click handler for standard selection
             standardElement.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -49,91 +81,12 @@ class DeviceEditor {
             });
 
             this.electricalStandardElementsMap.set(standard.code, standardElement);
-            electricalStandardInfoList.appendChild(standardElement);
+            electricalInputInfoPopup.appendChild(standardElement);
         });
 
         // Toggle popup on icon click
-        electricalStandardInfoIcon.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const isVisible = electricalStandardInfoPopup.style.display === 'block';
-            electricalStandardInfoPopup.style.display = isVisible ? 'none' : 'block';
-        });
+        this.addToggler(electricalStandardAdd, electricalInputInfoPopup);
 
-        // Close popup when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!electricalStandardInfoPopup.contains(e.target) && e.target !== electricalStandardInfoIcon) {
-                electricalStandardInfoPopup.style.display = 'none';
-            }
-        });
-
-        // Handle electrical standard input
-        this.electricalStandardsInput.addEventListener('input', () => {
-            const input = this.electricalStandardsInput.value.toLowerCase();
-            if (input) {
-                const suggestions = this.availableElectricalStandards
-                    .filter(standard => 
-                        (standard.name.toLowerCase().includes(input) || 
-                         standard.code.toLowerCase().includes(input)) &&
-                        !this.selectedElectricalStandards.has(standard.code)
-                    )
-                    .map(standard => 
-                        `<div class="tag-suggestion-item" data-value="${standard.code}" data-name="${standard.name}">${standard.name}</div>`
-                    ).join('');
-
-                if (suggestions) {
-                    this.electricalStandardSuggestions.innerHTML = suggestions;
-                    this.electricalStandardSuggestions.style.display = 'block';
-
-                    this.electricalStandardSuggestions.querySelectorAll('.tag-suggestion-item').forEach(item => {
-                        item.addEventListener('click', () => this.addElectricalStandard(item.dataset.value, item.dataset.name));
-                    });
-                } else {
-                    this.electricalStandardSuggestions.style.display = 'none';
-                }
-            } else {
-                this.electricalStandardSuggestions.style.display = 'none';
-            }
-        });
-
-        // Handle keyboard navigation for electrical standards
-        this.electricalStandardsInput.addEventListener('keydown', (e) => {
-            const suggestions = this.electricalStandardSuggestions.querySelectorAll('.tag-suggestion-item');
-            const currentHighlight = this.electricalStandardSuggestions.querySelector('.tag-suggestion-item.highlighted');
-            let nextHighlight = null;
-
-            if (suggestions.length > 0) {
-                if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-                    e.preventDefault();
-                    if (!currentHighlight) {
-                        nextHighlight = suggestions[e.key === 'ArrowDown' ? 0 : suggestions.length - 1];
-                    } else {
-                        const currentIndex = Array.from(suggestions).indexOf(currentHighlight);
-                        const nextIndex = e.key === 'ArrowDown' ? 
-                            (currentIndex + 1) % suggestions.length : 
-                            (currentIndex - 1 + suggestions.length) % suggestions.length;
-                        nextHighlight = suggestions[nextIndex];
-                    }
-
-                    if (currentHighlight) currentHighlight.classList.remove('highlighted');
-                    if (nextHighlight) nextHighlight.classList.add('highlighted');
-                } else if (e.key === 'Enter' && currentHighlight) {
-                    e.preventDefault();
-                    this.addElectricalStandard(currentHighlight.dataset.value, currentHighlight.dataset.name);
-                } else if (e.key === 'Tab' && suggestions.length > 0) {
-                    e.preventDefault();
-                    const firstSuggestion = suggestions[0];
-                    this.addElectricalStandard(firstSuggestion.dataset.value, firstSuggestion.dataset.name);
-                }
-            }
-        });
-
-        // Handle blur event to hide suggestions
-        this.electricalStandardsInput.addEventListener('blur', (e) => {
-            // Small delay to allow click events on suggestions to fire
-            setTimeout(() => {
-                this.electricalStandardSuggestions.style.display = 'none';
-            }, 200);
-        });
         this.madeForESPHome = document.getElementById('madeForESPHome');
         this.yamlDropZone = document.getElementById('yamlDropZone');
         this.imageDropZone = document.getElementById('imageDropZone');
@@ -158,38 +111,14 @@ class DeviceEditor {
         };
 
         // Set up info button handlers for all fields
-        const infoButtons = [
-            'boardName', 'slug', 'description', 'chipType',
-            'difficultyRating', 'productLink', 'madeForESPHome',
-            'yamlCode', 'images', 'gpioPins'
-        ];
-
         infoButtons.forEach(id => {
             const button = document.getElementById(`${id}InfoIcon`);
             const popup = document.getElementById(`${id}InfoPopup`);
             if (button && popup) {
-                // Toggle popup on icon click
-                button.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    // Close all other popups first
-                    infoButtons.forEach(otherId => {
-                        if (otherId !== id) {
-                            const otherPopup = document.getElementById(`${otherId}InfoPopup`);
-                            if (otherPopup) otherPopup.style.display = 'none';
-                        }
-                    });
-                    // Toggle this popup
-                    popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
-                });
-
-                // Close popup when clicking outside
-                document.addEventListener('click', (e) => {
-                    if (!popup.contains(e.target) && e.target !== button) {
-                        popup.style.display = 'none';
-                    }
-                });
+                this.addToggler(button, popup);
             }
         });
+
 
         // Initialize CodeMirror
         this.yamlEditor = CodeMirror.fromTextArea(document.getElementById('yamlCode'), {
@@ -209,7 +138,7 @@ class DeviceEditor {
         this.yamlEditor.on('change', () => {
             this.saveFormState();
             this.yamlValidateButton.classList.add('visible');
-            
+
             // Clear any existing timeout
             if (this.yamlValidationTimeout) {
                 clearTimeout(this.yamlValidationTimeout);
@@ -224,7 +153,7 @@ class DeviceEditor {
         this.yamlValidateButton.addEventListener('click', () => {
             const isValid = this.validateYaml();
             this.yamlValidateButton.classList.remove('visible');
-            
+
             if (!isValid) {
                 // Get the error message element and scroll to it
                 const errorElement = this.yamlDropZone.closest('.form-group').querySelector('.error-message');
@@ -296,7 +225,7 @@ class DeviceEditor {
             if (this.selectedTagsList.has(tag)) {
                 tagElement.classList.add('selected');
             }
-            
+
             // Add click handler for tag selection
             tagElement.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -410,7 +339,7 @@ class DeviceEditor {
 
         // Check authentication status
         this.checkAuthStatus();
-        
+
         this.setupEventListeners();
     }
 
@@ -838,9 +767,7 @@ class DeviceEditor {
             `;
             
             standardElement.querySelector('.tag-remove').addEventListener('click', () => this.removeElectricalStandard(code, name));
-            this.selectedElectricalStandardsContainer.appendChild(standardElement);
-            this.electricalStandardsInput.value = '';
-            this.electricalStandardSuggestions.style.display = 'none';
+            this.selectedElectricalStandardsContainer.insertBefore(standardElement, this.electricalStandardAdd);
 
             // Update the hidden input with all selected standards
             this.updateElectricalStandardsHidden();
