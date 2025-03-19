@@ -211,7 +211,6 @@ class DeviceEditor {
         this.selectedTagsList = new Set();
 
         // Initialize tags info popup
-        const tagsInfoPopup = document.getElementById('tagsInfoPopup');
         const tagsInputPopup = document.getElementById('tagsInputPopup');
         const tagAdd = document.getElementById('tagAdd');
 
