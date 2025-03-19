@@ -16,13 +16,13 @@ class DeviceEditor {
         this.tagsRequired = document.getElementById('tagsRequired');
 
         this.availableElectricalStandards = [
-            { code: 'AU', name: 'Australia (AU)' },
-            { code: 'BR', name: 'Brazil (BR)' },
-            { code: 'EU', name: 'European Union (EU)' },
-            { code: 'Global', name: 'Global' },
-            { code: 'US', name: 'United States (US)' },
-            { code: 'UK', name: 'United Kingdom (UK)' },
-            { code: 'IN', name: 'India (IN)' }
+            {code: 'AU', name: 'Australia (AU)'},
+            {code: 'BR', name: 'Brazil (BR)'},
+            {code: 'EU', name: 'European Union (EU)'},
+            {code: 'Global', name: 'Global'},
+            {code: 'US', name: 'United States (US)'},
+            {code: 'UK', name: 'United Kingdom (UK)'},
+            {code: 'IN', name: 'India (IN)'}
         ];
 
         this.availableTags = [
@@ -129,7 +129,9 @@ class DeviceEditor {
         this.formElements = {
             boardName: document.getElementById('boardName'),
             description: document.getElementById('description'),
-            productLink: document.getElementById('productLink')
+            productLink: document.getElementById('productLink'),
+            slug: document.getElementById('slugInput'),
+            chipType: document.getElementById('chipType'),
         };
 
         // Set up info button handlers for all fields
@@ -179,7 +181,7 @@ class DeviceEditor {
             if (!isValid) {
                 // Get the error message element and scroll to it
                 const errorElement = this.yamlDropZone.closest('.form-group').querySelector('.error-message');
-                errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                errorElement.scrollIntoView({behavior: 'smooth', block: 'center'});
             }
         });
 
@@ -193,6 +195,10 @@ class DeviceEditor {
             checkSlugUrl: '/api/checkSlug',
             maxImageSize: 1024 * 1024  // 5MB max per image
         };
+
+        if (window.location.hostname === 'localhost') {
+            this.serverConfig.serverBase = 'http://localhost:8787';
+        }
 
         this.getUrl = (path) => {
             return new URL(path, `${this.serverConfig.serverBase}`);
@@ -244,63 +250,95 @@ class DeviceEditor {
         // Initialize chip pins
         this.chipPins = {
             'ESP32': [
-                'GPIO00', 'GPIO01', 'GPIO02', 'GPIO03', 'GPIO04', 'GPIO05',
-                'GPIO06', 'GPIO07', 'GPIO08', 'GPIO09', 'GPIO10', 'GPIO11',
+                'GPIO0', 'GPIO1', 'GPIO2', 'GPIO3', 'GPIO4', 'GPIO5',
+                'GPIO6', 'GPIO7', 'GPIO8', 'GPIO9', 'GPIO10', 'GPIO11',
                 'GPIO12', 'GPIO13', 'GPIO14', 'GPIO15', 'GPIO16', 'GPIO17',
                 'GPIO18', 'GPIO19', 'GPIO21', 'GPIO22', 'GPIO23', 'GPIO25',
                 'GPIO26', 'GPIO27', 'GPIO32', 'GPIO33', 'GPIO34', 'GPIO35',
                 'GPIO36', 'GPIO39'
             ],
             'ESP32-S2': [
-                'GPIO00', 'GPIO01', 'GPIO02', 'GPIO03', 'GPIO04', 'GPIO05',
-                'GPIO06', 'GPIO07', 'GPIO08', 'GPIO09', 'GPIO10', 'GPIO11',
+                'GPIO0', 'GPIO1', 'GPIO2', 'GPIO3', 'GPIO4', 'GPIO5',
+                'GPIO6', 'GPIO7', 'GPIO8', 'GPIO9', 'GPIO10', 'GPIO11',
                 'GPIO12', 'GPIO13', 'GPIO14', 'GPIO15', 'GPIO16', 'GPIO17',
                 'GPIO18', 'GPIO19', 'GPIO20', 'GPIO21', 'GPIO26', 'GPIO33',
                 'GPIO34', 'GPIO35', 'GPIO36', 'GPIO37', 'GPIO38', 'GPIO39',
                 'GPIO40', 'GPIO41', 'GPIO42', 'GPIO43', 'GPIO44', 'GPIO45'
             ],
             'ESP32-S3': [
-                'GPIO00', 'GPIO01', 'GPIO02', 'GPIO03', 'GPIO04', 'GPIO05',
-                'GPIO06', 'GPIO07', 'GPIO08', 'GPIO09', 'GPIO10', 'GPIO11',
+                'GPIO0', 'GPIO1', 'GPIO2', 'GPIO3', 'GPIO4', 'GPIO5',
+                'GPIO6', 'GPIO7', 'GPIO8', 'GPIO9', 'GPIO10', 'GPIO11',
                 'GPIO12', 'GPIO13', 'GPIO14', 'GPIO15', 'GPIO16', 'GPIO17',
                 'GPIO18', 'GPIO19', 'GPIO20', 'GPIO21', 'GPIO35', 'GPIO36',
                 'GPIO37', 'GPIO38', 'GPIO39', 'GPIO40', 'GPIO41', 'GPIO42',
                 'GPIO43', 'GPIO44', 'GPIO45', 'GPIO46', 'GPIO47', 'GPIO48'
             ],
             'ESP32-C3': [
-                'GPIO00', 'GPIO01', 'GPIO02', 'GPIO03', 'GPIO04', 'GPIO05',
-                'GPIO06', 'GPIO07', 'GPIO08', 'GPIO09', 'GPIO10', 'GPIO11',
+                'GPIO0', 'GPIO1', 'GPIO2', 'GPIO3', 'GPIO4', 'GPIO5',
+                'GPIO6', 'GPIO7', 'GPIO8', 'GPIO9', 'GPIO10', 'GPIO11',
                 'GPIO12', 'GPIO13', 'GPIO14', 'GPIO15', 'GPIO16', 'GPIO17',
                 'GPIO18', 'GPIO19', 'GPIO20', 'GPIO21'
             ],
             'RP2040': [
-                'GPIO00', 'GPIO01', 'GPIO02', 'GPIO03', 'GPIO04', 'GPIO05',
-                'GPIO06', 'GPIO07', 'GPIO08', 'GPIO09', 'GPIO10', 'GPIO11',
+                'GPIO0', 'GPIO1', 'GPIO2', 'GPIO3', 'GPIO4', 'GPIO5',
+                'GPIO6', 'GPIO7', 'GPIO8', 'GPIO9', 'GPIO10', 'GPIO11',
                 'GPIO12', 'GPIO13', 'GPIO14', 'GPIO15', 'GPIO16', 'GPIO17',
                 'GPIO18', 'GPIO19', 'GPIO20', 'GPIO21', 'GPIO22', 'GPIO23',
                 'GPIO24', 'GPIO25', 'GPIO26', 'GPIO27', 'GPIO28', 'GPIO29'
             ],
-            'RTL8710': [
-                'GPIO00', 'GPIO01', 'GPIO02', 'GPIO03', 'GPIO04', 'GPIO05',
-                'GPIO06', 'GPIO07', 'GPIO08', 'GPIO09', 'GPIO10', 'GPIO11',
+            'RTL8710B': [
+                'GPIO0', 'GPIO1', 'GPIO2', 'GPIO3', 'GPIO4', 'GPIO5',
+                'GPIO6', 'GPIO7', 'GPIO8', 'GPIO9', 'GPIO10', 'GPIO11',
                 'GPIO12', 'GPIO13', 'GPIO14', 'GPIO15'
             ],
-            'RTL8720': [
-                'GPIO00', 'GPIO01', 'GPIO02', 'GPIO03', 'GPIO04', 'GPIO05',
-                'GPIO06', 'GPIO07', 'GPIO08', 'GPIO09', 'GPIO10', 'GPIO11',
+            'RTL8720C': [
+                'GPIO0', 'GPIO1', 'GPIO2', 'GPIO3', 'GPIO4', 'GPIO5',
+                'GPIO6', 'GPIO7', 'GPIO8', 'GPIO9', 'GPIO10', 'GPIO11',
                 'GPIO12', 'GPIO13', 'GPIO14', 'GPIO15'
             ],
-            'BK7231': [
-                'GPIO06', 'GPIO07', 'GPIO08', 'GPIO09', 'GPIO10', 'GPIO11',
-                'GPIO14', 'GPIO15', 'GPIO16', 'GPIO17', 'GPIO18', 'GPIO19',
-                'GPIO20', 'GPIO21', 'GPIO22', 'GPIO23', 'GPIO24', 'GPIO26'
+            'BK7231N': [
+                'GPIO0', 'GPIO1', 'GPIO2', 'GPIO3', 'GPIO4', 'GPIO5', 'GPIO6', 'GPIO7',
+                'GPIO8', 'GPIO9', 'GPIO10', 'GPIO11', 'GPIO12', 'GPIO13', 'GPIO14', 'GPIO15',
+                'GPIO16', 'GPIO17', 'GPIO18', 'GPIO19', 'GPIO20', 'GPIO21', 'GPIO22', 'GPIO23',
+                'GPIO24', 'GPIO25', 'GPIO26', 'GPIO27', 'GPIO28', 'GPIO29', 'GPIO30', 'GPIO31',
+                'GPIO32', 'GPIO33', 'GPIO34', 'GPIO35', 'GPIO36', 'GPIO37', 'GPIO38', 'GPIO39',
+            ],
+            'BK7231Q': [
+                'GPIO0', 'GPIO1', 'GPIO2', 'GPIO3', 'GPIO4', 'GPIO5', 'GPIO6', 'GPIO7',
+                'GPIO8', 'GPIO9', 'GPIO10', 'GPIO11', 'GPIO12', 'GPIO13', 'GPIO14', 'GPIO15',
+                'GPIO16', 'GPIO17', 'GPIO18', 'GPIO19', 'GPIO20', 'GPIO21', 'GPIO22', 'GPIO23',
+                'GPIO24', 'GPIO25', 'GPIO26', 'GPIO27', 'GPIO28', 'GPIO29', 'GPIO30', 'GPIO31',
+                'GPIO32', 'GPIO33', 'GPIO34', 'GPIO35', 'GPIO36', 'GPIO37', 'GPIO38', 'GPIO39',
             ],
             'BK7231T': [
-                'GPIO06', 'GPIO07', 'GPIO08', 'GPIO09', 'GPIO10', 'GPIO11',
-                'GPIO14', 'GPIO15', 'GPIO16', 'GPIO17', 'GPIO18', 'GPIO19',
-                'GPIO20', 'GPIO21', 'GPIO22', 'GPIO23', 'GPIO24', 'GPIO26'
+                'GPIO0', 'GPIO1', 'GPIO2', 'GPIO3', 'GPIO4', 'GPIO5', 'GPIO6', 'GPIO7',
+                'GPIO8', 'GPIO9', 'GPIO10', 'GPIO11', 'GPIO12', 'GPIO13', 'GPIO14', 'GPIO15',
+                'GPIO16', 'GPIO17', 'GPIO18', 'GPIO19', 'GPIO20', 'GPIO21', 'GPIO22', 'GPIO23',
+                'GPIO24', 'GPIO25', 'GPIO26', 'GPIO27', 'GPIO28', 'GPIO29', 'GPIO30', 'GPIO31',
+                'GPIO32', 'GPIO33', 'GPIO34', 'GPIO35', 'GPIO36', 'GPIO37', 'GPIO38', 'GPIO39',
             ]
         };
+        const selectElement = document.getElementById('chipType');
+        if (selectElement) {
+
+            // Clear existing options
+            selectElement.innerHTML = '';
+
+            // Add default option
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.textContent = 'Select a chip type...';
+            selectElement.appendChild(defaultOption);
+
+            // Add new options from the chipTypes array
+            Object.keys(this.chipPins).forEach(chipType => {
+                const option = document.createElement('option');
+                option.value = chipType;
+                option.textContent = chipType;
+                selectElement.appendChild(option);
+            });
+        }
+
 
         // Restore form state if available
         this.restoreFormState();
@@ -322,7 +360,7 @@ class DeviceEditor {
                 credentials: 'include'
             });
             const data = await response.json();
-            
+
             if (!data.authenticated) {
                 loginBtn.classList.remove('hidden');
                 userInfo.classList.add('hidden');
@@ -423,12 +461,14 @@ class DeviceEditor {
         this.form.addEventListener('submit', async (e) => {
             e.preventDefault();
             e.stopPropagation();
-            
+
+            const slugValid = await this.validateSlug();
             const isValid = this.validateForm(true);
-            if (!isValid) {
+
+            if (!isValid || !slugValid) {
                 const firstError = this.form.querySelector('.form-group.error');
                 if (firstError) {
-                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    firstError.scrollIntoView({behavior: 'smooth', block: 'center'});
                     this.showToast('Please fill in all required fields');
                 }
                 return;
@@ -455,7 +495,7 @@ class DeviceEditor {
         this.setupDropZone(this.imageDropZone, this.handleImageDrop.bind(this));
         this.imageInput.addEventListener('change', this.handleImageSelect.bind(this));
         this.slugInput.addEventListener('input', this.validateSlug.bind(this));
-        
+
         // Handle click on image drop zone and preview area
         this.imageDropZone.addEventListener('click', (e) => {
             // Only trigger file input if clicking the overlay or empty space
@@ -470,7 +510,7 @@ class DeviceEditor {
                 window.open(e.target.src, '_blank');
             }
         });
-        
+
         // Handle click on YAML drop zone
         this.yamlOverlay.addEventListener('click', () => {
             const input = document.createElement('input');
@@ -548,7 +588,7 @@ class DeviceEditor {
             // Add loading state
             githubLoginBtn.classList.add('loading');
             loginText.textContent = 'Logging in...';
-            
+
             try {
                 const returnTo = window.location.toString();
                 window.location.href = this.getUrl(`${this.serverConfig.authUrl}?returnTo=${encodeURIComponent(returnTo)}`).toString();
@@ -587,17 +627,17 @@ class DeviceEditor {
         if (input) {
             // Only show suggestions that exactly start with the input
             const suggestions = this.availableTags
-                .filter(tag => 
-                    tag.toLowerCase().startsWith(input) && 
+                .filter(tag =>
+                    tag.toLowerCase().startsWith(input) &&
                     !this.selectedTagsList.has(tag)
                 );
-            
+
             if (suggestions.length > 0) {
                 this.tagSuggestions.innerHTML = suggestions
                     .map(tag => `<div class="tag-suggestion-item" data-tag="${tag}">${tag}</div>`)
                     .join('');
                 this.tagSuggestions.style.display = 'block';
-                
+
                 // Add click handlers to suggestions
                 this.tagSuggestions.querySelectorAll('.tag-suggestion-item').forEach(item => {
                     item.addEventListener('click', () => this.addTag(item.dataset.tag));
@@ -684,7 +724,7 @@ class DeviceEditor {
     }
 
     handleImageSelect(e) {
-        const files = Array.from(e.target.files).filter(file => 
+        const files = Array.from(e.target.files).filter(file =>
             file.type.startsWith('image/')
         );
         this.handleImageFiles(files);
@@ -703,7 +743,7 @@ class DeviceEditor {
                 ${tag}
                 <span class="tag-remove" data-tag="${tag}">&times;</span>
             `;
-            
+
             tagElement.querySelector('.tag-remove').addEventListener('click', () => this.removeTag(tag));
             this.selectedTags.insertBefore(tagElement, this.tagAdd);
             this.updateTags();
@@ -744,13 +784,13 @@ class DeviceEditor {
                 ${name}
                 <span class="tag-remove" data-standard="${code}">&times;</span>
             `;
-            
+
             standardElement.querySelector('.tag-remove').addEventListener('click', () => this.removeElectricalStandard(code, name));
             this.selectedElectricalStandardsContainer.insertBefore(standardElement, this.electricalStandardAdd);
 
             // Update the hidden input with all selected standards
             this.updateElectricalStandardsHidden();
-            
+
             // Update the popup UI
             const standardElement2 = this.electricalStandardElementsMap.get(code);
             if (standardElement2) {
@@ -764,10 +804,10 @@ class DeviceEditor {
         this.selectedElectricalStandards.delete(code);
         const standardElement = this.selectedElectricalStandardsContainer.querySelector(`[data-standard="${code}"]`).parentElement;
         standardElement.remove();
-        
+
         // Update the hidden input with remaining selected standards
         this.updateElectricalStandardsHidden();
-        
+
         // Update the popup UI
         const popupStandardElement = this.electricalStandardElementsMap.get(code);
         if (popupStandardElement) {
@@ -782,7 +822,7 @@ class DeviceEditor {
 
     updateGpioPinList(chipType) {
         this.gpioPinList.innerHTML = '';
-        
+
         if (!chipType) {
             this.gpioPinList.innerHTML = '<p class="select-chip-message">Please select a chip type to view available pins</p>';
             return;
@@ -799,7 +839,9 @@ class DeviceEditor {
 
             this.gpioPinList.appendChild(pinItem);
             const input = pinItem.querySelector('input');
-            input.addEventListener('input', () => { this.validateGpioPins(); });
+            input.addEventListener('input', () => {
+                this.validateGpioPins();
+            });
         });
 
         // Add grid layout styles
@@ -833,7 +875,7 @@ class DeviceEditor {
             tags: Array.from(this.selectedTagsList),
             electricalStandards: Array.from(this.selectedElectricalStandards).map(code => {
                 const standard = this.availableElectricalStandards.find(s => s.code === code);
-                return standard ? { code: standard.code, name: standard.name } : null;
+                return standard ? {code: standard.code, name: standard.name} : null;
             }).filter(Boolean),
             gpioPins: {},
             images: [],
@@ -982,12 +1024,12 @@ class DeviceEditor {
                 const img = imageContainers[i].querySelector('img');
                 const response = await fetch(img.src);
                 const blob = await response.blob();
-                
+
                 // Validate image size
                 if (blob.size > this.serverConfig.maxImageSize) {
                     throw new Error(`Image ${i + 1} exceeds maximum size of {this.serverConfig.maxImageSize / 1024}kB`);
                 }
-                
+
                 formData.append(`image${i}`, blob, `image${i}.${blob.type.split('/')[1]}`);
             }
 
@@ -1010,12 +1052,12 @@ class DeviceEditor {
             console.log(result);
             this.hideToast();
             this.showToast('Device configuration submitted successfully!');
-            
+
             // Open PR in new tab if available
             if (result.pr_url) {
                 window.open(result.pr_url, '_blank');
             }
-            
+
             // Clear form after successful submission
             this.resetForm();
         } catch (error) {
@@ -1029,7 +1071,7 @@ class DeviceEditor {
                 searchParams.set('formState', 'saved');
                 const returnTo = window.location.pathname + '?' + searchParams.toString() + window.location.hash;
 
-                const state = btoa(JSON.stringify({ returnTo }));
+                const state = btoa(JSON.stringify({returnTo}));
                 window.location.href = this.getUrl(`${this.serverConfig.authUrl}?state=${encodeURIComponent(state)}`).toString();
                 return;
             }
@@ -1043,8 +1085,8 @@ class DeviceEditor {
                 const searchParams = new URLSearchParams(window.location.search);
                 searchParams.set('formState', 'saved');
                 const returnTo = window.location.pathname + '?' + searchParams.toString() + window.location.hash;
-                
-                const state = btoa(JSON.stringify({ returnTo }));
+
+                const state = btoa(JSON.stringify({returnTo}));
                 window.location.href = this.getUrl(`${this.serverConfig.authUrl}?state=${encodeURIComponent(state)}`).toString();
                 return;
             }
@@ -1059,7 +1101,7 @@ class DeviceEditor {
 
     async handleImageDrop(e) {
         e.preventDefault();
-        
+
         // Handle URLs
         const text = e.dataTransfer.getData('text');
         if (text) {
@@ -1073,10 +1115,10 @@ class DeviceEditor {
         }
 
         // Handle files
-        const files = Array.from(e.dataTransfer.files).filter(file => 
+        const files = Array.from(e.dataTransfer.files).filter(file =>
             file.type.startsWith('image/')
         );
-        
+
         if (files.length > 0) {
             this.handleImageFiles(files);
         } else {
@@ -1088,7 +1130,7 @@ class DeviceEditor {
         try {
             const response = await fetch(url);
             if (!response.ok) throw new Error('Failed to fetch image');
-            
+
             const blob = await response.blob();
             if (!blob.type.startsWith('image/')) {
                 throw new Error('URL does not point to an image');
@@ -1123,11 +1165,11 @@ class DeviceEditor {
                     const img = document.createElement('img');
                     img.src = e.target.result;
                     img.className = 'preview-image';
-                    
+
                     const container = document.createElement('div');
                     container.className = 'image-container';
                     container.appendChild(img);
-                    
+
                     const removeBtn = document.createElement('button');
                     removeBtn.className = 'remove-image';
                     removeBtn.innerHTML = '×';
@@ -1135,7 +1177,7 @@ class DeviceEditor {
                         container.remove();
                         this.updateImageValidation();
                     };
-                    
+
                     container.appendChild(removeBtn);
                     this.imagePreview.appendChild(container);
                     resolve();
@@ -1152,15 +1194,15 @@ class DeviceEditor {
     updateImageValidation() {
         const hasImages = this.imagePreview.children.length > 0;
         this.validationState.hasImages = hasImages;
-        
+
         // Update validation UI
         const formGroup = this.imageDropZone.closest('.form-group');
         if (hasImages) {
             formGroup.classList.remove('error');
             formGroup.querySelector('.error-message').textContent = '';
-            this.imageOverlay.style.display = 'none';
         }
-        
+        this.imageOverlay.style.display = hasImages ? 'none' : 'block';
+
         // Update hidden required field
         document.getElementById('imagesRequired').value = hasImages ? 'valid' : '';
     }
@@ -1198,7 +1240,7 @@ class DeviceEditor {
                 credentials: 'include'
             });
             const data = await response.json();
-            
+
             if (!data.available) {
                 formGroup.classList.add('error');
                 errorElement.textContent = 'This slug is already taken';
@@ -1213,12 +1255,12 @@ class DeviceEditor {
         }
     }
 
-    validateSlug() {
+    async validateSlug() {
         const value = this.slugInput.value;
         const sanitized = value.toLowerCase().replace(/[^a-z0-9-.]/, '');
         const formGroup = this.slugInput.closest('.form-group');
         const errorElement = formGroup.querySelector('.error-message');
-        
+
         if (value !== sanitized) {
             input.value = sanitized;
         }
@@ -1232,51 +1274,73 @@ class DeviceEditor {
             if (!this.checkSlugDebounced) {
                 this.checkSlugDebounced = this.debounce(this.checkSlugAvailability.bind(this), 500);
             }
-            this.checkSlugDebounced(this.slugInput);
+            return this.checkSlugDebounced(this.slugInput);
         }
+        formGroup.classList.add('error');
+        errorElement.textContent = 'Slug is required';
+        return false;
     }
 
-    validateBoardName(field) {
-        const formGroup = field.closest('.form-group');
+    validateBoardName() {
+        const formGroup = this.formElements.boardName.closest('.form-group');
         const errorElement = formGroup.querySelector('.error-message');
-        
-        if (!field.value.trim()) {
+
+        if (!this.formElements.boardName.value.trim()) {
             formGroup.classList.add('error');
             errorElement.textContent = 'Board name is required';
             return false;
         }
-        
+
         formGroup.classList.remove('error');
         errorElement.textContent = '';
         return true;
     }
 
-    validateDescription(field) {
-        const formGroup = field.closest('.form-group');
+    validateChipType() {
+        const formGroup = this.formElements.chipType.closest('.form-group');
         const errorElement = formGroup.querySelector('.error-message');
-        
-        if (!field.value.trim()) {
+
+        if (!this.formElements.chipType.value.trim()) {
+            formGroup.classList.add('error');
+            errorElement.textContent = 'Chip type is required';
+            return false;
+        }
+
+        formGroup.classList.remove('error');
+        errorElement.textContent = '';
+        return true;
+    }
+
+    validateDescription() {
+        const formGroup = this.formElements.description.closest('.form-group');
+        const errorElement = formGroup.querySelector('.error-message');
+
+        if (!this.formElements.description.value.trim()) {
             formGroup.classList.add('error');
             errorElement.textContent = 'Description is required';
             return false;
         }
-        
+
         formGroup.classList.remove('error');
         errorElement.textContent = '';
         return true;
     }
 
-    validateProductLink(field) {
-        const formGroup = field.closest('.form-group');
+    validateDeviceName() {
+
+    }
+
+    validateProductLink() {
+        const formGroup = this.formElements.productLink.closest('.form-group');
         const errorElement = formGroup.querySelector('.error-message');
-        const value = field.value.trim();
-        
-        if (value && !this.validateUrl(value)) {
+        const value = this.formElements.productLink.value.trim();
+
+        if (!value || !this.validateUrl(value)) {
             formGroup.classList.add('error');
             errorElement.textContent = 'Please enter a valid URL';
             return false;
         }
-        
+
         formGroup.classList.remove('error');
         errorElement.textContent = '';
         return true;
@@ -1298,7 +1362,7 @@ class DeviceEditor {
             errorElement.textContent = 'At least one GPIO pin must have a function';
             return false;
         }
-        
+
         formGroup.classList.remove('error');
         errorElement.textContent = '';
         return true;
@@ -1307,13 +1371,13 @@ class DeviceEditor {
     validateTags() {
         const formGroup = document.querySelector('.tags-container').closest('.form-group');
         const errorElement = formGroup.querySelector('.error-message');
-        
+
         if (!this.validationState.hasTags) {
             formGroup.classList.add('error');
             errorElement.textContent = 'At least one tag is required';
             return false;
         }
-        
+
         formGroup.classList.remove('error');
         errorElement.textContent = '';
         return true;
@@ -1322,13 +1386,13 @@ class DeviceEditor {
     validateImages() {
         const formGroup = this.imageDropZone.closest('.form-group');
         const errorElement = formGroup.querySelector('.error-message');
-        
+
         if (!this.validationState.hasImages) {
             formGroup.classList.add('error');
             errorElement.textContent = 'At least one image is required';
             return false;
         }
-        
+
         formGroup.classList.remove('error');
         errorElement.textContent = '';
         return true;
@@ -1338,7 +1402,7 @@ class DeviceEditor {
         const formGroup = this.yamlDropZone.closest('.form-group');
         const errorElement = formGroup.querySelector('.error-message');
         const yamlContent = this.yamlEditor.getValue().trim();
-        
+
         if (!yamlContent) {
             formGroup.classList.add('error');
             errorElement.textContent = 'Sample YAML configuration is required';
@@ -1346,8 +1410,8 @@ class DeviceEditor {
         }
 
         try {
-            const { hasInclude, hasExternalComponents, hasWifi, wifiValid, parseError } = validateYaml(yamlContent);
-            
+            const {hasInclude, hasExternalComponents, hasWifi, wifiValid, parseError} = validateYaml(yamlContent);
+
             if (parseError) {
                 formGroup.classList.add('error');
                 errorElement.textContent = `YAML Error: ${parseError}`;
@@ -1370,7 +1434,7 @@ class DeviceEditor {
                 errorElement.textContent = errors.join('; ');
                 return false;
             }
-            
+
             formGroup.classList.remove('error');
             errorElement.textContent = '';
             return true;
@@ -1386,10 +1450,12 @@ class DeviceEditor {
         this.form.reset();
         this.imagePreview.innerHTML = '';
         this.yamlEditor.setValue('');
-        this.selectedTagsList.forEach(tag => {this.removeTag(tag)});
+        this.selectedTagsList.forEach(tag => {
+            this.removeTag(tag)
+        });
         this.selectedTagsList.clear();
         localStorage.removeItem(this.formDataStorageKey);
-        
+
         // Reset validation state
         this.validationState = {
             hasTags: false,
@@ -1397,7 +1463,7 @@ class DeviceEditor {
             hasImages: false,
             wasValidated: false,
         };
-        
+
         // Clear all error states and messages
         this.form.querySelectorAll('.form-group').forEach(group => {
             group.classList.remove('error');
@@ -1406,24 +1472,21 @@ class DeviceEditor {
                 errorMessage.textContent = '';
             }
         });
-        
+
         // Reset CodeMirror's error state if any
         const yamlContainer = this.yamlEditor.getWrapperElement();
         yamlContainer.classList.remove('error');
-        
+
         // Reset GPIO pin list
         this.gpioPinList.innerHTML = '<p class="select-chip-message">Please select a chip type to view available pins</p>';
-        
-        // Reset tag suggestions
-        this.tagSuggestions.style.display = 'none';
-        this.tagSuggestions.innerHTML = '';
-        
+
         // Reset drop zones
         this.yamlDropZone.classList.remove('has-content', 'drag-over');
         this.imageDropZone.classList.remove('has-content', 'drag-over');
+        this.imageOverlay.style.display = 'block';
     }
 
-    validateForm(always=false) {
+    validateForm(always = false) {
         if (this.validationState.wasValidated || always)
             this.validationState.wasValidated = true;
         else
@@ -1434,9 +1497,10 @@ class DeviceEditor {
         });
 
         return (
-            this.validateBoardName(this.formElements.boardName) &
-            this.validateDescription(this.formElements.description) &
-            this.validateProductLink(this.formElements.productLink) &
+            this.validateBoardName() &
+            this.validateChipType() &
+            this.validateDescription() &
+            this.validateProductLink() &
             this.validateGpioPins() &
             this.validateTags() &
             this.validateImages() &

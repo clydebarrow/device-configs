@@ -4,6 +4,9 @@
     --bg-color: #fff;
     --button-hover-bg: #00000040;
     --form-bg-color: #f0f0f0;
+    --pin-bg-color: white;
+    --drop-zone-overlay-bg: rgba(255, 255, 255, 0.8);
+    --drop-zone-overlay-hover: #c0c0c0;
     --login-bg-color: white;
     --card-bg: #f5f5f5;
     --drag-color: rgba(33, 150, 243, 0.1);
@@ -52,7 +55,10 @@
 [data-theme="dark"] {
     --text-color: #e4e4e4;
     --bg-color: #1a1a1a;
+    --button-hover-bg: #00000080;
     --form-bg-color: #0e0e0e;
+    --pin-bg-color: black;
+    --drop-zone-overlay-bg: rgba(0, 0, 0, 0.8);
     --login-bg-color: var(--bg-color);
     --card-bg: #2d2d2d;
     --header-bg: #000;
@@ -2209,7 +2215,7 @@ button:hover {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 10px;
     padding: 10px;
-    background: #f5f5f5;
+    background: var(--card-bg);
     border-radius: 4px;
 }
 
@@ -2218,14 +2224,14 @@ button:hover {
     align-items: center;
     gap: 10px;
     padding: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
-    background: #fff;
+    background: var(--card-bg);
 }
 
 .gpio-pin-item:hover {
     border-color: #4CAF50;
-    background: #f9f9f9;
+    background: var(--button-hover-bg);
 }
 
 .pin-number {
@@ -2235,12 +2241,13 @@ button:hover {
     min-width: 70px;
 }
 
-.pin-function {
+input.pin-function {
     flex: 1;
     padding: 4px 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 14px;
+    background-color: var(--pin-bg-color);
 }
 
 .pin-function:focus {
@@ -2310,7 +2317,7 @@ button:hover {
     color: #666;
     padding: 20px;
     font-style: italic;
-    background: #f5f5f5;
+    background: var(--card-bg);
     border-radius: 4px;
     margin: 10px 0;
     grid-column: 1 / -1;
@@ -2356,12 +2363,6 @@ button:hover {
     display: none !important;
 }
 
-.user-info {
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-
 .user-avatar-wrapper {
     display: flex;
     align-items: center;
@@ -2373,7 +2374,8 @@ button:hover {
 }
 
 .user-avatar-wrapper:hover {
-    background-color: #f0f0f0;
+    background-color: var(--feature-hover-color);
+    color: var(--text-color);
 }
 
 .user-avatar {
@@ -2395,18 +2397,6 @@ button:hover {
     transition: transform 0.2s;
 }
 
-.user-dropdown {
-    position: absolute;
-    top: calc(100% + 4px);
-    right: 0;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    display: none;
-    min-width: 120px;
-    z-index: 1000;
-}
 
 .user-dropdown.show {
     display: block;
@@ -2416,6 +2406,17 @@ button:hover {
     transform: rotate(180deg);
 }
 
+.user-dropdown-button {
+    display: block;
+    width: 100%;
+    padding: 8px 16px;
+    text-align: left;
+    background: none;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
 /* Form validation styles */
 .form-group.error {
     animation: none;
@@ -2437,16 +2438,15 @@ button:hover {
 .form-group.error.validate .CodeMirror {
     border-color: #dc3545 !important;
     box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.25) !important;
-    animation: shake 0.4s linear;
 }
 
 /* Drop zone overlay styles */
 .drop-zone {
     position: relative;
-    border: 2px dashed #ddd;
+    border: 1px dashed var(--border-color);
     border-radius: 4px;
     transition: all 0.3s ease;
-    background: #fff;
+    background: var(--card-bg);
 }
 
 .drop-zone.drag-over {
@@ -2463,7 +2463,7 @@ button:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--drop-zone-overlay-bg);
     font-size: 14px;
     color: #666;
     z-index: 30;
@@ -2591,11 +2591,6 @@ button:hover {
     flex-direction: column;
 }
 
-.image-drop-zone .drop-zone-overlay {
-    background: rgba(255,255,255,0.95);
-    opacity: 1;
-    transition: opacity 0.2s ease;
-}
 
 .image-drop-zone.has-images .drop-zone-overlay {
     opacity: 0;
@@ -2609,7 +2604,7 @@ button:hover {
 
 /* Make overlays more visible on hover */
 .drop-zone-overlay:hover {
-    background: rgba(255,255,255,0.98);
+    background: var(--drop-zone-overlay-hover);
 }
 
 .drop-zone-overlay:hover .drop-zone-text {
@@ -2683,10 +2678,11 @@ button:hover {
     display: flex;
     align-items: center;
     gap: 8px;
-    background-color: white;
+    background-color: var(--login-bg-color);
+    border: 1px solid var(--border-color);
     padding: 8px;
+    color: var(--text-color);
     border-radius: 6px;
-    border: 1px solid #eee;
 }
 
 .user-info.hidden {
@@ -2710,7 +2706,7 @@ button:hover {
 .user-name {
     font-size: 14px;
     font-weight: 500;
-    color: #24292e;
+    color: var(--text-color);
 }
 
 .dropdown-arrow {
@@ -2728,19 +2724,14 @@ button:hover {
     position: absolute;
     top: 100%;
     right: 0;
-    background: white;
-    border: 1px solid #eee;
+    background: var(--login-bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     margin-top: 4px;
-    min-width: 150px;
     z-index: 100;
 }
-
-.user-dropdown.show {
-    display: block;
-}
-
 
 .dropdown-item:hover {
     background-color: #e5e5e5;
