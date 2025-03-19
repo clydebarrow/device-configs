@@ -57,7 +57,6 @@ class DeviceEditor {
             // Toggle popup on icon click
             button.addEventListener('click', (e) => {
                 e.stopPropagation();
-                console.log(`Popup toggled for ${button.id}`);
                 // Close all other popups first
                 infoButtons.forEach(otherId => {
                     const oid = `${otherId}InfoPopup`;
@@ -462,7 +461,7 @@ class DeviceEditor {
             e.preventDefault();
             e.stopPropagation();
 
-            const slugValid = await this.validateSlug();
+            const slugValid = await this.checkSlugAvailability(this.slugInput);
             const isValid = this.validateForm(true);
 
             if (!isValid || !slugValid) {
@@ -535,7 +534,6 @@ class DeviceEditor {
             const boardName = boardNameInput.value;
             if (boardName) {
                 this.slugInput.value = this.generateSlug(boardName);
-                console.log(this.slugInput.value);
                 this.validateSlug();
                 this.saveFormState();
             }
