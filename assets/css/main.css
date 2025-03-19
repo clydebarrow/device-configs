@@ -1724,14 +1724,15 @@ footer .container {
 }
 
 #yamlValidateButton {
-    display: none;
-    position: sticky;
+    position: absolute;
     bottom: 10px;
     right: 10px;
     padding: 10px 20px;
     border-radius: 5px;
     border: none;
     cursor: pointer;
+    background: var(--primary-color);
+    z-index: 100;
 }
 .copy-button {
     position: absolute;

@@ -151,7 +151,7 @@ class DeviceEditor {
             lineNumbers: true,
             indentUnit: 2,
             smartIndent: true,
-            lineWrapping: true
+            lineWrapping: true,
         });
 
         // Initialize validation button
@@ -161,7 +161,7 @@ class DeviceEditor {
         // Add change handler to save YAML content and show validation button
         this.yamlEditor.on('change', () => {
             this.saveFormState();
-            this.yamlValidateButton.classList.add('visible');
+            this.yamlValidateButton.classList.remove('hidden');
 
             // Clear any existing timeout
             if (this.yamlValidationTimeout) {
@@ -169,14 +169,14 @@ class DeviceEditor {
             }
             // Set a new timeout to hide the button after 5 seconds of no changes
             this.yamlValidationTimeout = setTimeout(() => {
-                this.yamlValidateButton.classList.remove('visible');
+                this.yamlValidateButton.classList.add('hidden');
             }, 60000);
         });
 
         // Handle validation button click
         this.yamlValidateButton.addEventListener('click', () => {
             const isValid = this.validateYaml();
-            this.yamlValidateButton.classList.remove('visible');
+            this.yamlValidateButton.classList.add('hidden');
 
             if (!isValid) {
                 // Get the error message element and scroll to it
@@ -1410,23 +1410,26 @@ class DeviceEditor {
         }
 
         try {
-            const {hasInclude, hasExternalComponents, hasWifi, wifiValid, parseError} = validateYaml(yamlContent);
+            const result = validateYaml(yamlContent);
 
-            if (parseError) {
+            if (result.parseError) {
                 formGroup.classList.add('error');
                 errorElement.textContent = `YAML Error: ${parseError}`;
                 return false;
             }
 
             let errors = [];
-            if (hasInclude) {
+            if (result.hasInclude) {
                 errors.push('!include tags are not allowed');
             }
-            if (hasExternalComponents) {
+            if (result.hasExternalComponents) {
                 errors.push('external_components are not allowed');
             }
-            if (hasWifi && !wifiValid) {
+            if (result.hasWifi && !result.wifiValid) {
                 errors.push('wifi configuration must only contain ssid and password with !secret values');
+            }
+            if (!result.hasEspHome) {
+                errors.push('ESPHome configuration block is required');
             }
 
             if (errors.length > 0) {

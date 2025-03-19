@@ -27,7 +27,8 @@ export function validateYaml(yamlString) {
     hasExternalComponents: false,
     hasWifi: false,
     wifiValid: true,
-    parseError: null
+    parseError: null,
+    hasEspHome: false,
   };
 
   try {
@@ -36,12 +37,17 @@ export function validateYaml(yamlString) {
 
     // Check for !include usage by searching the raw string
     result.hasInclude = yamlString.includes('!include');
+    if (!doc) {
+      return result;
+    }
+
+    result.hasEspHome = 'esphome' in doc;
 
     // Check for external_components
-    result.hasExternalComponents = doc && 'external_components' in doc;
+    result.hasExternalComponents = 'external_components' in doc;
 
     // Validate wifi configuration if present
-    if (doc && 'wifi' in doc) {
+    if ('wifi' in doc) {
       result.hasWifi = true;
       const wifi = doc.wifi;
       
