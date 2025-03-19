@@ -1,0 +1,103 @@
+substitutions:
+  name: wave-35
+  friendly_name: Waveshare 3.5
+
+esphome:
+  name: ${name}
+  friendly_name: ${friendly_name}
+  name_add_mac_suffix: false
+  project:
+    name: esphome.esp-pico
+    version: "1.1"
+  platformio_options:
+    build_unflags: -Werror=all
+    board_build.flash_mode: dio
+esp32:
+  board: esp32-s3-devkitc-1
+  framework:
+    type: arduino
+    #type: esp-idf
+
+
+logger:
+  level: DEBUG
+  hardware_uart: UART0
+  logs:
+    component: ERROR
+
+psram:
+  speed: 80MHz
+  mode: quad
+
+spi:
+  - id: spi_id_1
+    clk_pin: 35
+    mosi_pin: 36
+    miso_pin: 37
+
+power_supply:
+  - id: lcd_bl
+    pin: GPIO38
+    enable_on_boot: true
+
+touchscreen:
+  - platform: xpt2046
+    id: my_touchscreen
+    cs_pin: GPIO42
+    interrupt_pin: GPIO41
+    update_interval: 50ms
+    transform:
+      mirror_x: true
+      mirror_y: true
+      swap_xy: false
+    threshold: 400
+    calibration:
+      x_min: 280
+      x_max: 3860
+      y_min: 340
+      y_max: 3860
+    on_touch:
+    - lambda: |-
+          ESP_LOGI("cal", "x=%d, y=%d, x_raw=%d, y_raw=%0d",
+              touch.x,
+              touch.y,
+              touch.x_raw,
+              touch.y_raw
+              );
+
+display:
+  - platform: ili9xxx
+    id: wave_disp
+    model: WAVESHARE_RES_3_5
+    dimensions:
+      height: 320
+      width: 480
+    rotation: 0
+    dc_pin: GPIO33
+    cs_pin: GPIO34
+    reset_pin: GPIO40
+    data_rate: 40MHz
+    spi_mode: mode0
+    auto_clear_enabled: true
+    update_interval: 5s
+    show_test_card: false
+    invert_colors: true
+    lambda: |-
+      auto red = Color(255, 0, 0);
+      it.filled_rectangle(100, 100, 100, 100, red);
+
+
+
+binary_sensor:
+
+
+#Touch key minus
+  - platform: touchscreen
+    id: touch_key_minus
+    x_min: 100
+    x_max: 200
+    y_min: 100
+    y_max: 200
+    on_press:
+      logger.log: Sensor pressed
+
