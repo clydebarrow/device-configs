@@ -1,0 +1,20 @@
+name = "device-editor"
+main = "worker/worker.js"
+compatibility_date = "2025-03-12"
+compatibility_flags = ["nodejs_compat"]
+find_additional_modules = true
+
+routes = [
+  { pattern = "device-submission.control-j.com", custom_domain = true },
+  { pattern = "devices.control-j.com/auth/*", zone_name = "control-j.com" },
+  { pattern = "devices.control-j.com/api/*", zone_name = "control-j.com" },
+]
+
+[vars]
+UPSTREAM_REPO = "clydebarrow/device-configs"
+BASE_BRANCH = "main"
+
+[[kv_namespaces]]
+binding = "SESSIONS"
+id = "9f41a0d949f44ab282d9865de743f1dc"
+preview_id = "67974c12ef4d41eb9338a695d54bf45c"

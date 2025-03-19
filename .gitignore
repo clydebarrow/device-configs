@@ -2,3 +2,9 @@
 public/
 resources/
 .idea/
+.env
+node_modules/
+.wrangler/
+*.pem
+.dev.vars
+dist/
