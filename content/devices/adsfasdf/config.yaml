@@ -1,0 +1,11 @@
+esphome:
+  name: bkss
+
+
+
+
+bk72xx:
+  board: wb3s
+
+logger:
+
