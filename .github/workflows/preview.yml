@@ -81,9 +81,6 @@ jobs:
           repo: cloudcannon/pagefind
 
       - name: Set commit variables
-        with:
-          env:
-            TZ: "UTC"
         run: |
           echo "HUGO_COMMIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
           echo "HUGO_COMMIT_TITLE=$(git log -1 --pretty=%s)" >> $GITHUB_ENV
