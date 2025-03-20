@@ -143,9 +143,9 @@
             </div>
             <div class="version-info-popup" hidden>
                 <div class="version-info-content">
-                    <p>Commit: {{ .GitInfo.AbbreviatedHash }}</p>
-                    <p>Date: {{ .GitInfo.CommitDate }}</p>
-                    <p>Subject: {{ .GitInfo.Subject }}</p>
+                    <p>Commit: {{ os.Getenv "HUGO_COMMIT_HASH"}}</p>
+                    <p>Title: {{ os.Getenv "HUGO_COMMIT_TITLE"}}</p>
+                    <p>Date: {{ os.Getenv "HUGO_COMMIT_DATE"}}</p>
                     <button class="close-version-info" aria-label="Close version info">×</button>
                 </div>
             </div>

@@ -1420,6 +1420,7 @@ footer .container {
     margin: 0.5rem 0;
     font-family: "Courier New", Courier, monospace;
     font-size: 0.9rem;
+    justify-content: left;
 }
 
 .close-version-info {
