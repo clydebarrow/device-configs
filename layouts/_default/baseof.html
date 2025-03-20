@@ -7,7 +7,8 @@
     <title>{{ if .Title }}{{ .Title }} - {{ end }}{{ .Site.Title }}</title>
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
     <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
-    <script type="text/javascript">
+    // cfasync is set to false to prevent Cloudflare from modifying the script
+    <script data-cfasync="false" type="text/javascript">
         // Critical theme and layout preferences
             // Theme handling
             const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
