@@ -3,6 +3,7 @@
     --text-color: #333;
     --bg-color: #fff;
     --button-hover-bg: #00000040;
+    --button-color: #00c192;
     --form-bg-color: #f0f0f0;
     --pin-bg-color: white;
     --drop-zone-overlay-bg: rgba(255, 255, 255, 0.8);
@@ -1723,15 +1724,32 @@ footer .container {
     padding: 1.25rem;
 }
 
+#YAMLGroup {
+    position: relative;
+}
 #yamlValidateButton {
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
     position: absolute;
     bottom: 10px;
     right: 10px;
-    padding: 10px 20px;
     border-radius: 5px;
     border: none;
     cursor: pointer;
-    background: var(--primary-color);
+    z-index: 100;
+}
+#uploadYamlFile {
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background: transparent;
     z-index: 100;
 }
 .copy-button {
