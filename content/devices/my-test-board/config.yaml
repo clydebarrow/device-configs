@@ -1,0 +1,15 @@
+# Example YAML configuration - replace with your own
+# You can paste your YAML configuration here or drop a file.
+# Use the paperclip icon to upload a file.
+
+esphome:
+  name: my_device
+
+esp32:
+  board: esp32dev
+
+wifi:
+
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+            
