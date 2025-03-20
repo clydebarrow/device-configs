@@ -14,6 +14,8 @@ class DeviceEditor {
         this.electricalStandardAdd = document.getElementById('electricalStandardAdd');
         this.tagAdd = document.getElementById('tagAdd');
         this.tagsRequired = document.getElementById('tagsRequired');
+        this.yamlCode = document.getElementById('yamlCode');
+        this.uploadYamlFile = document.getElementById('uploadYamlFile');
 
         this.availableElectricalStandards = [
             {code: 'AU', name: 'Australia (AU)'},
@@ -109,7 +111,6 @@ class DeviceEditor {
         this.addToggler(electricalStandardAdd, electricalInputInfoPopup);
 
         this.madeForESPHome = document.getElementById('madeForESPHome');
-        this.yamlDropZone = document.getElementById('yamlDropZone');
         this.imageDropZone = document.getElementById('imageDropZone');
         this.imageInput = document.getElementById('images');
         this.imagePreview = document.getElementById('imagePreview');
@@ -118,7 +119,6 @@ class DeviceEditor {
         this.selectedTags = document.getElementById('selectedTags');
         this.gpioPinList = document.getElementById('gpioPinList');
         this.slugInput = document.getElementById('slugInput');
-        this.yamlOverlay = this.yamlDropZone.querySelector('.drop-zone-overlay');
         this.imageOverlay = this.imageDropZone.querySelector('.drop-zone-overlay');
         this.contextMenu = document.getElementById('contextMenu');
         this.toast = document.getElementById('toast');
@@ -179,7 +179,7 @@ class DeviceEditor {
 
             if (!isValid) {
                 // Get the error message element and scroll to it
-                const errorElement = this.yamlDropZone.closest('.form-group').querySelector('.error-message');
+                const errorElement = this.yamlCode.closest('.form-group').querySelector('.error-message');
                 errorElement.scrollIntoView({behavior: 'smooth', block: 'center'});
             }
         });
@@ -490,7 +490,6 @@ class DeviceEditor {
         this.madeForESPHome.addEventListener('change', (event) => {
             this.saveFormState();
         });
-        this.setupDropZone(this.yamlDropZone, this.handleYamlDrop.bind(this));
         this.setupDropZone(this.imageDropZone, this.handleImageDrop.bind(this));
         this.imageInput.addEventListener('change', this.handleImageSelect.bind(this));
         this.slugInput.addEventListener('input', this.validateSlug.bind(this));
@@ -511,7 +510,7 @@ class DeviceEditor {
         });
 
         // Handle click on YAML drop zone
-        this.yamlOverlay.addEventListener('click', () => {
+        this.uploadYamlFile.addEventListener('click', () => {
             const input = document.createElement('input');
             input.type = 'file';
             input.accept = '.yaml,.yml';
@@ -520,9 +519,6 @@ class DeviceEditor {
         });
 
         // Handle drop zone content state
-        this.yamlDropZone.addEventListener('drop', () => {
-            this.yamlDropZone.classList.add('has-content');
-        });
         this.imageDropZone.addEventListener('drop', () => {
             this.imageDropZone.classList.add('has-content');
         });
@@ -769,7 +765,7 @@ class DeviceEditor {
         }
         this.validationState.hasTags = this.selectedTagsList.size > 0;
         document.getElementById('tagsRequired').value = this.validationState.hasTags ? 'valid' : '';
-        this.validateForm();
+        this.validateTags();
         this.saveFormState();
     }
 
@@ -920,7 +916,6 @@ class DeviceEditor {
                 // Restore YAML content
                 if (formData.yamlContent) {
                     this.yamlEditor.setValue(formData.yamlContent);
-                    this.yamlDropZone.classList.add('has-content');
                 }
 
                 // Restore tags
@@ -1200,9 +1195,6 @@ class DeviceEditor {
             formGroup.querySelector('.error-message').textContent = '';
         }
         this.imageOverlay.style.display = hasImages ? 'none' : 'block';
-
-        // Update hidden required field
-        document.getElementById('imagesRequired').value = hasImages ? 'valid' : '';
     }
 
     validateUrl(input) {
@@ -1397,7 +1389,7 @@ class DeviceEditor {
     }
 
     validateYaml() {
-        const formGroup = this.yamlDropZone.closest('.form-group');
+        const formGroup = this.yamlCode.closest('.form-group');
         const errorElement = formGroup.querySelector('.error-message');
         const yamlContent = this.yamlEditor.getValue().trim();
 
@@ -1406,44 +1398,16 @@ class DeviceEditor {
             errorElement.textContent = 'Sample YAML configuration is required';
             return false;
         }
-
-        try {
-            const result = validateYaml(yamlContent);
-
-            if (result.parseError) {
-                formGroup.classList.add('error');
-                errorElement.textContent = `YAML Error: ${parseError}`;
-                return false;
-            }
-
-            let errors = [];
-            if (result.hasInclude) {
-                errors.push('!include tags are not allowed');
-            }
-            if (result.hasExternalComponents) {
-                errors.push('external_components are not allowed');
-            }
-            if (result.hasWifi && !result.wifiValid) {
-                errors.push('wifi configuration must only contain ssid and password with !secret values');
-            }
-            if (!result.hasEspHome) {
-                errors.push('ESPHome configuration block is required');
-            }
-
-            if (errors.length > 0) {
-                formGroup.classList.add('error');
-                errorElement.textContent = errors.join('; ');
-                return false;
-            }
-
-            formGroup.classList.remove('error');
-            errorElement.textContent = '';
-            return true;
-        } catch (error) {
+        const errors = validateYaml(yamlContent);
+        if (errors.length > 0) {
             formGroup.classList.add('error');
-            errorElement.textContent = `Validation error: ${error.message}`;
+            errorElement.textContent = errors.join('; ');
             return false;
         }
+
+        formGroup.classList.remove('error');
+        errorElement.textContent = '';
+        return true;
     }
 
     resetForm() {
@@ -1482,7 +1446,6 @@ class DeviceEditor {
         this.gpioPinList.innerHTML = '<p class="select-chip-message">Please select a chip type to view available pins</p>';
 
         // Reset drop zones
-        this.yamlDropZone.classList.remove('has-content', 'drag-over');
         this.imageDropZone.classList.remove('has-content', 'drag-over');
         this.imageOverlay.style.display = 'block';
     }

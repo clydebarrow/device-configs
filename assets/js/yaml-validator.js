@@ -22,59 +22,52 @@ const CUSTOM_SCHEMA = jsyaml.DEFAULT_SCHEMA.extend([includeType, secretType]);
  * @returns {Object} Object containing validation flags
  */
 export function validateYaml(yamlString) {
-  const result = {
-    hasInclude: false,
-    hasExternalComponents: false,
-    hasWifi: false,
-    wifiValid: true,
-    parseError: null,
-    hasEspHome: false,
-  };
+  let errors = [];
 
   try {
     // Parse YAML with custom schema
     const doc = jsyaml.load(yamlString, { schema: CUSTOM_SCHEMA });
 
     // Check for !include usage by searching the raw string
-    result.hasInclude = yamlString.includes('!include');
-    if (!doc) {
-      return result;
-    }
-
-    result.hasEspHome = 'esphome' in doc;
-
-    // Check for external_components
-    result.hasExternalComponents = 'external_components' in doc;
+    if (yamlString.includes('!include'))
+      errors.push('!include tags are not allowed');
+    if (!doc)
+      return errors;
+    if (!('esphome' in doc))
+      errors.push('ESPHome configuration block is required');
+    if('external_components' in doc)
+      errors.push('external_components are not allowed');
 
     // Validate wifi configuration if present
     if ('wifi' in doc) {
-      result.hasWifi = true;
       const wifi = doc.wifi;
-      
+
       // Check if wifi contains only ssid and password
       const wifiKeys = Object.keys(wifi || {});
-      const hasValidKeys = wifiKeys.length === 2 && 
-                          wifiKeys.includes('ssid') && 
-                          wifiKeys.includes('password');
-      
+      const hasValidKeys = wifiKeys.length === 2 &&
+          wifiKeys.includes('ssid') &&
+          wifiKeys.includes('password');
+
       // Check if both ssid and password use !secret
       const rawWifiSection = yamlString
-        .substring(yamlString.indexOf('wifi:'))
-        .split('\n')
-        .filter(line => line.includes('wifi:') || 
-                       line.includes('ssid:') || 
-                       line.includes('password:'))
-        .join('\n');
-      
+          .substring(yamlString.indexOf('wifi:'))
+          .split('\n')
+          .filter(line => line.includes('wifi:') ||
+              line.includes('ssid:') ||
+              line.includes('password:'))
+          .join('\n');
+
       const hasSecretTags = rawWifiSection.includes('!secret') &&
-                           (rawWifiSection.match(/!secret/g) || []).length === 2;
-      
-      result.wifiValid = hasValidKeys && hasSecretTags;
+          (rawWifiSection.match(/!secret/g) || []).length === 2;
+
+      if (!hasValidKeys || !hasSecretTags)
+        errors.push('wifi configuration must only contain ssid and password with !secret values');
     }
 
+
   } catch (error) {
-    result.parseError = error.message;
+    errors.push('YAML parse error: ' + error.message);
   }
 
-  return result;
+  return errors;
 }

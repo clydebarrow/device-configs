@@ -2,12 +2,12 @@
 {{ with resources.Get "css/submission.css" }}
 {{ if eq hugo.Environment "development" }}
 <!--suppress HtmlUnknownTarget -->
-    <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
 {{ else }}
-    {{ with . | fingerprint "sha256" }}
-    <!--suppress HtmlUnknownTarget -->
-    <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
-    {{ end }}
+{{ with . | fingerprint "sha256" }}
+<!--suppress HtmlUnknownTarget -->
+<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+{{ end }}
 {{ end }}
 {{ end }}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
@@ -149,7 +149,7 @@
             </div>
             <div class="tags-container">
                 <div id="selectedTags" class="selected-tags">
-                    <img alt="Add a feature tag" src="/images/plus.svg" class="tag feature button" id="tagAdd"/>
+                    <img title="Add a feature tag" src="/images/plus.svg" class="tag feature button" id="tagAdd"/>
                 </div>
                 <input type="hidden" id="tagsRequired" name="tagsRequired" required>
             </div>
@@ -170,7 +170,8 @@
             </div>
             <div class="tags-container">
                 <div id="selectedElectricalStandards" class="selected-tags">
-                    <img alt="Add an electrical standard" src="/images/plus.svg" class="tag feature button" id="electricalStandardAdd" />
+                    <img title="Add an electrical standard" src="/images/plus.svg" class="tag feature button"
+                         id="electricalStandardAdd"/>
                 </div>
                 <input type="hidden" id="electricalStandardsHidden" name="electricalStandard">
             </div>
@@ -217,40 +218,53 @@
             <div id="yamlCodeInfoPopup" class="info-popup">
                 {{ partial "hint.html" (dict "site" .Site "hint" "yaml-config") }}
             </div>
-            <div id="yamlDropZone" class="drop-zone">
-                <textarea id="yamlCode" name="yamlCode" required></textarea>
-                <div class="drop-zone-overlay">Drop YAML file here or click to paste
-                </div>
-                <div id="yamlValidateButton" class="yaml-validate-button hidden">Validate YAML</div>
+            <div id="YAMLGroup">
+            <textarea id="yamlCode" name="yamlCode" required>
+# Example YAML configuration - replace with your own
+# You can paste your YAML configuration here or drop a file.
+# Use the paperclip icon to upload a file.
+
+esphome:
+  name: my_device
+
+esp32:
+  board: esp32dev
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+            </textarea>
+                <img title="Validate YAML" src="/images/checkboxes.svg" id="yamlValidateButton"
+                     class="yaml-validate-button hidden">
+                <img title="Upload a file" src="/images/attach.svg" id="uploadYamlFile" class="yaml-file-button">
             </div>
             <div class="error-message"></div>
+        </div>
 
-            <div class="form-group">
-                <div class="label-container">
-                    <label for="images">Device Images:</label>
-                    <span class="info-icon" id="imagesInfoIcon">ⓘ</span>
-                </div>
-                <div id="imagesInfoPopup" class="info-popup">
-                    {{ partial "hint.html" (dict "site" .Site "hint" "board-images") }}
-                </div>
-                <div id="imageDropZone" class="drop-zone image-drop-zone" tabindex="0">
-                    <input type="file" id="images" name="images" multiple accept="image/*" class="file-input">
-                    <div id="imagePreview" class="image-preview"></div>
-                    <div id="imageDropOverlay" class="drop-zone-overlay">
-                        <div class="drop-zone-text">Drop images here, or click to select files</div>
-                    </div>
-                </div>
-                <input type="hidden" id="imagesRequired" name="imagesRequired" required>
-                <div class="error-message"></div>
+        <div class="form-group">
+            <div class="label-container">
+                <label for="images">Device Images:</label>
+                <span class="info-icon" id="imagesInfoIcon">ⓘ</span>
             </div>
+            <div id="imagesInfoPopup" class="info-popup">
+                {{ partial "hint.html" (dict "site" .Site "hint" "board-images") }}
+            </div>
+            <div id="imageDropZone" class="drop-zone image-drop-zone" tabindex="0">
+                <input type="file" id="images" name="images" multiple accept="image/*" class="file-input">
+                <div id="imagePreview" class="image-preview"></div>
+                <div id="imageDropOverlay" class="drop-zone-overlay">
+                    <div class="drop-zone-text">Drop images here, or click to select files</div>
+                </div>
+            </div>
+            <div class="error-message"></div>
+        </div>
 
-            <div class="form-actions">
-                <div class="form-actions-container">
-                    <button type="button" id="clearBtn" class="secondary-button">Clear Form</button>
-                    <div class="submit-wrapper">
-                        <button type="submit" id="submitBtn" disabled>Create Pull Request</button>
-                        <div id="spinner" class="spinner hidden"></div>
-                    </div>
+        <div class="form-actions">
+            <div class="form-actions-container">
+                <button type="button" id="clearBtn" class="secondary-button">Clear Form</button>
+                <div class="submit-wrapper">
+                    <button type="submit" id="submitBtn" disabled>Create Pull Request</button>
+                    <div id="spinner" class="spinner hidden"></div>
                 </div>
             </div>
         </div>
@@ -268,13 +282,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
 {{ with resources.Get "js/submission.js" }}
 {{ if eq hugo.Environment "development" }}
-    <!--suppress HtmlUnknownTarget -->
-    <script src="{{ .RelPermalink}}" type="module"></script>
+<!--suppress HtmlUnknownTarget -->
+<script src="{{ .RelPermalink}}" type="module"></script>
 {{ else }}
-    {{ with . | fingerprint "sha256" }}
-        <!--suppress HtmlUnknownTarget -->
-        <script src="{{ .RelPermalink }}" type="module" integrity="{{ .Data.Integrity }}" crossorigin="anonymous"></script>
-    {{ end }}
+{{ with . | fingerprint "sha256" }}
+<!--suppress HtmlUnknownTarget -->
+<script src="{{ .RelPermalink }}" type="module" integrity="{{ .Data.Integrity }}" crossorigin="anonymous"></script>
+{{ end }}
 {{ end }}
 {{ end }}
 {{ end }}
