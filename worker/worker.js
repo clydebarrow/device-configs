@@ -54,8 +54,6 @@ async function getFromSession(env, sessionId, key) {
 async function generateJWT(env) {
 
   const now = Math.floor(Date.now() / 1000);
-
-
   const token = await jwt.sign({
     iat: now, // Issued at
     exp: now + 300, // Expires in 5 minutes
