@@ -16,9 +16,13 @@ A Hugo-powered documentation site for ESPHome device descriptions and sample con
 └── config.yaml          # Hugo configuration
 ```
 
+## Live site
+
+The site is hosted at [https://devices.control-j.com](https://devices.control-j.com)
+
 ## Adding New Device Configurations by Form Submission
 
-1. Go to the [ESPHome Device Configuration Form](https://device-submission.control-j.com) and fill out the form.
+1. Go to the [ESPHome Device Configuration Form](https://devices.control-j.com/submission) and fill out the form.
 2. Submit the form.
 3. A PR will be created with the new device configuration.
 
@@ -44,4 +48,5 @@ To run the site locally:
 ## Deployment
 
 The site is deployed to Cloudflare Pages on push or merge to the `main` branch.
-Preview builds are triggered on pull requests.
+Preview builds are triggered on pull requests. A link to the preview will be added as a comment
+in the PR.
