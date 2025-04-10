@@ -497,7 +497,7 @@ class DeviceEditor {
         // Handle click on image drop zone and preview area
         this.imageDropZone.addEventListener('click', (e) => {
             // Only trigger file input if clicking the overlay or empty space
-            if (e.target === this.imageDropZone || e.target.classList.contains('drop-zone-overlay') || e.target.classList.contains('image-preview')) {
+            if (e.target === this.imageDropZone || e.target.classList.contains('drop-zone-overlay') || e.target.classList.contains('image-preview') || e.target.classList.contains('drop-zone-text')) {
                 this.imageInput.click();
             }
         });
